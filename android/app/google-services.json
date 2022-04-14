@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "206158026147",
+    "firebase_url": "https://quraan-78b42.firebaseio.com",
+    "project_id": "quraan-78b42",
+    "storage_bucket": "quraan-78b42.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:206158026147:android:1805d88d63d4cce06e3616",
+        "android_client_info": {
+          "package_name": "com.masritech.m3allah"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "206158026147-rleutnk11tka6dd1tn3mm8apjh13hnbt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCS_QweJUhu9CnolPyy4XUuXTUn5QAMsBw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "206158026147-rleutnk11tka6dd1tn3mm8apjh13hnbt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
