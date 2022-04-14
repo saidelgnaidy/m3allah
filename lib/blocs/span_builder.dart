@@ -261,3 +261,4 @@ List<InlineSpan> _computeSpans(String text, List<SpanEntity> entities, _Recogniz
   }
   return output;
 }
+
