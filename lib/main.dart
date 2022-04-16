@@ -1,18 +1,20 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:m3allah/blocs/azkar/azkar_cubit.dart';
 import 'package:m3allah/blocs/notifications_api.dart';
-import 'package:m3allah/blocs/quran_player/quran_player_bloc.dart';
+import 'package:m3allah/blocs/read_quran/read_quran_cubit.dart';
 import 'package:m3allah/blocs/seb7a/seb7a_counter_bloc.dart';
 import 'package:m3allah/blocs/seb7a/seb7a_counter_event.dart';
 import 'package:m3allah/blocs/setting_bloc/settings_cubit.dart';
 import 'package:m3allah/blocs/view_bloc/build_view_cubit.dart';
 import 'package:m3allah/views/home_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
+
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -40,7 +42,8 @@ class M3Allah extends StatelessWidget {
           BlocProvider(create: (context) => SettingsBloc()..loadSavedTheme()),
           BlocProvider(create: (context) => BuildViewBloc()..getQuranLists()),
           BlocProvider(create: (context) => Seb7aCounterBloc()..add(const LoadingSeb7a())),
-          BlocProvider(create: (context) => QuranPlayerBloc()),
+          BlocProvider(create: (context) => ReadQuranCubit()),
+          BlocProvider(create: (context) => AzkarCubit()),
         ],
         child: BlocBuilder<SettingsBloc, SettingsState>(builder: (context, state) {
           return GetMaterialApp(

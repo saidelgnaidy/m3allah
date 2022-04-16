@@ -25,10 +25,11 @@ enum MainView { quran, azkar, readQuran, readJuz, listen }
 
 class FloatingBtn extends StatelessWidget {
   final bool Function() onTap;
+  final bool Function()? onEnd;
   final IconData sIcon, eIcon;
   final AnimateIconController ctrl = AnimateIconController();
 
-  FloatingBtn({Key? key, required this.onTap, required this.sIcon, required this.eIcon}) : super(key: key);
+  FloatingBtn({Key? key, required this.onTap, required this.sIcon, required this.eIcon, this.onEnd}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +47,7 @@ class FloatingBtn extends StatelessWidget {
         endIcon: eIcon,
         size: 22.0,
         onStartIconPress: onTap,
-        onEndIconPress: onTap,
+        onEndIconPress:onEnd ?? onTap,
         duration: const Duration(milliseconds: 200),
         endIconColor: Theme.of(context).iconTheme.color,
         startIconColor: Theme.of(context).iconTheme.color,
@@ -93,7 +94,7 @@ isMobile(BuildContext context) {
 }
 
 showSnakBar(BuildContext context, String msg) {
-  ScaffoldMessenger.of(context).hideCurrentSnackBar();
+  ScaffoldMessenger.of(context).clearSnackBars();
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       content: SizedBox(

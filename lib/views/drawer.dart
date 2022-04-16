@@ -36,7 +36,7 @@ class KDrawer extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Transform.scale(child: ThemeToggleBtn(), scale: 1.2),
-                      Text('مع الله', style: Theme.of(context).textTheme.headline5?.copyWith(fontWeight: FontWeight.bold)),
+                      Text('مع الله', style: Theme.of(context).textTheme.headline5),
                       const SizedBox(width: 40),
                     ],
                   ),
@@ -54,6 +54,7 @@ class KDrawer extends StatelessWidget {
                     onPressed: () {
                       view.toggleDrawer();
                       view.push(const BuildViewState.quran(initTap: 0));
+                      NotificationCtrl.sendNotification();
                     },
                     title: kTileList[0].title,
                     image: kTileList[0].image,
@@ -145,16 +146,6 @@ class KDrawer extends StatelessWidget {
                       view.toggleDrawer();
                     },
                     title: 'السبحة',
-                  ),
-                ),
-                StaggeredGridTile.count(
-                  crossAxisCellCount: isMobile(context) ? crossAxisCellCountM ~/ 2 : crossAxisCellCountD,
-                  mainAxisCellCount: isMobile(context) ? 2.4 : mainAxisCellCount / 8,
-                  child: CustomTile(
-                    onPressed: () {
-                      NotificationCtrl.sendNotification();
-                    },
-                    title: 'Notifications',
                   ),
                 ),
               ],

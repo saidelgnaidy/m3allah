@@ -29,7 +29,7 @@ class JuzListView extends StatelessWidget {
             itemCount: juzList.length,
             itemBuilder: (context, index) {
               return FadeScale(
-                delay: index < 15 ? index*30 : 30,
+                delay: index < 15 ? index * 10 : 0,
                 child: JuzTile(
                   juz: juzList[index],
                 ),

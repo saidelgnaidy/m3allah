@@ -29,6 +29,7 @@ class QuranPlayerBloc extends Bloc<QuranPlayerEvent, QuranPlayerState> {
   }
 
   FutureOr<void> _playVers(QuranPlayerPlayVers event, Emitter<QuranPlayerState> emit) async {
+    curentVers = event.versIndex;
     final String newVers = '${event.surahIndex}/${event.versIndex.toString().padLeft(3, '0')}';
     if (audioPlayer.state == PlayerState.PLAYING && newVers == lastPlayed) {
       emit(const QuranPlayerState.initial(nawPlayingPath: ''));
@@ -80,12 +81,26 @@ class QuranPlayerBloc extends Bloc<QuranPlayerEvent, QuranPlayerState> {
   }
 
   FutureOr<void> _playAllVers(QuranPlayerPlayAllVers event, Emitter<QuranPlayerState> emit) {
-    playAll = true;
-    curentVers = event.versIndex;
-    currentSurah = event.surah;
-
-    add(QuranPlayerEvent.playVers(surahIndex: event.surah.index, versIndex: event.versIndex));
+    if (playAll && audioPlayer.state == PlayerState.PLAYING) {
+      audioPlayer.pause();
+      playAll = false;
+      add(const QuranPlayerEvent.stopVers());
+    } else {
+      playAll = true;
+      if (currentSurah != event.surah) {
+        curentVers = event.versIndex;
+        currentSurah = event.surah;
+        add(QuranPlayerEvent.playVers(surahIndex: event.surah.index, versIndex: event.versIndex));
+      } else {
+        if (curentVers > currentSurah!.count) {
+          curentVers = 1;
+        }
+        add(QuranPlayerEvent.playVers(surahIndex: currentSurah!.index, versIndex: curentVers));
+      }
+    }
   }
+
+  isPlayingAll() => playAll && audioPlayer.state == PlayerState.PLAYING;
 
   cancelSub() {
     debugPrint('*** Audio player disposed ***');

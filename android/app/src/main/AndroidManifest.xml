@@ -2,7 +2,7 @@
     package="com.masritech.m3allah">
     <uses-permission android:name="android.permission.VIBRATE" />
    <application
-        android:label="m3allah"
+        android:label="مع الله"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity

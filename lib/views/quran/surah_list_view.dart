@@ -28,10 +28,9 @@ class SurahListView extends StatelessWidget {
           child: ListView.separated(
             itemCount: surahList.length,
             physics: const BouncingScrollPhysics(),
-
             itemBuilder: (context, index) {
               return FadeScale(
-                delay: index < 15 ? index*30 : 30,
+                delay: index < 15 ? index * 10 : 0,
                 child: SurahTile(
                   surah: surahList[index],
                 ),
