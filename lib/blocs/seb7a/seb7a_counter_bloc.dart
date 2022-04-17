@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -9,59 +8,80 @@ import 'package:m3allah/modle/azkar/seb7a_model.dart';
 
 class Seb7aCounterBloc extends Bloc<Seb7aCounterEvent, Seb7aCounterState> {
   int _counter = 0;
-  List<Seb7aZekr> _seb7aAzkar = [];
-  late Seb7aZekr _selectedZekr;
 
   final GetStorage _box = GetStorage();
 
-  Seb7aCounterBloc() : super(const Seb7aCounterState.loading()) {
+  Seb7aCounterBloc() : super(Seb7aCounterState(counter: 0, selectedZekr: Seb7aAzkar.seb7aZekr.first)) {
     on<IncreaseSeb7aCounter>(_increase);
     on<ResetSeb7aCounter>(_reset);
-    on<LoadingSeb7a>(_loadingSeb7a);
     on<SelecteSeb7aZekr>(_selectSeb7aZeke);
   }
 
   FutureOr<void> _increase(Seb7aCounterEvent event, Emitter<Seb7aCounterState> emit) async {
     _counter++;
     HapticFeedback.lightImpact();
-
-    state.when(
-      laoded: (counter, azkar, seb7aZekr) {
-        var count = _box.read(seb7aZekr.id.toString()) ?? 0;
-        _box.write(seb7aZekr.id.toString(), count + 1);
-        emit(Seb7aCounterState.laoded(counter: _counter, azkar: azkar, seb7aZekr: seb7aZekr));
-      },
-      loading: () => emit(Seb7aCounterState.laoded(counter: _counter, azkar: _seb7aAzkar, seb7aZekr: _selectedZekr)),
-    );
+    var count = _box.read(state.selectedZekr.id.toString()) ?? 0;
+    _box.write(state.selectedZekr.id.toString(), count + 1);
+    emit(Seb7aCounterState(counter: _counter, selectedZekr: state.selectedZekr));
   }
 
   FutureOr<void> _reset(Seb7aCounterEvent event, Emitter<Seb7aCounterState> emit) {
     _counter = 0;
     HapticFeedback.mediumImpact();
-
-    state.when(
-      laoded: (counter, azkar, seb7aZekr) => emit(Seb7aCounterState.laoded(counter: _counter, azkar: azkar, seb7aZekr: seb7aZekr)),
-      loading: () => emit(Seb7aCounterState.laoded(counter: _counter, azkar: _seb7aAzkar, seb7aZekr: _selectedZekr)),
-    );
-  }
-
-  Future<void> _loadSeb7aZekr() async {
-    var seb7aJson = await DefaultAssetBundle.of(Get.context!).loadString('assets/azkar/seb7a.json');
-    var list = seb7aZekrFromJson(seb7aJson);
-    list.sort((a, b) => a.id.compareTo(b.id));
-    _seb7aAzkar = list;
-  }
-
-  FutureOr<void> _loadingSeb7a(LoadingSeb7a event, Emitter<Seb7aCounterState> emit) async {
-    emit(const Seb7aCounterState.loading());
-    await _loadSeb7aZekr();
-    _selectedZekr = _seb7aAzkar.first;
-    emit(Seb7aCounterState.laoded(counter: _counter, azkar: _seb7aAzkar, seb7aZekr: _selectedZekr));
+    emit(Seb7aCounterState(counter: _counter, selectedZekr: state.selectedZekr));
   }
 
   FutureOr<void> _selectSeb7aZeke(SelecteSeb7aZekr event, Emitter<Seb7aCounterState> emit) {
-    _counter = 0;
-    emit(Seb7aCounterState.laoded(counter: _counter, azkar: _seb7aAzkar, seb7aZekr: event.seb7aZekr));
+    if (event.seb7aZekr != state.selectedZekr) {
+      _counter = 0;
+      emit(Seb7aCounterState(counter: _counter, selectedZekr: event.seb7aZekr));
+    }
     Get.back();
   }
+}
+
+
+
+
+
+class Seb7aAzkar {
+  static List<Seb7aZekr> seb7aZekr = seb7aZekrFromList(_azkar);
+
+  static final List<Map<String, dynamic>> _azkar = [
+    {"content": "الْلَّهُ أَكْبَرُ", "description": "من قالها كتبت له عشرون حسنة وحطت عنه عشرون سيئة", "id": 1},
+    {"content": "سُبْحَانَ اللَّهِ", "description": "يكتب له ألف حسنة أو يحط عنه ألف خطيئة", "id": 2},
+    {"content": "الْحَمْدُ للّهِ رَبِّ الْعَالَمِينَ", "description": "تملأ ميزان العبد بالحسنات", "id": 3},
+    {
+      "content": "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ",
+      "description": "لَمْ يَأْتِ أَحَدٌ يَوْمَ الْقِيَامَةِ بِأَفْضَلَ مِمَّا جَاءَ بِهِ إِلَّا أَحَدٌ قَالَ مِثْلَ مَا قَالَ أَوْ زَادَ عَلَيْهِ",
+      "id": 4
+    },
+    {"content": "سُبْحَانَ اللَّهِ وَالْحَمْدُ لِلَّهِ", "description": "تَمْلَآَنِ مَا بَيْنَ السَّمَاوَاتِ وَالْأَرْضِ", "id": 5},
+    {"content": "سُبْحَانَ اللهِ العَظِيمِ وَبِحَمْدِهِ ", "description": "غرست له نخلة في الجنة", "id": 6},
+    {"content": "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ ، سُبْحَانَ اللَّهِ الْعَظِيمِ ", "description": "ثقيلتان في الميزان حبيبتان إلى الرحمن", "id": 7},
+    {"content": "لا حَوْلَ وَلا قُوَّةَ إِلا بِاللَّهِ ", "description": "كنز من كنوز الجنة", "id": 8},
+    {"content": "الْلَّهُم صَلِّ وَسَلِم وَبَارِك عَلَى سَيِّدِنَا مُحَمَّد ", "description": "من صلى على حين يصبح وحين يمسى ادركته شفاعتى يوم القيامة", "id": 9},
+    {"content": "أستغفر الله", "description": "لفعل الرسول صلى الله عليه وسلم", "id": 10},
+    {"content": "لَا إِلَهَ إِلَّا اللَّهُ", "description": "أفضل الذكر لا إله إلاّ الله", "id": 11},
+    {
+      "content": "اللَّهُ أَكْبَرُ كَبِيرًا ، وَالْحَمْدُ لِلَّهِ كَثِيرًا ، وَسُبْحَانَ اللَّهِ بُكْرَةً وَأَصِيلاً ",
+      "description": "قَالَ النَّبِيُّ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ عَجِبْتُ لَهَا ، فُتِحَتْ لَهَا أَبْوَابُ السَّمَاءِ",
+      "id": 12
+    },
+    {
+      "content": "الْحَمْدُ لِلَّهِ حَمْدًا كَثِيرًا طَيِّبًا مُبَارَكًا فِيهِ",
+      "description": "قَالَ النَّبِيُّ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ لَقَدْ رَأَيْتُ اثْنَيْ عَشَرَ مَلَكًا يَبْتَدِرُونَهَا، أَيُّهُمْ يَرْفَعُهَا",
+      "id": 13
+    },
+    {
+      "content": "سُبْحَانَ الْلَّهِ، وَالْحَمْدُ لِلَّهِ، وَلَا إِلَهَ إِلَّا الْلَّهُ، وَالْلَّهُ أَكْبَر",
+      "description": "أنهن أحب الكلام الى الله، ومكفرات للذنوب، وغرس الجنة، وجنة لقائلهن من النار، وأحب الى النبي عليه السلام مما طلعت عليه الشمس، والْبَاقِيَاتُ الْصَّالِحَات",
+      "id": 14
+    },
+    {
+      "content": "لَا إلَه إلّا اللهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلُّ شَيْءِ قَدِيرِ",
+      "description": "كانت له عدل عشر رقاب، وكتبت له مئة حسنة، ومحيت عنه مئة سيئة، وكانت له حرزا من الشيطان",
+      "id": 15
+    }
+  ];
 }

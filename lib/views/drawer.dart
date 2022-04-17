@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:m3allah/blocs/notifications_api.dart';
 import 'package:m3allah/blocs/view_bloc/build_view_cubit.dart';
 import 'package:m3allah/blocs/view_bloc/build_view_state.dart';
 import 'package:m3allah/views/component/const.dart';
@@ -24,7 +23,7 @@ class KDrawer extends StatelessWidget {
       width: isMobile(context) ? size.width : 150,
       height: size.height,
       child: SingleChildScrollView(
-        padding: EdgeInsets.only(top: isMobile(context) ? size.height * .05 : 0, left: isMobile(context) ? size.width * .15 + 10 : 10, right: 10),
+        padding: EdgeInsets.only(top: isMobile(context) ? size.height * .05 + 5 : 0, left: isMobile(context) ? size.width * .15 + 10 : 10, right: 15),
         physics: const BouncingScrollPhysics(),
         child: Column(
           children: [
@@ -52,9 +51,7 @@ class KDrawer extends StatelessWidget {
                   mainAxisCellCount: isMobile(context) ? 3.1 : mainAxisCellCount / 8,
                   child: CustomTile(
                     onPressed: () {
-                      view.toggleDrawer();
                       view.push(const BuildViewState.quran(initTap: 0));
-                      NotificationCtrl.sendNotification();
                     },
                     title: kTileList[0].title,
                     image: kTileList[0].image,
@@ -143,7 +140,6 @@ class KDrawer extends StatelessWidget {
                   child: CustomTile(
                     onPressed: () {
                       context.read<BuildViewBloc>().push(const BuildViewState.sebha());
-                      view.toggleDrawer();
                     },
                     title: 'السبحة',
                   ),

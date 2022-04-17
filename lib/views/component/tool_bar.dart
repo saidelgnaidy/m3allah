@@ -15,11 +15,9 @@ class ToolBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-
     return BlocBuilder<BuildViewBloc, BuildViewState>(
       builder: (context, state) {
-        final bool show = state.maybeWhen(orElse: () => false, azkar: (v) => true, readSurah: () => true);
+        final bool show = state.maybeWhen(orElse: () => false, azkar: (azkar) => true, readSurah: () => true);
         final SettingsBloc setting = context.read<SettingsBloc>();
         final ReadQuranCubit readQuran = context.read<ReadQuranCubit>();
         final AzkarCubit azkarCubit = context.read<AzkarCubit>();
@@ -28,9 +26,7 @@ class ToolBar extends StatelessWidget {
           readQuran.toggleToolBar();
           state.maybeWhen(
             orElse: () => false,
-            azkar: (v) {
-              azkarCubit.toggleToolBar();
-            },
+            azkar: (azkar) => azkarCubit.toggleToolBar(),
           );
           setting.increaseFontSize();
         }
@@ -39,9 +35,7 @@ class ToolBar extends StatelessWidget {
           readQuran.toggleToolBar();
           state.maybeWhen(
             orElse: () => false,
-            azkar: (v) {
-              azkarCubit.toggleToolBar();
-            },
+            azkar: (azkar) => azkarCubit.toggleToolBar(),
           );
           setting.decreaseFontSize();
         }
@@ -50,9 +44,7 @@ class ToolBar extends StatelessWidget {
           readQuran.toggleToolBar();
           state.maybeWhen(
             orElse: () => false,
-            azkar: (v) {
-              azkarCubit.toggleToolBar();
-            },
+            azkar: (azkar) => azkarCubit.toggleToolBar(),
           );
           setting.updateFont();
         }

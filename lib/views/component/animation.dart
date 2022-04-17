@@ -60,22 +60,3 @@ class FadeX extends StatelessWidget {
   }
 }
 
-class AnimateSeb7a extends StatelessWidget {
-  final Widget child;
-  final Widget Function(BuildContext, Widget?, MultiTweenValues<_AniProps>) builder;
-  const AnimateSeb7a({Key? key, required this.child,required  this.builder}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final tween = MultiTween<_AniProps>()..add(_AniProps.secondry, Tween<double>(begin: 0.3, end: 1.0));
-
-    return PlayAnimation<MultiTweenValues<_AniProps>>(
-      duration: const Duration(milliseconds: 300),
-      tween: tween,
-      curve: Curves.decelerate,
-      child: child,
-      delay: const Duration(milliseconds: 0),
-      builder: builder,
-    );
-  }
-}

@@ -53,24 +53,21 @@ class NotificationCtrl {
       null,
       [
         NotificationChannel(
-            channelKey: '1',
-            channelName: 'M3 Allah Azkar Notifications',
-            channelDescription: 'أذكار',
-            importance: NotificationImportance.Max,
-            enableVibration: true,
-            enableLights: true,
-            channelShowBadge: true,
-            defaultColor: Colors.transparent)
+          channelKey: '1',
+          channelName: 'M3 Allah Azkar Notifications',
+          channelDescription: 'أذكار',
+          importance: NotificationImportance.Default,
+          enableVibration: true,
+          defaultColor: Colors.transparent,
+        )
       ],
     );
   }
 
-
-
   static initWorkMan() {
     debugPrint('***  Work Manager initialized  ***');
-    Workmanager().initialize(_workManExuteTask, isInDebugMode: true);
-    Workmanager().registerPeriodicTask("Azkar", "azkar work manager", frequency: const Duration(minutes: 15));
+    Workmanager().initialize(_workManExuteTask);
+    Workmanager().registerPeriodicTask("Azkar", "azkar work manager", frequency: const Duration(minutes: 60));
   }
 }
 

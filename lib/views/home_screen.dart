@@ -1,7 +1,5 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_zoom_drawer/config.dart';
-import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:m3allah/blocs/view_bloc/build_view_cubit.dart';
 import 'package:m3allah/blocs/view_bloc/build_view_state.dart';
 import 'package:m3allah/views/component/const.dart';
@@ -10,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:m3allah/views/azkar/azkar_list_view.dart';
 import 'package:m3allah/views/component/theme_toggle_btn.dart';
 import 'package:m3allah/views/drawer.dart';
+import 'package:m3allah/views/my_drawer.dart';
 import 'package:m3allah/views/quran/quran_tabs.dart';
 import 'package:m3allah/views/quran/read_listen_tap.dart';
 import 'package:m3allah/views/seb7a/seb7a.dart';
@@ -31,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: state.map(
         initial: (init) => const Center(child: LinearProgressIndicator()),
         quran: (quran) => QuranTaps(initTap: quran.initTap),
-        azkar: (azkar) => AzkarListView(azkar: azkar.list),
+        azkar: (azkar) =>  AzkarListView(azkarList: azkar.list),
         readSurah: (value) => const ReadOrListen(),
         sebha: (sebha) => const Seb7a(),
       ),
@@ -40,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
+    final BuildViewBloc viewBloc = BlocProvider.of<BuildViewBloc>(context);
 
     if (MediaQuery.of(context).orientation.index == 0) {
       SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
@@ -66,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       leading: MenuIcon(
                         color: Theme.of(context).iconTheme.color!,
                         onPressed: () {
-                          BuildViewBloc.zoomDrawerController.toggle?.call();
+                          viewBloc.toggleDrawer();
                         },
                       ),
                       actions: [
@@ -75,25 +74,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
             body: isMobile(context)
-                ? ZoomDrawer(
-                    controller: BuildViewBloc.zoomDrawerController,
-                    isRtl: true,
-                    style: DrawerStyle.defaultStyle,
-                    mainScreenTapClose: false,
-                    borderRadius: 16.0,
-                    showShadow: false,
-                    duration: const Duration(milliseconds: 250),
-                    boxShadow: kBoxShadow(),
-                    mainScreenScale: .1,
-                    angle: 0,
-                    menuScreenWidth: size.width,
-                    slideWidth: size.width * .85,
-                    shadowLayer1Color: Colors.transparent,
-                    shadowLayer2Color: Colors.transparent,
-                    openCurve: Curves.decelerate,
-                    closeCurve: Curves.decelerate,
-                    menuScreen: const KDrawer(),
-                    mainScreen: _buildView(state),
+                ? Landing(
+                    animationController: viewBloc.animationController,
+                    child: _buildView(state),
                   )
                 : Row(
                     children: [

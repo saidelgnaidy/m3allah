@@ -24,10 +24,6 @@ class _$Seb7aCounterEventTearOff {
     );
   }
 
-  LoadingSeb7a laoding() {
-    return const LoadingSeb7a();
-  }
-
   ResetSeb7aCounter reset({required Seb7aZekr seb7aZekr}) {
     return ResetSeb7aCounter(
       seb7aZekr: seb7aZekr,
@@ -46,10 +42,11 @@ const $Seb7aCounterEvent = _$Seb7aCounterEventTearOff();
 
 /// @nodoc
 mixin _$Seb7aCounterEvent {
+  Seb7aZekr get seb7aZekr => throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Seb7aZekr seb7aZekr) increase,
-    required TResult Function() laoding,
     required TResult Function(Seb7aZekr seb7aZekr) reset,
     required TResult Function(Seb7aZekr seb7aZekr) selecteZekr,
   }) =>
@@ -57,7 +54,6 @@ mixin _$Seb7aCounterEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Seb7aZekr seb7aZekr)? increase,
-    TResult Function()? laoding,
     TResult Function(Seb7aZekr seb7aZekr)? reset,
     TResult Function(Seb7aZekr seb7aZekr)? selecteZekr,
   }) =>
@@ -65,7 +61,6 @@ mixin _$Seb7aCounterEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Seb7aZekr seb7aZekr)? increase,
-    TResult Function()? laoding,
     TResult Function(Seb7aZekr seb7aZekr)? reset,
     TResult Function(Seb7aZekr seb7aZekr)? selecteZekr,
     required TResult orElse(),
@@ -74,7 +69,6 @@ mixin _$Seb7aCounterEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(IncreaseSeb7aCounter value) increase,
-    required TResult Function(LoadingSeb7a value) laoding,
     required TResult Function(ResetSeb7aCounter value) reset,
     required TResult Function(SelecteSeb7aZekr value) selecteZekr,
   }) =>
@@ -82,7 +76,6 @@ mixin _$Seb7aCounterEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(IncreaseSeb7aCounter value)? increase,
-    TResult Function(LoadingSeb7a value)? laoding,
     TResult Function(ResetSeb7aCounter value)? reset,
     TResult Function(SelecteSeb7aZekr value)? selecteZekr,
   }) =>
@@ -90,11 +83,14 @@ mixin _$Seb7aCounterEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(IncreaseSeb7aCounter value)? increase,
-    TResult Function(LoadingSeb7a value)? laoding,
     TResult Function(ResetSeb7aCounter value)? reset,
     TResult Function(SelecteSeb7aZekr value)? selecteZekr,
     required TResult orElse(),
   }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $Seb7aCounterEventCopyWith<Seb7aCounterEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -103,6 +99,7 @@ abstract class $Seb7aCounterEventCopyWith<$Res> {
   factory $Seb7aCounterEventCopyWith(
           Seb7aCounterEvent value, $Res Function(Seb7aCounterEvent) then) =
       _$Seb7aCounterEventCopyWithImpl<$Res>;
+  $Res call({Seb7aZekr seb7aZekr});
 }
 
 /// @nodoc
@@ -113,13 +110,27 @@ class _$Seb7aCounterEventCopyWithImpl<$Res>
   final Seb7aCounterEvent _value;
   // ignore: unused_field
   final $Res Function(Seb7aCounterEvent) _then;
+
+  @override
+  $Res call({
+    Object? seb7aZekr = freezed,
+  }) {
+    return _then(_value.copyWith(
+      seb7aZekr: seb7aZekr == freezed
+          ? _value.seb7aZekr
+          : seb7aZekr // ignore: cast_nullable_to_non_nullable
+              as Seb7aZekr,
+    ));
+  }
 }
 
 /// @nodoc
-abstract class $IncreaseSeb7aCounterCopyWith<$Res> {
+abstract class $IncreaseSeb7aCounterCopyWith<$Res>
+    implements $Seb7aCounterEventCopyWith<$Res> {
   factory $IncreaseSeb7aCounterCopyWith(IncreaseSeb7aCounter value,
           $Res Function(IncreaseSeb7aCounter) then) =
       _$IncreaseSeb7aCounterCopyWithImpl<$Res>;
+  @override
   $Res call({Seb7aZekr seb7aZekr});
 }
 
@@ -182,7 +193,6 @@ class _$IncreaseSeb7aCounter implements IncreaseSeb7aCounter {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Seb7aZekr seb7aZekr) increase,
-    required TResult Function() laoding,
     required TResult Function(Seb7aZekr seb7aZekr) reset,
     required TResult Function(Seb7aZekr seb7aZekr) selecteZekr,
   }) {
@@ -193,7 +203,6 @@ class _$IncreaseSeb7aCounter implements IncreaseSeb7aCounter {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Seb7aZekr seb7aZekr)? increase,
-    TResult Function()? laoding,
     TResult Function(Seb7aZekr seb7aZekr)? reset,
     TResult Function(Seb7aZekr seb7aZekr)? selecteZekr,
   }) {
@@ -204,7 +213,6 @@ class _$IncreaseSeb7aCounter implements IncreaseSeb7aCounter {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Seb7aZekr seb7aZekr)? increase,
-    TResult Function()? laoding,
     TResult Function(Seb7aZekr seb7aZekr)? reset,
     TResult Function(Seb7aZekr seb7aZekr)? selecteZekr,
     required TResult orElse(),
@@ -219,7 +227,6 @@ class _$IncreaseSeb7aCounter implements IncreaseSeb7aCounter {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(IncreaseSeb7aCounter value) increase,
-    required TResult Function(LoadingSeb7a value) laoding,
     required TResult Function(ResetSeb7aCounter value) reset,
     required TResult Function(SelecteSeb7aZekr value) selecteZekr,
   }) {
@@ -230,7 +237,6 @@ class _$IncreaseSeb7aCounter implements IncreaseSeb7aCounter {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(IncreaseSeb7aCounter value)? increase,
-    TResult Function(LoadingSeb7a value)? laoding,
     TResult Function(ResetSeb7aCounter value)? reset,
     TResult Function(SelecteSeb7aZekr value)? selecteZekr,
   }) {
@@ -241,7 +247,6 @@ class _$IncreaseSeb7aCounter implements IncreaseSeb7aCounter {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(IncreaseSeb7aCounter value)? increase,
-    TResult Function(LoadingSeb7a value)? laoding,
     TResult Function(ResetSeb7aCounter value)? reset,
     TResult Function(SelecteSeb7aZekr value)? selecteZekr,
     required TResult orElse(),
@@ -257,134 +262,21 @@ abstract class IncreaseSeb7aCounter implements Seb7aCounterEvent {
   const factory IncreaseSeb7aCounter({required Seb7aZekr seb7aZekr}) =
       _$IncreaseSeb7aCounter;
 
+  @override
   Seb7aZekr get seb7aZekr;
+  @override
   @JsonKey(ignore: true)
   $IncreaseSeb7aCounterCopyWith<IncreaseSeb7aCounter> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $LoadingSeb7aCopyWith<$Res> {
-  factory $LoadingSeb7aCopyWith(
-          LoadingSeb7a value, $Res Function(LoadingSeb7a) then) =
-      _$LoadingSeb7aCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$LoadingSeb7aCopyWithImpl<$Res>
-    extends _$Seb7aCounterEventCopyWithImpl<$Res>
-    implements $LoadingSeb7aCopyWith<$Res> {
-  _$LoadingSeb7aCopyWithImpl(
-      LoadingSeb7a _value, $Res Function(LoadingSeb7a) _then)
-      : super(_value, (v) => _then(v as LoadingSeb7a));
-
-  @override
-  LoadingSeb7a get _value => super._value as LoadingSeb7a;
-}
-
-/// @nodoc
-
-class _$LoadingSeb7a implements LoadingSeb7a {
-  const _$LoadingSeb7a();
-
-  @override
-  String toString() {
-    return 'Seb7aCounterEvent.laoding()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is LoadingSeb7a);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Seb7aZekr seb7aZekr) increase,
-    required TResult Function() laoding,
-    required TResult Function(Seb7aZekr seb7aZekr) reset,
-    required TResult Function(Seb7aZekr seb7aZekr) selecteZekr,
-  }) {
-    return laoding();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Seb7aZekr seb7aZekr)? increase,
-    TResult Function()? laoding,
-    TResult Function(Seb7aZekr seb7aZekr)? reset,
-    TResult Function(Seb7aZekr seb7aZekr)? selecteZekr,
-  }) {
-    return laoding?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Seb7aZekr seb7aZekr)? increase,
-    TResult Function()? laoding,
-    TResult Function(Seb7aZekr seb7aZekr)? reset,
-    TResult Function(Seb7aZekr seb7aZekr)? selecteZekr,
-    required TResult orElse(),
-  }) {
-    if (laoding != null) {
-      return laoding();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(IncreaseSeb7aCounter value) increase,
-    required TResult Function(LoadingSeb7a value) laoding,
-    required TResult Function(ResetSeb7aCounter value) reset,
-    required TResult Function(SelecteSeb7aZekr value) selecteZekr,
-  }) {
-    return laoding(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(IncreaseSeb7aCounter value)? increase,
-    TResult Function(LoadingSeb7a value)? laoding,
-    TResult Function(ResetSeb7aCounter value)? reset,
-    TResult Function(SelecteSeb7aZekr value)? selecteZekr,
-  }) {
-    return laoding?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(IncreaseSeb7aCounter value)? increase,
-    TResult Function(LoadingSeb7a value)? laoding,
-    TResult Function(ResetSeb7aCounter value)? reset,
-    TResult Function(SelecteSeb7aZekr value)? selecteZekr,
-    required TResult orElse(),
-  }) {
-    if (laoding != null) {
-      return laoding(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class LoadingSeb7a implements Seb7aCounterEvent {
-  const factory LoadingSeb7a() = _$LoadingSeb7a;
-}
-
-/// @nodoc
-abstract class $ResetSeb7aCounterCopyWith<$Res> {
+abstract class $ResetSeb7aCounterCopyWith<$Res>
+    implements $Seb7aCounterEventCopyWith<$Res> {
   factory $ResetSeb7aCounterCopyWith(
           ResetSeb7aCounter value, $Res Function(ResetSeb7aCounter) then) =
       _$ResetSeb7aCounterCopyWithImpl<$Res>;
+  @override
   $Res call({Seb7aZekr seb7aZekr});
 }
 
@@ -446,7 +338,6 @@ class _$ResetSeb7aCounter implements ResetSeb7aCounter {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Seb7aZekr seb7aZekr) increase,
-    required TResult Function() laoding,
     required TResult Function(Seb7aZekr seb7aZekr) reset,
     required TResult Function(Seb7aZekr seb7aZekr) selecteZekr,
   }) {
@@ -457,7 +348,6 @@ class _$ResetSeb7aCounter implements ResetSeb7aCounter {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Seb7aZekr seb7aZekr)? increase,
-    TResult Function()? laoding,
     TResult Function(Seb7aZekr seb7aZekr)? reset,
     TResult Function(Seb7aZekr seb7aZekr)? selecteZekr,
   }) {
@@ -468,7 +358,6 @@ class _$ResetSeb7aCounter implements ResetSeb7aCounter {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Seb7aZekr seb7aZekr)? increase,
-    TResult Function()? laoding,
     TResult Function(Seb7aZekr seb7aZekr)? reset,
     TResult Function(Seb7aZekr seb7aZekr)? selecteZekr,
     required TResult orElse(),
@@ -483,7 +372,6 @@ class _$ResetSeb7aCounter implements ResetSeb7aCounter {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(IncreaseSeb7aCounter value) increase,
-    required TResult Function(LoadingSeb7a value) laoding,
     required TResult Function(ResetSeb7aCounter value) reset,
     required TResult Function(SelecteSeb7aZekr value) selecteZekr,
   }) {
@@ -494,7 +382,6 @@ class _$ResetSeb7aCounter implements ResetSeb7aCounter {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(IncreaseSeb7aCounter value)? increase,
-    TResult Function(LoadingSeb7a value)? laoding,
     TResult Function(ResetSeb7aCounter value)? reset,
     TResult Function(SelecteSeb7aZekr value)? selecteZekr,
   }) {
@@ -505,7 +392,6 @@ class _$ResetSeb7aCounter implements ResetSeb7aCounter {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(IncreaseSeb7aCounter value)? increase,
-    TResult Function(LoadingSeb7a value)? laoding,
     TResult Function(ResetSeb7aCounter value)? reset,
     TResult Function(SelecteSeb7aZekr value)? selecteZekr,
     required TResult orElse(),
@@ -521,17 +407,21 @@ abstract class ResetSeb7aCounter implements Seb7aCounterEvent {
   const factory ResetSeb7aCounter({required Seb7aZekr seb7aZekr}) =
       _$ResetSeb7aCounter;
 
+  @override
   Seb7aZekr get seb7aZekr;
+  @override
   @JsonKey(ignore: true)
   $ResetSeb7aCounterCopyWith<ResetSeb7aCounter> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SelecteSeb7aZekrCopyWith<$Res> {
+abstract class $SelecteSeb7aZekrCopyWith<$Res>
+    implements $Seb7aCounterEventCopyWith<$Res> {
   factory $SelecteSeb7aZekrCopyWith(
           SelecteSeb7aZekr value, $Res Function(SelecteSeb7aZekr) then) =
       _$SelecteSeb7aZekrCopyWithImpl<$Res>;
+  @override
   $Res call({Seb7aZekr seb7aZekr});
 }
 
@@ -593,7 +483,6 @@ class _$SelecteSeb7aZekr implements SelecteSeb7aZekr {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Seb7aZekr seb7aZekr) increase,
-    required TResult Function() laoding,
     required TResult Function(Seb7aZekr seb7aZekr) reset,
     required TResult Function(Seb7aZekr seb7aZekr) selecteZekr,
   }) {
@@ -604,7 +493,6 @@ class _$SelecteSeb7aZekr implements SelecteSeb7aZekr {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Seb7aZekr seb7aZekr)? increase,
-    TResult Function()? laoding,
     TResult Function(Seb7aZekr seb7aZekr)? reset,
     TResult Function(Seb7aZekr seb7aZekr)? selecteZekr,
   }) {
@@ -615,7 +503,6 @@ class _$SelecteSeb7aZekr implements SelecteSeb7aZekr {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Seb7aZekr seb7aZekr)? increase,
-    TResult Function()? laoding,
     TResult Function(Seb7aZekr seb7aZekr)? reset,
     TResult Function(Seb7aZekr seb7aZekr)? selecteZekr,
     required TResult orElse(),
@@ -630,7 +517,6 @@ class _$SelecteSeb7aZekr implements SelecteSeb7aZekr {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(IncreaseSeb7aCounter value) increase,
-    required TResult Function(LoadingSeb7a value) laoding,
     required TResult Function(ResetSeb7aCounter value) reset,
     required TResult Function(SelecteSeb7aZekr value) selecteZekr,
   }) {
@@ -641,7 +527,6 @@ class _$SelecteSeb7aZekr implements SelecteSeb7aZekr {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(IncreaseSeb7aCounter value)? increase,
-    TResult Function(LoadingSeb7a value)? laoding,
     TResult Function(ResetSeb7aCounter value)? reset,
     TResult Function(SelecteSeb7aZekr value)? selecteZekr,
   }) {
@@ -652,7 +537,6 @@ class _$SelecteSeb7aZekr implements SelecteSeb7aZekr {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(IncreaseSeb7aCounter value)? increase,
-    TResult Function(LoadingSeb7a value)? laoding,
     TResult Function(ResetSeb7aCounter value)? reset,
     TResult Function(SelecteSeb7aZekr value)? selecteZekr,
     required TResult orElse(),
@@ -668,7 +552,9 @@ abstract class SelecteSeb7aZekr implements Seb7aCounterEvent {
   const factory SelecteSeb7aZekr({required Seb7aZekr seb7aZekr}) =
       _$SelecteSeb7aZekr;
 
+  @override
   Seb7aZekr get seb7aZekr;
+  @override
   @JsonKey(ignore: true)
   $SelecteSeb7aZekrCopyWith<SelecteSeb7aZekr> get copyWith =>
       throw _privateConstructorUsedError;
@@ -678,18 +564,11 @@ abstract class SelecteSeb7aZekr implements Seb7aCounterEvent {
 class _$Seb7aCounterStateTearOff {
   const _$Seb7aCounterStateTearOff();
 
-  Seb7aCounterStateLoading loading() {
-    return const Seb7aCounterStateLoading();
-  }
-
-  Seb7aCounterStateLoaded laoded(
-      {required int counter,
-      required List<Seb7aZekr> azkar,
-      required Seb7aZekr seb7aZekr}) {
+  Seb7aCounterStateLoaded call(
+      {required int counter, required Seb7aZekr selectedZekr}) {
     return Seb7aCounterStateLoaded(
       counter: counter,
-      azkar: azkar,
-      seb7aZekr: seb7aZekr,
+      selectedZekr: selectedZekr,
     );
   }
 }
@@ -699,47 +578,11 @@ const $Seb7aCounterState = _$Seb7aCounterStateTearOff();
 
 /// @nodoc
 mixin _$Seb7aCounterState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(
-            int counter, List<Seb7aZekr> azkar, Seb7aZekr seb7aZekr)
-        laoded,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(int counter, List<Seb7aZekr> azkar, Seb7aZekr seb7aZekr)?
-        laoded,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(int counter, List<Seb7aZekr> azkar, Seb7aZekr seb7aZekr)?
-        laoded,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Seb7aCounterStateLoading value) loading,
-    required TResult Function(Seb7aCounterStateLoaded value) laoded,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Seb7aCounterStateLoading value)? loading,
-    TResult Function(Seb7aCounterStateLoaded value)? laoded,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Seb7aCounterStateLoading value)? loading,
-    TResult Function(Seb7aCounterStateLoaded value)? laoded,
-    required TResult orElse(),
-  }) =>
+  int get counter => throw _privateConstructorUsedError;
+  Seb7aZekr get selectedZekr => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $Seb7aCounterStateCopyWith<Seb7aCounterState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -748,6 +591,7 @@ abstract class $Seb7aCounterStateCopyWith<$Res> {
   factory $Seb7aCounterStateCopyWith(
           Seb7aCounterState value, $Res Function(Seb7aCounterState) then) =
       _$Seb7aCounterStateCopyWithImpl<$Res>;
+  $Res call({int counter, Seb7aZekr selectedZekr});
 }
 
 /// @nodoc
@@ -758,124 +602,33 @@ class _$Seb7aCounterStateCopyWithImpl<$Res>
   final Seb7aCounterState _value;
   // ignore: unused_field
   final $Res Function(Seb7aCounterState) _then;
+
+  @override
+  $Res call({
+    Object? counter = freezed,
+    Object? selectedZekr = freezed,
+  }) {
+    return _then(_value.copyWith(
+      counter: counter == freezed
+          ? _value.counter
+          : counter // ignore: cast_nullable_to_non_nullable
+              as int,
+      selectedZekr: selectedZekr == freezed
+          ? _value.selectedZekr
+          : selectedZekr // ignore: cast_nullable_to_non_nullable
+              as Seb7aZekr,
+    ));
+  }
 }
 
 /// @nodoc
-abstract class $Seb7aCounterStateLoadingCopyWith<$Res> {
-  factory $Seb7aCounterStateLoadingCopyWith(Seb7aCounterStateLoading value,
-          $Res Function(Seb7aCounterStateLoading) then) =
-      _$Seb7aCounterStateLoadingCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$Seb7aCounterStateLoadingCopyWithImpl<$Res>
-    extends _$Seb7aCounterStateCopyWithImpl<$Res>
-    implements $Seb7aCounterStateLoadingCopyWith<$Res> {
-  _$Seb7aCounterStateLoadingCopyWithImpl(Seb7aCounterStateLoading _value,
-      $Res Function(Seb7aCounterStateLoading) _then)
-      : super(_value, (v) => _then(v as Seb7aCounterStateLoading));
-
-  @override
-  Seb7aCounterStateLoading get _value =>
-      super._value as Seb7aCounterStateLoading;
-}
-
-/// @nodoc
-
-class _$Seb7aCounterStateLoading implements Seb7aCounterStateLoading {
-  const _$Seb7aCounterStateLoading();
-
-  @override
-  String toString() {
-    return 'Seb7aCounterState.loading()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is Seb7aCounterStateLoading);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(
-            int counter, List<Seb7aZekr> azkar, Seb7aZekr seb7aZekr)
-        laoded,
-  }) {
-    return loading();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(int counter, List<Seb7aZekr> azkar, Seb7aZekr seb7aZekr)?
-        laoded,
-  }) {
-    return loading?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(int counter, List<Seb7aZekr> azkar, Seb7aZekr seb7aZekr)?
-        laoded,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Seb7aCounterStateLoading value) loading,
-    required TResult Function(Seb7aCounterStateLoaded value) laoded,
-  }) {
-    return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Seb7aCounterStateLoading value)? loading,
-    TResult Function(Seb7aCounterStateLoaded value)? laoded,
-  }) {
-    return loading?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Seb7aCounterStateLoading value)? loading,
-    TResult Function(Seb7aCounterStateLoaded value)? laoded,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class Seb7aCounterStateLoading implements Seb7aCounterState {
-  const factory Seb7aCounterStateLoading() = _$Seb7aCounterStateLoading;
-}
-
-/// @nodoc
-abstract class $Seb7aCounterStateLoadedCopyWith<$Res> {
+abstract class $Seb7aCounterStateLoadedCopyWith<$Res>
+    implements $Seb7aCounterStateCopyWith<$Res> {
   factory $Seb7aCounterStateLoadedCopyWith(Seb7aCounterStateLoaded value,
           $Res Function(Seb7aCounterStateLoaded) then) =
       _$Seb7aCounterStateLoadedCopyWithImpl<$Res>;
-  $Res call({int counter, List<Seb7aZekr> azkar, Seb7aZekr seb7aZekr});
+  @override
+  $Res call({int counter, Seb7aZekr selectedZekr});
 }
 
 /// @nodoc
@@ -892,21 +645,16 @@ class _$Seb7aCounterStateLoadedCopyWithImpl<$Res>
   @override
   $Res call({
     Object? counter = freezed,
-    Object? azkar = freezed,
-    Object? seb7aZekr = freezed,
+    Object? selectedZekr = freezed,
   }) {
     return _then(Seb7aCounterStateLoaded(
       counter: counter == freezed
           ? _value.counter
           : counter // ignore: cast_nullable_to_non_nullable
               as int,
-      azkar: azkar == freezed
-          ? _value.azkar
-          : azkar // ignore: cast_nullable_to_non_nullable
-              as List<Seb7aZekr>,
-      seb7aZekr: seb7aZekr == freezed
-          ? _value.seb7aZekr
-          : seb7aZekr // ignore: cast_nullable_to_non_nullable
+      selectedZekr: selectedZekr == freezed
+          ? _value.selectedZekr
+          : selectedZekr // ignore: cast_nullable_to_non_nullable
               as Seb7aZekr,
     ));
   }
@@ -916,18 +664,16 @@ class _$Seb7aCounterStateLoadedCopyWithImpl<$Res>
 
 class _$Seb7aCounterStateLoaded implements Seb7aCounterStateLoaded {
   const _$Seb7aCounterStateLoaded(
-      {required this.counter, required this.azkar, required this.seb7aZekr});
+      {required this.counter, required this.selectedZekr});
 
   @override
   final int counter;
   @override
-  final List<Seb7aZekr> azkar;
-  @override
-  final Seb7aZekr seb7aZekr;
+  final Seb7aZekr selectedZekr;
 
   @override
   String toString() {
-    return 'Seb7aCounterState.laoded(counter: $counter, azkar: $azkar, seb7aZekr: $seb7aZekr)';
+    return 'Seb7aCounterState(counter: $counter, selectedZekr: $selectedZekr)';
   }
 
   @override
@@ -936,99 +682,33 @@ class _$Seb7aCounterStateLoaded implements Seb7aCounterStateLoaded {
         (other.runtimeType == runtimeType &&
             other is Seb7aCounterStateLoaded &&
             const DeepCollectionEquality().equals(other.counter, counter) &&
-            const DeepCollectionEquality().equals(other.azkar, azkar) &&
-            const DeepCollectionEquality().equals(other.seb7aZekr, seb7aZekr));
+            const DeepCollectionEquality()
+                .equals(other.selectedZekr, selectedZekr));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(counter),
-      const DeepCollectionEquality().hash(azkar),
-      const DeepCollectionEquality().hash(seb7aZekr));
+      const DeepCollectionEquality().hash(selectedZekr));
 
   @JsonKey(ignore: true)
   @override
   $Seb7aCounterStateLoadedCopyWith<Seb7aCounterStateLoaded> get copyWith =>
       _$Seb7aCounterStateLoadedCopyWithImpl<Seb7aCounterStateLoaded>(
           this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(
-            int counter, List<Seb7aZekr> azkar, Seb7aZekr seb7aZekr)
-        laoded,
-  }) {
-    return laoded(counter, azkar, seb7aZekr);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(int counter, List<Seb7aZekr> azkar, Seb7aZekr seb7aZekr)?
-        laoded,
-  }) {
-    return laoded?.call(counter, azkar, seb7aZekr);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(int counter, List<Seb7aZekr> azkar, Seb7aZekr seb7aZekr)?
-        laoded,
-    required TResult orElse(),
-  }) {
-    if (laoded != null) {
-      return laoded(counter, azkar, seb7aZekr);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Seb7aCounterStateLoading value) loading,
-    required TResult Function(Seb7aCounterStateLoaded value) laoded,
-  }) {
-    return laoded(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Seb7aCounterStateLoading value)? loading,
-    TResult Function(Seb7aCounterStateLoaded value)? laoded,
-  }) {
-    return laoded?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Seb7aCounterStateLoading value)? loading,
-    TResult Function(Seb7aCounterStateLoaded value)? laoded,
-    required TResult orElse(),
-  }) {
-    if (laoded != null) {
-      return laoded(this);
-    }
-    return orElse();
-  }
 }
 
 abstract class Seb7aCounterStateLoaded implements Seb7aCounterState {
   const factory Seb7aCounterStateLoaded(
       {required int counter,
-      required List<Seb7aZekr> azkar,
-      required Seb7aZekr seb7aZekr}) = _$Seb7aCounterStateLoaded;
+      required Seb7aZekr selectedZekr}) = _$Seb7aCounterStateLoaded;
 
+  @override
   int get counter;
-  List<Seb7aZekr> get azkar;
-  Seb7aZekr get seb7aZekr;
+  @override
+  Seb7aZekr get selectedZekr;
+  @override
   @JsonKey(ignore: true)
   $Seb7aCounterStateLoadedCopyWith<Seb7aCounterStateLoaded> get copyWith =>
       throw _privateConstructorUsedError;

@@ -17,29 +17,30 @@ class BuildViewBloc extends Cubit<BuildViewState> {
   JuzList? selectedJuzList;
   SurahList? selectedSurahList;
   late ReadQuranFullDetails readQuranFullDetails;
+  final AnimationController animationController;
 
   static ZoomDrawerController zoomDrawerController = ZoomDrawerController();
 
-  BuildViewBloc() : super(const BuildViewState.initial());
+  BuildViewBloc(this.animationController) : super(const BuildViewState.initial());
 
   push(BuildViewState route) {
-    emit(route);
+    toggleDrawer();
+    state.maybeWhen(
+      orElse: () => emit(route),
+      readSurah: () => null,
+      quran: (q) => null,
+      sebha: () => null,
+    );
   }
 
   void toggleDrawer() async {
     if (isMobile(Get.context!)) {
-      if (zoomDrawerController.open == null) {
-        zoomDrawerController = ZoomDrawerController();
-        zoomDrawerController.toggle?.call();
-      } else {
-        zoomDrawerController.toggle?.call();
-      }
+      animationController.isCompleted ? animationController.reverse() : animationController.forward();
     }
   }
 
   getQuranLists() async {
     emit(const BuildViewState.initial());
-    toggleDrawer();
     var surahJson = await DefaultAssetBundle.of(Get.context!).loadString('assets/surah.json');
     surahList = surahListFromJson(surahJson);
 
@@ -50,14 +51,10 @@ class BuildViewBloc extends Cubit<BuildViewState> {
   }
 
   getAzkar(String str) async {
-    emit(const BuildViewState.initial());
     toggleDrawer();
-
     var zekrFile = await DefaultAssetBundle.of(Get.context!).loadString(str);
-    await Future.delayed(const Duration(milliseconds: 10));
-    final _azkarList = azkarListFromJson(zekrFile);
-
-    emit(BuildViewState.azkar(list: _azkarList));
+    azkarList = azkarListFromJson(zekrFile);
+    emit(BuildViewState.azkar(list: azkarList));
   }
 
   getFullSurah(SurahList surah) async {
@@ -99,12 +96,12 @@ class BuildViewBloc extends Cubit<BuildViewState> {
   }
 
   Future<bool> onPopScope() async {
-    if (zoomDrawerController.isOpen!.call()) {
+    if (animationController.isCompleted) {
       return true;
     } else {
       return state.maybeMap(
         orElse: () {
-          zoomDrawerController.open?.call();
+          animationController.forward();
           return false;
         },
         readSurah: (surah) {

@@ -21,13 +21,13 @@ class ReadQuran extends StatefulWidget {
 class _ReadQuranState extends State<ReadQuran> with AutomaticKeepAliveClientMixin {
   @override
   void initState() {
-    Wakelock.toggle(enable: true);
+    Wakelock.enable();
     super.initState();
   }
 
   @override
   void dispose() {
-    Wakelock.toggle(enable: false);
+    Wakelock.disable();
     super.dispose();
   }
 
@@ -42,7 +42,7 @@ class _ReadQuranState extends State<ReadQuran> with AutomaticKeepAliveClientMixi
           alignment: Alignment.center,
           children: [
             FadeScale(
-              scale: .97,
+              scale: .95,
               child: ListView.builder(
                 padding: const EdgeInsets.fromLTRB(12, 10, 12, 80),
                 itemCount: readQuran.surahList.length + 1,
@@ -55,11 +55,12 @@ class _ReadQuranState extends State<ReadQuran> with AutomaticKeepAliveClientMixi
                       children: [
                         const BuildBasmla(),
                         SelectableText.rich(
-                           TextSpan(
+                          TextSpan(
                             children: List.generate(readQuran.calcStartIndex(surah: readQuran.surahList[surahI], i: 0).length, (index) => index).map((i) {
                               return versTextSpan(context, surah: readQuran.surahList[surahI], versIndex: readQuran.calcStartIndex(surah: readQuran.surahList[surahI], i: i).start);
                             }).toList(),
                           ),
+                          textAlign: TextAlign.center,
                         ),
                       ],
                     );

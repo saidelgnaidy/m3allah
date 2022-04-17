@@ -10,9 +10,8 @@ import 'package:m3allah/views/component/tool_bar.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class AzkarListView extends StatelessWidget {
-  final List<AzkarList> azkar;
-
-  const AzkarListView({Key? key, required this.azkar}) : super(key: key);
+  final List<AzkarList> azkarList;
+  const AzkarListView({Key? key , required this.azkarList}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,12 +27,12 @@ class AzkarListView extends StatelessWidget {
               addAutomaticKeepAlives: true,
               physics: const BouncingScrollPhysics(),
               padding: const EdgeInsets.only(top: 5),
-              itemCount: azkar.length,
+              itemCount: azkarList.length,
               itemBuilder: (BuildContext context, int index) {
                 return FadeX(
                   delay: index < 10 ? index * 25 : 50,
                   child: ZekrTile(
-                    zekr: azkar[index],
+                    zekr: azkarList[index],
                     scrollToNext: () => azkarCubit.scrollTo(index),
                   ),
                 );
@@ -101,7 +100,7 @@ class _ZekrTileState extends State<ZekrTile> {
     return Opacity(
       opacity: _count == 0 ? .6 : 1.0,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 1),
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
         child: RawMaterialButton(
           fillColor: Theme.of(context).colorScheme.surface,
           elevation: 5,

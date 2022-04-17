@@ -8,7 +8,6 @@ import 'package:m3allah/blocs/azkar/azkar_cubit.dart';
 import 'package:m3allah/blocs/notifications_api.dart';
 import 'package:m3allah/blocs/read_quran/read_quran_cubit.dart';
 import 'package:m3allah/blocs/seb7a/seb7a_counter_bloc.dart';
-import 'package:m3allah/blocs/seb7a/seb7a_counter_event.dart';
 import 'package:m3allah/blocs/setting_bloc/settings_cubit.dart';
 import 'package:m3allah/blocs/view_bloc/build_view_cubit.dart';
 import 'package:m3allah/views/home_screen.dart';
@@ -28,8 +27,19 @@ void main() async {
   runApp(const M3Allah());
 }
 
-class M3Allah extends StatelessWidget {
+class M3Allah extends StatefulWidget {
   const M3Allah({Key? key}) : super(key: key);
+
+  @override
+  State<M3Allah> createState() => _M3AllahState();
+}
+
+class _M3AllahState extends State<M3Allah> with SingleTickerProviderStateMixin{
+
+  late AnimationController animationController = AnimationController(duration: const Duration(milliseconds: 350), vsync: this, value: 1.0);
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -40,8 +50,8 @@ class M3Allah extends StatelessWidget {
       child: MultiBlocProvider(
         providers: [
           BlocProvider(create: (context) => SettingsBloc()..loadSavedTheme()),
-          BlocProvider(create: (context) => BuildViewBloc()..getQuranLists()),
-          BlocProvider(create: (context) => Seb7aCounterBloc()..add(const LoadingSeb7a())),
+          BlocProvider(create: (context) => BuildViewBloc(animationController)..getQuranLists()),
+          BlocProvider(create: (context) => Seb7aCounterBloc()),
           BlocProvider(create: (context) => ReadQuranCubit()),
           BlocProvider(create: (context) => AzkarCubit()),
         ],
