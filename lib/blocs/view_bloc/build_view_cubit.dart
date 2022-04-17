@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_zoom_drawer/config.dart';
 import 'package:get/get.dart';
 import 'package:m3allah/blocs/view_bloc/build_view_state.dart';
 import 'package:m3allah/modle/azkar/azkar_model.dart';
@@ -19,7 +18,6 @@ class BuildViewBloc extends Cubit<BuildViewState> {
   late ReadQuranFullDetails readQuranFullDetails;
   final AnimationController animationController;
 
-  static ZoomDrawerController zoomDrawerController = ZoomDrawerController();
 
   BuildViewBloc(this.animationController) : super(const BuildViewState.initial());
 
