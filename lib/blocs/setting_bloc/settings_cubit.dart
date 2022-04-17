@@ -51,7 +51,7 @@ class SettingsBloc extends Cubit<SettingsState> {
   }
 
   updateFont() async {
-    if (settingsModel.fontCode <= 6) {
+    if (settingsModel.fontCode < 6) {
       settingsModel = settingsModel.copyWith(fontCode: (settingsModel.fontCode + 1));
     } else {
       settingsModel = settingsModel.copyWith(fontCode: 1);

@@ -38,78 +38,83 @@ class _ReadQuranState extends State<ReadQuran> with AutomaticKeepAliveClientMixi
 
     return BlocBuilder<ReadQuranCubit, ReadQuranState>(
       builder: (context, state) {
-        return Stack(
-          alignment: Alignment.center,
-          children: [
-            FadeScale(
-              scale: .95,
-              child: ListView.builder(
-                padding: const EdgeInsets.fromLTRB(12, 10, 12, 80),
-                itemCount: readQuran.surahList.length + 1,
-                controller: readQuran.scrollController,
-                itemBuilder: (context, surahI) {
-                  if (surahI == readQuran.surahList.length) {
-                    return const BuildEnd();
-                  } else {
-                    return Column(
+        return LayoutBuilder(
+          builder: (context, size) {
+            return Stack(
+              alignment: Alignment.center,
+              children: [
+                FadeScale(
+                  scale: .95,
+                  child: ListView.builder(
+                    padding: const EdgeInsets.fromLTRB(12, 10, 12, 80),
+                    itemCount: readQuran.surahList.length + 1,
+                    controller: readQuran.scrollController,
+                    itemBuilder: (context, surahI) {
+                      if (surahI == readQuran.surahList.length) {
+                        return const BuildEnd();
+                      } else {
+                        return Column(
+                          children: [
+                            const BuildBasmla(),
+                            SelectableText.rich(
+                              TextSpan(
+                                children: List.generate(readQuran.calcStartIndex(surah: readQuran.surahList[surahI], i: 0).length, (index) => index).map((i) {
+                                  return versTextSpan(context,
+                                      surah: readQuran.surahList[surahI], versIndex: readQuran.calcStartIndex(surah: readQuran.surahList[surahI], i: i).start);
+                                }).toList(),
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
+                        );
+                      }
+                    },
+                  ),
+                ),
+                AnimatedPositioned(
+                  left: isMobile(context) ? readQuran.toolBarPos : null,
+                  top: isMobile(context) ? null : readQuran.toolBarPos,
+                  curve: Curves.easeInOutBack,
+                  duration: const Duration(milliseconds: 500),
+                  child: ToolBar(),
+                ),
+                Positioned(
+                  bottom: 0,
+                  width: size.biggest.width,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const BuildBasmla(),
-                        SelectableText.rich(
-                          TextSpan(
-                            children: List.generate(readQuran.calcStartIndex(surah: readQuran.surahList[surahI], i: 0).length, (index) => index).map((i) {
-                              return versTextSpan(context, surah: readQuran.surahList[surahI], versIndex: readQuran.calcStartIndex(surah: readQuran.surahList[surahI], i: i).start);
-                            }).toList(),
-                          ),
-                          textAlign: TextAlign.center,
+                        FloatingBtn(
+                          onTap: () {
+                            context.read<SettingsBloc>().saveLastRead(context: context, lastOffset: readQuran.scrollController.offset);
+                            context.read<BuildViewBloc>().push(BuildViewState.quran(initTap: readQuran.selectedJus == null ? 0 : 1));
+                            return true;
+                          },
+                          eIcon: Icons.arrow_back,
+                          sIcon: Icons.arrow_back,
+                        ),
+                        StoreProgress(
+                          onSave: () {
+                            context.read<SettingsBloc>().saveLastRead(context: context, lastOffset: readQuran.scrollController.offset);
+                          },
+                        ),
+                        FloatingBtn(
+                          onTap: () {
+                            readQuran.openToolBar();
+                            return true;
+                          },
+                          sIcon: readQuran.isToolBarOpen() ? Icons.settings : Icons.close,
+                          eIcon: readQuran.isToolBarOpen() ? Icons.settings : Icons.close,
                         ),
                       ],
-                    );
-                  }
-                },
-              ),
-            ),
-            AnimatedPositioned(
-              left: isMobile(context) ? readQuran.toolBarPos : null,
-              top: isMobile(context) ? null : readQuran.toolBarPos,
-              curve: Curves.easeInOutBack,
-              duration: const Duration(milliseconds: 500),
-              child: ToolBar(),
-            ),
-            Positioned(
-              bottom: 0,
-              width: MediaQuery.of(context).size.width,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    FloatingBtn(
-                      onTap: () {
-                        context.read<SettingsBloc>().saveLastRead(context: context, lastOffset: readQuran.scrollController.offset);
-                        context.read<BuildViewBloc>().push(BuildViewState.quran(initTap: readQuran.selectedJus == null ? 0 : 1));
-                        return true;
-                      },
-                      eIcon: Icons.arrow_back,
-                      sIcon: Icons.arrow_back,
                     ),
-                    StoreProgress(
-                      onSave: () {
-                        context.read<SettingsBloc>().saveLastRead(context: context, lastOffset: readQuran.scrollController.offset);
-                      },
-                    ),
-                    FloatingBtn(
-                      onTap: () {
-                        readQuran.openToolBar();
-                        return true;
-                      },
-                      sIcon: readQuran.isToolBarOpen() ? Icons.settings : Icons.close,
-                      eIcon: readQuran.isToolBarOpen() ? Icons.settings : Icons.close,
-                    ),
-                  ],
+                  ),
                 ),
-              ),
-            ),
-          ],
+              ],
+            );
+          },
         );
       },
     );

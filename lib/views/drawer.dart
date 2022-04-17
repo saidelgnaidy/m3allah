@@ -51,6 +51,7 @@ class KDrawer extends StatelessWidget {
                   mainAxisCellCount: isMobile(context) ? 3.1 : mainAxisCellCount / 8,
                   child: CustomTile(
                     onPressed: () {
+                      view.animationController.reverse();
                       view.push(const BuildViewState.quran(initTap: 0));
                     },
                     title: kTileList[0].title,
@@ -139,7 +140,8 @@ class KDrawer extends StatelessWidget {
                   mainAxisCellCount: isMobile(context) ? 2.4 : mainAxisCellCount / 8,
                   child: CustomTile(
                     onPressed: () {
-                      context.read<BuildViewBloc>().push(const BuildViewState.sebha());
+                      view.toggleDrawer();
+                      view.push(const BuildViewState.sebha());
                     },
                     title: 'السبحة',
                   ),

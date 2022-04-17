@@ -11,68 +11,72 @@ import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class AzkarListView extends StatelessWidget {
   final List<AzkarList> azkarList;
-  const AzkarListView({Key? key , required this.azkarList}) : super(key: key);
+  const AzkarListView({Key? key, required this.azkarList}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AzkarCubit, AzkarState>(
       builder: (context, state) {
         final azkarCubit = context.read<AzkarCubit>();
-        return Stack(
-          alignment: Alignment.center,
-          children: [
-            ScrollablePositionedList.builder(
-              itemScrollController: azkarCubit.itemScrollController,
-              itemPositionsListener: azkarCubit.itemPositionsListener,
-              addAutomaticKeepAlives: true,
-              physics: const BouncingScrollPhysics(),
-              padding: const EdgeInsets.only(top: 5),
-              itemCount: azkarList.length,
-              itemBuilder: (BuildContext context, int index) {
-                return FadeX(
-                  delay: index < 10 ? index * 25 : 50,
-                  child: ZekrTile(
-                    zekr: azkarList[index],
-                    scrollToNext: () => azkarCubit.scrollTo(index),
-                  ),
-                );
-              },
-            ),
-            AnimatedPositioned(
-              left: isMobile(context) ? azkarCubit.toolBarPos : null,
-              bottom: isMobile(context) ? null : azkarCubit.toolBarPos,
-              curve: Curves.easeInOutBack,
-              duration: const Duration(milliseconds: 500),
-              child: ToolBar(),
-            ),
-            Positioned(
-              right: 8,
-              bottom: 8,
-              child: Column(
-                children: [
-                  FloatingBtn(
-                    onTap: () {
-                      azkarCubit.openToolBar();
-                      return true;
-                    },
-                    sIcon: azkarCubit.isToolBarOpen() ? Icons.settings : Icons.close,
-                    eIcon: azkarCubit.isToolBarOpen() ? Icons.settings : Icons.close,
-                  ),
-                  const SizedBox(height: 8),
-                  FloatingBtn(
-                    onTap: () {
-                      context.read<BuildViewBloc>().onPopScope();
-                      return true;
-                    },
-                    eIcon: Icons.arrow_back,
-                    sIcon: Icons.arrow_back,
-                  ),
-                  const SizedBox(height: 15),
-                ],
+        return LayoutBuilder(builder: (context, size) {
+          return Stack(
+            alignment: Alignment.center,
+            children: [
+              ScrollablePositionedList.builder(
+                itemScrollController: azkarCubit.itemScrollController,
+                itemPositionsListener: azkarCubit.itemPositionsListener,
+                addAutomaticKeepAlives: true,
+                physics: const BouncingScrollPhysics(),
+                padding: const EdgeInsets.only(top: 5),
+                itemCount: azkarList.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return FadeOpacity(
+                    child: ZekrTile(
+                      zekr: azkarList[index],
+                      scrollToNext: () => azkarCubit.scrollTo(index),
+                    ),
+                  );
+                },
               ),
-            ),
-          ],
-        );
+              AnimatedPositioned(
+                left: isMobile(context) ? azkarCubit.toolBarPos : null,
+                bottom: isMobile(context) ? null : azkarCubit.toolBarPos,
+                curve: Curves.easeInOutBack,
+                duration: const Duration(milliseconds: 500),
+                child: ToolBar(),
+              ),
+              Positioned(
+                bottom: 8,
+                width: size.biggest.width,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      if (isMobile(context))
+                        FloatingBtn(
+                          onTap: () {
+                            context.read<BuildViewBloc>().onPopScope();
+                            return true;
+                          },
+                          eIcon: Icons.arrow_back,
+                          sIcon: Icons.arrow_back,
+                        ),
+                      FloatingBtn(
+                        onTap: () {
+                          azkarCubit.openToolBar();
+                          return true;
+                        },
+                        sIcon: azkarCubit.isToolBarOpen() ? Icons.settings : Icons.close,
+                        eIcon: azkarCubit.isToolBarOpen() ? Icons.settings : Icons.close,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          );
+        });
       },
     );
   }

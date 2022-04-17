@@ -23,7 +23,7 @@ class FadeScale extends StatelessWidget {
       tween: tween,
       curve: curve ?? Curves.easeOutCubic,
       child: child,
-      delay: Duration(milliseconds: delay ?? 100),
+      delay: Duration(milliseconds: delay ?? 0),
       builder: (context, child, value) => Opacity(
         opacity: value.get(_AniProps.opacity),
         child: Transform.scale(
@@ -35,28 +35,24 @@ class FadeScale extends StatelessWidget {
   }
 }
 
-class FadeX extends StatelessWidget {
-  final int? delay;
+class FadeOpacity extends StatelessWidget {
   final Widget child;
-  const FadeX({Key? key, this.delay, required this.child}) : super(key: key);
+  const FadeOpacity({Key? key, required this.child}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final tween = MultiTween<_AniProps>()
-      ..add(_AniProps.opacity, Tween<double>(begin: 0.3, end: 1.0))
-      ..add(_AniProps.secondry, Tween(begin: const Offset(-150, 0), end: const Offset(0, 0)));
+    final tween = MultiTween<_AniProps>()..add(_AniProps.opacity, Tween<double>(begin: 0.25, end: 1.0));
 
     return PlayAnimation<MultiTweenValues<_AniProps>>(
       duration: const Duration(milliseconds: 300),
       tween: tween,
-      curve: Curves.decelerate,
+      curve: Curves.easeInCubic,
       child: child,
-      delay: Duration(milliseconds: delay ?? 150),
-      builder: (context, child, value) => Transform.translate(
-        offset: value.get(_AniProps.secondry),
+      delay: const Duration(milliseconds: 0),
+      builder: (context, child, value) => Opacity(
+        opacity: value.get(_AniProps.opacity),
         child: child,
       ),
     );
   }
 }
-

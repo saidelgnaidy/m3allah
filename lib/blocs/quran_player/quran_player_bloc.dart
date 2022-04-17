@@ -17,9 +17,7 @@ class QuranPlayerBloc extends Bloc<QuranPlayerEvent, QuranPlayerState> {
   int curentVers = 1;
 
   final ItemScrollController versScrollCtrl = ItemScrollController();
-  final ItemScrollController surahScrollCtrl = ItemScrollController();
   final ItemPositionsListener versPositionsListener = ItemPositionsListener.create();
-  final ItemPositionsListener surahPositionsListener = ItemPositionsListener.create();
 
   QuranPlayerBloc() : super(const QuranPlayerState.initial(nawPlayingPath: '')) {
     _playerStateStream();

@@ -36,7 +36,7 @@ class M3Allah extends StatefulWidget {
 
 class _M3AllahState extends State<M3Allah> with SingleTickerProviderStateMixin{
 
-  late AnimationController animationController = AnimationController(duration: const Duration(milliseconds: 350), vsync: this, value: 1.0);
+  late AnimationController animationController = AnimationController(duration: const Duration(milliseconds: 300), vsync: this, value: 1.0);
 
 
 

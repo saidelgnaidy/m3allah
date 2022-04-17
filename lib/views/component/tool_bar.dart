@@ -9,7 +9,8 @@ import 'package:m3allah/blocs/view_bloc/build_view_state.dart';
 import 'package:m3allah/views/component/const.dart';
 
 class ToolBar extends StatelessWidget {
-  ToolBar({Key? key}) : super(key: key);
+  final bool? speedCtrl;
+  ToolBar({Key? key, this.speedCtrl}) : super(key: key);
 
   final AnimateIconController ctrl = AnimateIconController();
 
@@ -76,7 +77,9 @@ class ToolBar extends StatelessWidget {
                     icon: const Icon(Icons.font_download_rounded),
                     onPressed: changeFont,
                   ),
-                  if (state.maybeWhen(orElse: () => false, readSurah: () => true))
+                  if (speedCtrl != null)
+                    const SizedBox()
+                  else if (state.maybeWhen(orElse: () => false, readSurah: () => true))
                     Column(
                       children: [
                         const SizedBox(width: 34, child: Divider(thickness: 1)),
@@ -124,7 +127,9 @@ class ToolBar extends StatelessWidget {
                     icon: const Icon(Icons.font_download_rounded),
                     onPressed: changeFont,
                   ),
-                  if (state.maybeWhen(orElse: () => false, readSurah: () => true))
+                  if (speedCtrl != null)
+                    const SizedBox()
+                  else if (state.maybeWhen(orElse: () => false, readSurah: () => true))
                     Row(
                       children: [
                         const SizedBox(height: 35, child: VerticalDivider(thickness: 1)),

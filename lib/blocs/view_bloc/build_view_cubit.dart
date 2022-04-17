@@ -11,25 +11,15 @@ import 'package:m3allah/views/component/const.dart';
 
 class BuildViewBloc extends Cubit<BuildViewState> {
   List<SurahList> surahList = <SurahList>[];
-  List<AzkarList> azkarList = <AzkarList>[];
   List<JuzList> juzList = <JuzList>[];
   JuzList? selectedJuzList;
   SurahList? selectedSurahList;
   late ReadQuranFullDetails readQuranFullDetails;
   final AnimationController animationController;
 
-
   BuildViewBloc(this.animationController) : super(const BuildViewState.initial());
 
-  push(BuildViewState route) {
-    toggleDrawer();
-    state.maybeWhen(
-      orElse: () => emit(route),
-      readSurah: () => null,
-      quran: (q) => null,
-      sebha: () => null,
-    );
-  }
+  push(BuildViewState route) => emit(route);
 
   void toggleDrawer() async {
     if (isMobile(Get.context!)) {
@@ -49,10 +39,14 @@ class BuildViewBloc extends Cubit<BuildViewState> {
   }
 
   getAzkar(String str) async {
-    toggleDrawer();
+    emit(const BuildViewState.initial());
+    animationController.reverse();
+
     var zekrFile = await DefaultAssetBundle.of(Get.context!).loadString(str);
-    azkarList = azkarListFromJson(zekrFile);
-    emit(BuildViewState.azkar(list: azkarList));
+    await Future.delayed(const Duration(milliseconds: 10));
+    final _azkarList = azkarListFromJson(zekrFile);
+
+    emit(BuildViewState.azkar(list: _azkarList));
   }
 
   getFullSurah(SurahList surah) async {

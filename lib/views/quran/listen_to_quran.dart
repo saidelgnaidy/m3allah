@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:m3allah/blocs/quran_player/quran_player_bloc.dart';
 import 'package:m3allah/blocs/quran_player/quran_player_event.dart';
+import 'package:m3allah/blocs/read_quran/read_quran_cubit.dart';
 import 'package:m3allah/blocs/view_bloc/build_view_cubit.dart';
 import 'package:m3allah/blocs/view_bloc/build_view_state.dart';
-import 'package:m3allah/modle/juz_list_modle/juz_list_modle.dart';
 import 'package:m3allah/modle/quran/surah_model.dart';
 import 'package:m3allah/views/component/const.dart';
 import 'package:m3allah/views/component/tool_bar.dart';
@@ -19,55 +19,30 @@ class QuranPlayer extends StatefulWidget {
   State<QuranPlayer> createState() => _QuranPlayerState();
 }
 
-class _QuranPlayerState extends State<QuranPlayer> with AutomaticKeepAliveClientMixin {
+class _QuranPlayerState extends State<QuranPlayer> {
   double toolBarPos = -80;
-
-  late List<FullSurah> surahList;
-  JuzList? _selectedJus;
-  @override
-  initState() {
-    surahList = context.read<BuildViewBloc>().readQuranFullDetails.surahlist;
-    _selectedJus = context.read<BuildViewBloc>().readQuranFullDetails.juzList;
-    super.initState();
-  }
-
-  IndexesOfJuz calcStartIndex({required FullSurah surah, required int i}) {
-    if (_selectedJus != null) {
-      if (_selectedJus!.start.index == surah.index && _selectedJus!.end.index == surah.index) {
-        return IndexesOfJuz(length: int.parse(_selectedJus!.end.verse) - int.parse(_selectedJus!.start.verse) + 1, start: int.parse(_selectedJus!.start.verse) + i);
-      } else if (_selectedJus!.start.index == surah.index) {
-        return IndexesOfJuz(length: surah.count - int.parse(_selectedJus!.start.verse) + 1, start: int.parse(_selectedJus!.start.verse) + i);
-      } else if (_selectedJus!.end.index == surah.index) {
-        return IndexesOfJuz(length: int.parse(_selectedJus!.end.verse), start: i + 1);
-      } else {
-        return IndexesOfJuz(length: surah.count, start: i);
-      }
-    } else {
-      return IndexesOfJuz(length: surah.count, start: i + 1);
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
-    super.build(context);
-    final quranPlayer = context.read<QuranPlayerBloc>();
+    final QuranPlayerBloc quranPlayer = context.read<QuranPlayerBloc>();
+    final ReadQuranCubit readQuran = context.read<ReadQuranCubit>();
 
     return Stack(
       alignment: Alignment.center,
       children: [
-        if (_selectedJus == null)
+        if (readQuran.selectedJus == null)
           ScrollablePositionedList.builder(
-            itemCount: surahList.first.verse.verses.length + 2,
+            itemCount: readQuran.surahList.first.verse.verses.length + 2,
             itemScrollController: quranPlayer.versScrollCtrl,
             itemPositionsListener: quranPlayer.versPositionsListener,
             shrinkWrap: true,
             itemBuilder: (context, index) {
               if (index == 0) {
                 return const BuildBasmla();
-              } else if (index == surahList.first.verse.verses.length + 1) {
+              } else if (index == readQuran.surahList.first.verse.verses.length + 1) {
                 return const BuildEnd();
               } else {
-                return QuranPlayerTile(surah: surahList.first, versIndex: index);
+                return QuranPlayerTile(surah: readQuran.surahList.first, versIndex: index);
               }
             },
           )
@@ -78,14 +53,14 @@ class _QuranPlayerState extends State<QuranPlayer> with AutomaticKeepAliveClient
                 const BuildBasmla(),
                 ScrollablePositionedList.separated(
                   separatorBuilder: (context, index) => const BuildBasmla(),
-                  itemCount: surahList.length,
+                  itemCount: readQuran.surahList.length,
                   shrinkWrap: true,
                   itemBuilder: (context, surahI) {
                     return ScrollablePositionedList.builder(
-                      itemCount: calcStartIndex(surah: surahList[surahI], i: 1).length,
+                      itemCount: readQuran.calcStartIndex(surah: readQuran.surahList[surahI], i: 1).length,
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
-                        return QuranPlayerTile(surah: surahList[surahI], versIndex: calcStartIndex(surah: surahList[surahI], i: index).start);
+                        return QuranPlayerTile(surah: readQuran.surahList[surahI], versIndex: readQuran.calcStartIndex(surah: readQuran.surahList[surahI], i: index).start);
                       },
                     );
                   },
@@ -99,28 +74,28 @@ class _QuranPlayerState extends State<QuranPlayer> with AutomaticKeepAliveClient
           top: isMobile(context) ? null : toolBarPos,
           curve: Curves.easeInOutBack,
           duration: const Duration(milliseconds: 500),
-          child: ToolBar(),
+          child: ToolBar(speedCtrl: false),
         ),
         Positioned(
           bottom: 8,
           right: 8,
           child: FloatingBtn(
             onTap: () {
-              context.read<BuildViewBloc>().push(BuildViewState.quran(initTap: _selectedJus == null ? 0 : 1));
+              context.read<BuildViewBloc>().push(BuildViewState.quran(initTap: readQuran.selectedJus == null ? 0 : 1));
               return true;
             },
             eIcon: Icons.arrow_back,
             sIcon: Icons.arrow_back,
           ),
         ),
-        if (_selectedJus == null)
+        if (readQuran.selectedJus == null)
           BlocBuilder<QuranPlayerBloc, QuranPlayerState>(
             builder: (context, state) {
               return Positioned(
                 bottom: 8,
                 child: FloatingBtn(
                   onTap: () {
-                    quranPlayer.add(QuranPlayerEvent.playAll(surah: surahList.first, versIndex: 1));
+                    quranPlayer.add(QuranPlayerEvent.playAll(surah: readQuran.surahList.first, versIndex: 1));
                     return true;
                   },
                   sIcon: quranPlayer.playAll ? Icons.pause_rounded : Icons.playlist_play_rounded,
@@ -146,9 +121,6 @@ class _QuranPlayerState extends State<QuranPlayer> with AutomaticKeepAliveClient
       ],
     );
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }
 
 class QuranPlayerTile extends StatelessWidget {

@@ -9,10 +9,13 @@ import 'package:m3allah/modle/quran/surah_model.dart';
 import 'package:m3allah/views/component/const.dart';
 
 @immutable
-class ReadQuranState {}
+class ReadQuranState {
+  final double toolBarPos;
+  const ReadQuranState(this.toolBarPos);
+}
 
 class ReadQuranCubit extends Cubit<ReadQuranState> {
-  ReadQuranCubit() : super(ReadQuranState());
+  ReadQuranCubit() : super(const ReadQuranState(-80));
 
   double toolBarPos = -80;
   ScrollController scrollController = ScrollController();
@@ -24,7 +27,7 @@ class ReadQuranCubit extends Cubit<ReadQuranState> {
   void init(BuildContext context) {
     surahList = context.read<BuildViewBloc>().readQuranFullDetails.surahlist;
     selectedJus = context.read<BuildViewBloc>().readQuranFullDetails.juzList;
-        WidgetsBinding.instance?.addPostFrameCallback((duration) async {
+    WidgetsBinding.instance?.addPostFrameCallback((duration) async {
       final setting = context.read<SettingsBloc>().settingsModel;
       if (scrollController.hasClients) {
         if (selectedJus != null && setting.lastJuz != null) {
@@ -39,7 +42,6 @@ class ReadQuranCubit extends Cubit<ReadQuranState> {
       }
     });
   }
-
 
   scrollToBottom(double factor) {
     toggleToolBar();
@@ -79,7 +81,7 @@ class ReadQuranCubit extends Cubit<ReadQuranState> {
   openToolBar() {
     toolBarPos = toolBarPos == -80 ? 8 : -80;
     toggleToolBar();
-    emit(ReadQuranState());
+    emit(ReadQuranState(toolBarPos));
   }
 
   isToolBarOpen() => toolBarPos == -80;
@@ -89,7 +91,7 @@ class ReadQuranCubit extends Cubit<ReadQuranState> {
     _timer = Timer(const Duration(seconds: 3), () {
       if (toolBarPos == 8) {
         toolBarPos = toolBarPos == -80 ? 8 : -80;
-        emit(ReadQuranState());
+        emit(ReadQuranState(toolBarPos));
       }
     });
   }
