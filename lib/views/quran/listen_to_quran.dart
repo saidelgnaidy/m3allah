@@ -33,6 +33,7 @@ class _QuranPlayerState extends State<QuranPlayer> {
         if (readQuran.selectedJus == null)
           ScrollablePositionedList.builder(
             itemCount: readQuran.surahList.first.verse.verses.length + 2,
+            padding: const EdgeInsets.fromLTRB(0, 10, 0, 80),
             itemScrollController: quranPlayer.versScrollCtrl,
             itemPositionsListener: quranPlayer.versPositionsListener,
             shrinkWrap: true,
@@ -42,32 +43,36 @@ class _QuranPlayerState extends State<QuranPlayer> {
               } else if (index == readQuran.surahList.first.verse.verses.length + 1) {
                 return const BuildEnd();
               } else {
-                return QuranPlayerTile(surah: readQuran.surahList.first, versIndex: index);
+                return QuranPlayerTile(surah: readQuran.surahList.first, versIndex: index - 1);
               }
             },
           )
         else
-          SingleChildScrollView(
-            child: Column(
-              children: [
-                const BuildBasmla(),
-                ScrollablePositionedList.separated(
-                  separatorBuilder: (context, index) => const BuildBasmla(),
-                  itemCount: readQuran.surahList.length,
-                  shrinkWrap: true,
-                  itemBuilder: (context, surahI) {
-                    return ScrollablePositionedList.builder(
+          ScrollablePositionedList.builder(
+            padding: const EdgeInsets.fromLTRB(0, 10, 0, 80),
+            itemCount: readQuran.surahList.length + 1,
+            itemBuilder: (context, surahI) {
+              if (surahI == readQuran.surahList.length) {
+                return const BuildEnd();
+              } else {
+                return Column(
+                  children: [
+                    const BuildBasmla(),
+                    ScrollablePositionedList.builder(
                       itemCount: readQuran.calcStartIndex(surah: readQuran.surahList[surahI], i: 1).length,
-                      shrinkWrap: true,
+                      shrinkWrap: true, // 1st add
+                      physics: const ClampingScrollPhysics(),
                       itemBuilder: (context, index) {
-                        return QuranPlayerTile(surah: readQuran.surahList[surahI], versIndex: readQuran.calcStartIndex(surah: readQuran.surahList[surahI], i: index).start);
+                        return QuranPlayerTile(
+                          surah: readQuran.surahList[surahI],
+                          versIndex: readQuran.calcStartIndex(surah: readQuran.surahList[surahI], i: index).start,
+                        );
                       },
-                    );
-                  },
-                ),
-                const BuildEnd()
-              ],
-            ),
+                    ),
+                  ],
+                );
+              }
+            },
           ),
         AnimatedPositioned(
           left: isMobile(context) ? toolBarPos : null,
@@ -132,7 +137,7 @@ class QuranPlayerTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final ctrl = AnimateIconController();
     final quranPlayer = context.read<QuranPlayerBloc>();
-    final path = '${surah.index}/${versIndex.toString().padLeft(3, '0')}';
+    final path = '${surah.index}/${(versIndex + 1).toString().padLeft(3, '0')}';
 
     return Builder(builder: (context) {
       return InkWell(
@@ -145,9 +150,9 @@ class QuranPlayerTile extends StatelessWidget {
             shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(topRight: Radius.circular(8), topLeft: Radius.circular(8))),
             builder: (context) {
               return Translation(
-                transAR: surah.transAr.verses[versIndex - 1],
-                transEn: surah.transEn.verses[versIndex - 1],
-                transId: surah.transId.verses[versIndex - 1],
+                transAR: surah.transAr.verses[versIndex],
+                transEn: surah.transEn.verses[versIndex],
+                transId: surah.transId.verses[versIndex],
               );
             },
           );
@@ -187,11 +192,11 @@ class QuranPlayerTile extends StatelessWidget {
                                 endIcon: playNow == path ? Icons.pause_rounded : Icons.play_arrow_rounded,
                                 size: 22.0,
                                 onStartIconPress: () {
-                                  quranPlayer.add(QuranPlayerEvent.playVers(versIndex: versIndex, surahIndex: surah.index));
+                                  quranPlayer.add(QuranPlayerEvent.playVers(versIndex: versIndex + 1, surahIndex: surah.index));
                                   return true;
                                 },
                                 onEndIconPress: () {
-                                  quranPlayer.add(QuranPlayerEvent.playVers(versIndex: versIndex, surahIndex: surah.index));
+                                  quranPlayer.add(QuranPlayerEvent.playVers(versIndex: versIndex + 1, surahIndex: surah.index));
                                   return true;
                                 },
                                 duration: const Duration(milliseconds: 200),
@@ -201,7 +206,7 @@ class QuranPlayerTile extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              ' ﴿$versIndex﴾ ',
+                              ' ﴿${versIndex + 1}﴾ ',
                               style: TextStyle(
                                 color: Theme.of(context).iconTheme.color,
                                 fontSize: (Theme.of(context).textTheme.caption?.fontSize ?? 10) - 8,
@@ -214,7 +219,7 @@ class QuranPlayerTile extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
                         child: Text(
-                          surah.verse.verses[versIndex - 1],
+                          surah.verse.verses[versIndex],
                           style: Theme.of(context).textTheme.caption,
                           textAlign: TextAlign.center,
                         ),
@@ -223,7 +228,8 @@ class QuranPlayerTile extends StatelessWidget {
                         alignment: Alignment.centerLeft,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-                          child: Text(surah.transEn.verses[versIndex - 1].replaceAll('.', ''), textAlign: TextAlign.left, style: TextStyle(fontSize: 12, color: Colors.grey[500])),
+                          child: Text(surah.transEn.verses[versIndex].replaceAll('.', ''),
+                              textAlign: TextAlign.left, style: TextStyle(fontSize: 12, color: Colors.grey[500])),
                         ),
                       ),
                     ],

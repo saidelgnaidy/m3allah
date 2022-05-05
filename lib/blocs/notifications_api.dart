@@ -33,8 +33,8 @@ class NotificationCtrl {
         icon: 'resource://drawable/background',
         backgroundColor: Colors.white,
         largeIcon: 'resource://drawable/background',
-        color: Colors.transparent,
         roundedLargeIcon: true,
+        
       ),
     );
   }
@@ -56,9 +56,9 @@ class NotificationCtrl {
           channelKey: '1',
           channelName: 'M3 Allah Azkar Notifications',
           channelDescription: 'أذكار',
-          importance: NotificationImportance.Default,
-          enableVibration: true,
-          defaultColor: Colors.transparent,
+          importance: NotificationImportance.Max,
+          enableVibration: false,
+          playSound: false
         )
       ],
     );
@@ -87,7 +87,7 @@ List<Map<String, dynamic>> azkar = [
   {"content": "سُبْحَانَ اللهِ العَظِيمِ وَبِحَمْدِهِ ", "description": "غرست له نخلة في الجنة", "id": 6},
   {"content": "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ ، سُبْحَانَ اللَّهِ الْعَظِيمِ ", "description": "ثقيلتان في الميزان حبيبتان إلى الرحمن", "id": 7},
   {"content": "لا حَوْلَ وَلا قُوَّةَ إِلا بِاللَّهِ ", "description": "كنز من كنوز الجنة", "id": 8},
-  {"content": "الْلَّهُم صَلِّ وَسَلِم وَبَارِك عَلَى سَيِّدِنَا مُحَمَّد ", "description": "من صلى على حين يصبح وحين يمسى ادركته شفاعتى يوم القيامة", "id": 9},
+  {"content": "الْلَّهُم صَلِّ وَسَلِم وَبَارِك عَلَى سَيِّدِنَا مُحَمَّد ", "description": '', "id": 9},
   {"content": "أستغفر الله", "description": "", "id": 10},
   {"content": "لَا إِلَهَ إِلَّا اللَّهُ", "description": "أفضل الذكر لا إله إلاّ الله", "id": 11},
   {"content": "اللَّهُ أَكْبَرُ كَبِيرًا ، وَالْحَمْدُ لِلَّهِ كَثِيرًا ، وَسُبْحَانَ اللَّهِ بُكْرَةً وَأَصِيلاً ", "description": "", "id": 12},

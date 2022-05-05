@@ -35,7 +35,7 @@ class ReadQuranCubit extends Cubit<ReadQuranState> {
             scrollController.jumpTo(setting.lastJuzOffset);
           }
         } else if (setting.lastSurah != null) {
-          if (context.read<BuildViewBloc>().selectedSurahList!.index == setting.lastSurah!.index) {
+          if (context.read<BuildViewBloc>().selectedSurahList!.index == setting.lastSurah!.index && selectedJus == null) {
             scrollController.jumpTo(setting.lastSurahOffset);
           }
         }
@@ -65,16 +65,31 @@ class ReadQuranCubit extends Cubit<ReadQuranState> {
   IndexesOfJuz calcStartIndex({required FullSurah surah, required int i}) {
     if (selectedJus != null) {
       if (selectedJus!.start.index == surah.index && selectedJus!.end.index == surah.index) {
-        return IndexesOfJuz(length: int.parse(selectedJus!.end.verse) - int.parse(selectedJus!.start.verse) + 1, start: int.parse(selectedJus!.start.verse) + i);
+        return IndexesOfJuz(
+          length: int.parse(selectedJus!.end.verse) - int.parse(selectedJus!.start.verse),
+          start: int.parse(selectedJus!.start.verse) + i - 1,
+        );
       } else if (selectedJus!.start.index == surah.index) {
-        return IndexesOfJuz(length: surah.count - int.parse(selectedJus!.start.verse) + 1, start: int.parse(selectedJus!.start.verse) + i);
+        return IndexesOfJuz(
+          length: surah.count - int.parse(selectedJus!.start.verse) + 1,
+          start: int.parse(selectedJus!.start.verse) + i - 1,
+        );
       } else if (selectedJus!.end.index == surah.index) {
-        return IndexesOfJuz(length: int.parse(selectedJus!.end.verse), start: i + 1);
+        return IndexesOfJuz(
+          length: int.parse(selectedJus!.end.verse),
+          start: i,
+        );
       } else {
-        return IndexesOfJuz(length: surah.count, start: i);
+        return IndexesOfJuz(
+          length: surah.count,
+          start: i,
+        );
       }
     } else {
-      return IndexesOfJuz(length: surah.count, start: i + 1);
+      return IndexesOfJuz(
+        length: surah.count,
+        start: i,
+      );
     }
   }
 

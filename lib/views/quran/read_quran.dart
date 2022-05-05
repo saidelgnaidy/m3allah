@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:m3allah/blocs/read_quran/read_quran_cubit.dart';
@@ -31,6 +32,8 @@ class _ReadQuranState extends State<ReadQuran> with AutomaticKeepAliveClientMixi
     super.dispose();
   }
 
+  FullSurah? curentSurah;
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -44,31 +47,52 @@ class _ReadQuranState extends State<ReadQuran> with AutomaticKeepAliveClientMixi
               alignment: Alignment.center,
               children: [
                 FadeScale(
-                  scale: .95,
-                  child: ListView.builder(
-                    padding: const EdgeInsets.fromLTRB(12, 10, 12, 80),
-                    itemCount: readQuran.surahList.length + 1,
+                  child: CupertinoScrollbar(
                     controller: readQuran.scrollController,
-                    itemBuilder: (context, surahI) {
-                      if (surahI == readQuran.surahList.length) {
-                        return const BuildEnd();
-                      } else {
-                        return Column(
-                          children: [
-                            const BuildBasmla(),
-                            SelectableText.rich(
-                              TextSpan(
-                                children: List.generate(readQuran.calcStartIndex(surah: readQuran.surahList[surahI], i: 0).length, (index) => index).map((i) {
-                                  return versTextSpan(context,
-                                      surah: readQuran.surahList[surahI], versIndex: readQuran.calcStartIndex(surah: readQuran.surahList[surahI], i: i).start);
-                                }).toList(),
+                    scrollbarOrientation: ScrollbarOrientation.right,
+                    isAlwaysShown: true,
+                    thicknessWhileDragging: 20,
+                    radius: const Radius.circular(5),
+                    radiusWhileDragging: const Radius.circular(20),
+                    thickness: 5,
+                    child: SingleChildScrollView(
+                      controller: readQuran.scrollController,
+                      child: ListView.builder(
+                        padding: const EdgeInsets.fromLTRB(12, 10, 12, 80),
+                        itemCount: readQuran.surahList.length + 1,
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (context, surahI) {
+                          if (surahI == readQuran.surahList.length) {
+                            return const BuildEnd();
+                          } else {
+                            return CupertinoScrollbar(
+                              controller: readQuran.scrollController,
+                              child: Column(
+                                children: [
+                                  const BuildBasmla(),
+                                  SelectableText.rich(
+                                    TextSpan(
+                                      children:
+                                          List.generate(readQuran.calcStartIndex(surah: readQuran.surahList[surahI], i: 0).length, (index) => index).map(
+                                        (i) {
+                                          return versTextSpan(
+                                            context,
+                                            surah: readQuran.surahList[surahI],
+                                            indexesOfJuz: readQuran.calcStartIndex(surah: readQuran.surahList[surahI], i: i),
+                                          );
+                                        },
+                                      ).toList(),
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ],
                               ),
-                              textAlign: TextAlign.center,
-                            ),
-                          ],
-                        );
-                      }
-                    },
+                            );
+                          }
+                        },
+                      ),
+                    ),
                   ),
                 ),
                 AnimatedPositioned(
@@ -124,15 +148,15 @@ class _ReadQuranState extends State<ReadQuran> with AutomaticKeepAliveClientMixi
   bool get wantKeepAlive => true;
 }
 
-TextSpan versTextSpan(BuildContext context, {required FullSurah surah, required int versIndex}) {
+TextSpan versTextSpan(BuildContext context, {required FullSurah surah, required IndexesOfJuz indexesOfJuz}) {
   return TextSpan(
     children: [
       TextSpan(
-        text: surah.verse.verses[versIndex - 1],
+        text: surah.verse.verses[indexesOfJuz.start],
         style: Theme.of(context).textTheme.caption,
       ),
       TextSpan(
-        text: ' ﴿$versIndex﴾ ',
+        text: ' ﴿${indexesOfJuz.start + 1}﴾ ',
         style: TextStyle(
           color: Theme.of(context).iconTheme.color,
           fontSize: (Theme.of(context).textTheme.caption?.fontSize ?? 10) - 8,

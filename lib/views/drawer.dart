@@ -20,10 +20,10 @@ class KDrawer extends StatelessWidget {
 
     return Container(
       color: isMobile(context) ? null : Theme.of(context).colorScheme.background,
-      width: isMobile(context) ? size.width : 150,
+      width: isMobile(context) ? size.width : 160,
       height: size.height,
       child: SingleChildScrollView(
-        padding: EdgeInsets.only(top: isMobile(context) ? size.height * .05 + 5 : 0, left: isMobile(context) ? size.width * .15 + 10 : 10, right: 15),
+        padding: EdgeInsets.only(top: isMobile(context) ? size.height * .05 : 0, left: isMobile(context) ? size.width * .15 + 8 : 8, right: 8),
         physics: const BouncingScrollPhysics(),
         child: Column(
           children: [
@@ -149,7 +149,7 @@ class KDrawer extends StatelessWidget {
               ],
             ),
             Padding(
-              padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * .06),
+              padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * .1),
               child: Center(
                 child: Text(
                   'نسألكم الدعاء',

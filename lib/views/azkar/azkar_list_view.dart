@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:m3allah/blocs/azkar/azkar_cubit.dart';
 import 'package:m3allah/blocs/view_bloc/build_view_cubit.dart';
-
 import 'package:m3allah/modle/azkar/azkar_model.dart';
-import 'package:m3allah/views/component/animation.dart';
 import 'package:m3allah/views/component/const.dart';
 import 'package:m3allah/views/component/tool_bar.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
@@ -30,11 +28,9 @@ class AzkarListView extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 5),
                 itemCount: azkarList.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return FadeOpacity(
-                    child: ZekrTile(
-                      zekr: azkarList[index],
-                      scrollToNext: () => azkarCubit.scrollTo(index),
-                    ),
+                  return ZekrTile(
+                    zekr: azkarList[index],
+                    scrollToNext: () => azkarCubit.scrollTo(index),
                   );
                 },
               ),

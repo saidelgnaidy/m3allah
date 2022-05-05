@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:m3allah/blocs/search/search_cubit.dart';
 import 'package:m3allah/blocs/setting_bloc/settings_cubit.dart';
 import 'package:m3allah/blocs/view_bloc/build_view_cubit.dart';
 import 'package:m3allah/views/component/animation.dart';
 import 'package:m3allah/modle/surah_list/surah_list.dart';
 import 'package:m3allah/views/component/continue_reading_btn.dart';
-import 'package:provider/provider.dart';
+import 'package:m3allah/views/quran/searching.dart';
 
 class SurahListView extends StatelessWidget {
   const SurahListView({Key? key}) : super(key: key);
@@ -14,37 +16,45 @@ class SurahListView extends StatelessWidget {
     final surahList = context.read<BuildViewBloc>().surahList;
     final settings = context.read<SettingsBloc>();
 
-    return Column(
-      children: [
-        settings.settingsModel.lastSurah == null
-            ? const SizedBox(height: 5)
-            : ContinueReading(
-                onPresed: () {
-                  context.read<BuildViewBloc>().getFullSurah(settings.settingsModel.lastSurah!);
-                },
-                name: settings.settingsModel.lastSurah!.titleAr.toString(),
-              ),
-        Expanded(
-          child: ListView.separated(
-            itemCount: surahList.length,
-            physics: const BouncingScrollPhysics(),
-            itemBuilder: (context, index) {
-              return FadeScale(
-                delay: index < 15 ? index * 10 : 0,
-                child: SurahTile(
-                  surah: surahList[index],
+    return BlocProvider(
+      create: (context) => SearchCubit(surahList),
+      child: BlocBuilder<SearchCubit, SearchState>(
+        builder: (context, state) {
+          return FadeScale(
+            delay: 100,
+            child: Column(
+              children: [
+                settings.settingsModel.lastSurah == null
+                    ? const SizedBox(height: 5)
+                    : ContinueReading(
+                        onPresed: () {
+                          context.read<BuildViewBloc>().getFullSurah(settings.settingsModel.lastSurah!);
+                        },
+                        name: settings.settingsModel.lastSurah!.titleAr.toString(),
+                      ),
+                Expanded(
+                  child: ListView.separated(
+                    itemCount: state.listOfSurah.length,
+                    physics: const BouncingScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      return SurahTile(
+                        surah: state.listOfSurah[index],
+                      );
+                    },
+                    separatorBuilder: (context, index) {
+                      return const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        child: Divider(height: .5, thickness: 1),
+                      );
+                    },
+                  ),
                 ),
-              );
-            },
-            separatorBuilder: (context, index) {
-              return const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                child: Divider(height: .5, thickness: 1),
-              );
-            },
-          ),
-        ),
-      ],
+                const SearchSurah()
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }

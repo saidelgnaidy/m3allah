@@ -14,63 +14,57 @@ class Seb7aListile extends StatelessWidget {
     final seb7aBloc = context.read<Seb7aCounterBloc>();
     return Stack(
       children: [
-        ClipRRect(
-          child: Container(
-            height: MediaQuery.of(context).size.height * .7,
-            color: Theme.of(context).colorScheme.background,
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.fromLTRB(10, 10, 10, 80),
-              child: Column(
-                children: [
-                  ...azkar.map(
-                    (zekr) {
-                      return InkWell(
-                        onTap: () {
-                          seb7aBloc.add(Seb7aCounterEvent.selecteZekr(seb7aZekr: zekr));
-                        },
-                        child: Container(
-                          margin: const EdgeInsets.symmetric(vertical: 1),
-                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Theme.of(context).colorScheme.surface,
-                            boxShadow: kBoxShadow(),
-                          ),
-                          child: Column(
-                            children: [
-                              Align(
-                                alignment: Alignment.center,
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 2),
-                                  child: Text(
-                                    zekr.description,
-                                    textAlign: TextAlign.center,
-                                    style: Theme.of(context).textTheme.headline2?.copyWith(fontSize: 15, fontFamily: 'font2'),
-                                  ),
-                                ),
+        SizedBox(
+          height: MediaQuery.of(context).size.height * .7,
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.fromLTRB(10, 10, 10, 80),
+            child: Column(
+              children: [
+                ...azkar.map(
+                  (zekr) {
+                    return InkWell(
+                      onTap: () {
+                        seb7aBloc.add(Seb7aCounterEvent.selecteZekr(seb7aZekr: zekr));
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.symmetric(vertical: 1),
+                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Theme.of(context).colorScheme.surface,
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 2),
+                              child: Text(
+                                zekr.description,
+                                textAlign: TextAlign.center,
+                                style: Theme.of(context).textTheme.headline2?.copyWith(fontSize: 15, fontFamily: 'font2'),
                               ),
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: Container(
-                                      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-                                      child: Text(
-                                        zekr.content,
-                                        textAlign: TextAlign.center,
-                                        style: Theme.of(context).textTheme.caption,
-                                      ),
+                            ),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Container(
+                                    padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+                                    child: Text(
+                                      zekr.content,
+                                      textAlign: TextAlign.center,
+                                      style: Theme.of(context).textTheme.caption,
                                     ),
                                   ),
-                                ],
-                              ),
-                            ],
-                          ),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
-                      );
-                    },
-                  )
-                ],
-              ),
+                      ),
+                    );
+                  },
+                )
+              ],
             ),
           ),
         ),

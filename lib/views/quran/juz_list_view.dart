@@ -14,36 +14,36 @@ class JuzListView extends StatelessWidget {
     final juzList = context.read<BuildViewBloc>().juzList;
     final settings = context.read<SettingsBloc>();
 
-    return Column(
-      children: [
-        settings.settingsModel.lastJuz != null
-            ? ContinueReading(
-                onPresed: () {
-                  context.read<BuildViewBloc>().getFullJuz(settings.settingsModel.lastJuz!);
-                },
-                name: settings.settingsModel.lastJuz!.name.toString(),
-              )
-            : const SizedBox(),
-        Expanded(
-          child: ListView.separated(
-            itemCount: juzList.length,
-            itemBuilder: (context, index) {
-              return FadeScale(
-                delay: index < 15 ? index * 10 : 0,
-                child: JuzTile(
+    return FadeScale(
+      delay: 100,
+      child: Column(
+        children: [
+          settings.settingsModel.lastJuz != null
+              ? ContinueReading(
+                  onPresed: () {
+                    context.read<BuildViewBloc>().getFullJuz(settings.settingsModel.lastJuz!);
+                  },
+                  name: settings.settingsModel.lastJuz!.name.toString(),
+                )
+              : const SizedBox(),
+          Expanded(
+            child: ListView.separated(
+              itemCount: juzList.length,
+              itemBuilder: (context, index) {
+                return JuzTile(
                   juz: juzList[index],
-                ),
-              );
-            },
-            separatorBuilder: (context, index) {
-              return const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                child: Divider(height: .5, thickness: 1),
-              );
-            },
+                );
+              },
+              separatorBuilder: (context, index) {
+                return const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: Divider(height: .5, thickness: 1),
+                );
+              },
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

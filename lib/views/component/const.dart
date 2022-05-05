@@ -113,9 +113,9 @@ showSnakBar(BuildContext context, String msg) {
 }
 
 class IndexesOfJuz {
-  final int length, start;
+  final int length, start; 
 
-  IndexesOfJuz({required this.length, required this.start});
+  IndexesOfJuz( {required this.length, required this.start});
 }
 
 class BuildBasmla extends StatelessWidget {

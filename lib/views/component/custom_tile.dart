@@ -11,7 +11,7 @@ class CustomTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FadeScale(
-      delay: 300,
+      delay: 100,
       scale: .5,
       child: LayoutBuilder(builder: (context, constrains) {
         return RawMaterialButton(
@@ -43,7 +43,7 @@ class CustomTile extends StatelessWidget {
                     child: Text(
                       title,
                       style: Theme.of(context).textTheme.headline5,
-                      textScaleFactor: .7,
+                      textScaleFactor: .75,
                     ),
                   ),
                 ),

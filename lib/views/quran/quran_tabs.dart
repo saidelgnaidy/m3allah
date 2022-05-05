@@ -17,7 +17,7 @@ class _QuranTapsState extends State<QuranTaps> with SingleTickerProviderStateMix
   late TabController tabController;
   @override
   void initState() {
-    tabController = TabController(length: 2, vsync: this, initialIndex: widget.initTap ?? 0 , animationDuration: const Duration(milliseconds: 0));
+    tabController = TabController(length: 2, vsync: this, initialIndex: widget.initTap ?? 0);
     super.initState();
   }
 
