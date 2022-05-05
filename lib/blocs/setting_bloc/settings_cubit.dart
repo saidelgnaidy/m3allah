@@ -28,7 +28,7 @@ class SettingsBloc extends Cubit<SettingsState> {
   loadSavedTheme() {
     settingsModel = SettingsModel(
       isLight: GetStorage().read('isLight') ?? true,
-      fontCode: GetStorage().read('fontCode') ?? 1,
+      fontCode: GetStorage().read('fontCode') ?? 2,
       fontSize: GetStorage().read('fontSize') ?? 20,
       lastSurahOffset: GetStorage().read('settingsModel.lastSurahOffset') ?? 0.0,
       lastJuzOffset: GetStorage().read('settingsModel.lastJuzOffset') ?? 0.0,

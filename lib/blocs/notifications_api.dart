@@ -67,7 +67,7 @@ class NotificationCtrl {
   static initWorkMan() {
     debugPrint('***  Work Manager initialized  ***');
     Workmanager().initialize(_workManExuteTask);
-    Workmanager().registerPeriodicTask("Azkar", "azkar work manager", frequency: const Duration(minutes: 60));
+    Workmanager().registerPeriodicTask("Azkar", "azkar work manager", frequency: const Duration(hours: 2));
   }
 }
 
