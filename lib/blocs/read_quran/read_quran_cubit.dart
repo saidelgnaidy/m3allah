@@ -15,6 +15,10 @@ class ReadQuranState {
 }
 
 class ReadQuranCubit extends Cubit<ReadQuranState> {
+  static ReadQuranCubit of(BuildContext context) {
+    return BlocProvider.of<ReadQuranCubit>(context);
+  }
+
   ReadQuranCubit() : super(const ReadQuranState(-80));
 
   double toolBarPos = -80;
@@ -25,17 +29,17 @@ class ReadQuranCubit extends Cubit<ReadQuranState> {
   Timer? _timer;
 
   void init(BuildContext context) {
-    surahList = context.read<BuildViewBloc>().readQuranFullDetails.surahlist;
-    selectedJus = context.read<BuildViewBloc>().readQuranFullDetails.juzList;
+    surahList = BuildViewBloc.of(context).readQuranFullDetails.surahlist;
+    selectedJus = BuildViewBloc.of(context).readQuranFullDetails.juzList;
     WidgetsBinding.instance?.addPostFrameCallback((duration) async {
-      final setting = context.read<SettingsBloc>().settingsModel;
+      final setting = SettingsBloc.of(context).settingsModel;
       if (scrollController.hasClients) {
         if (selectedJus != null && setting.lastJuz != null) {
           if (selectedJus!.index == setting.lastJuz!.index) {
             scrollController.jumpTo(setting.lastJuzOffset);
           }
         } else if (setting.lastSurah != null) {
-          if (context.read<BuildViewBloc>().selectedSurahList!.index == setting.lastSurah!.index && selectedJus == null) {
+          if (BuildViewBloc.of(context).selectedSurahList!.index == setting.lastSurah!.index && selectedJus == null) {
             scrollController.jumpTo(setting.lastSurahOffset);
           }
         }

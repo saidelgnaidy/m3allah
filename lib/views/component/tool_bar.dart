@@ -19,15 +19,15 @@ class ToolBar extends StatelessWidget {
     return BlocBuilder<BuildViewBloc, BuildViewState>(
       builder: (context, state) {
         final bool show = state.maybeWhen(orElse: () => false, azkar: (azkar) => true, readSurah: () => true);
-        final SettingsBloc setting = context.read<SettingsBloc>();
-        final ReadQuranCubit readQuran = context.read<ReadQuranCubit>();
-        final AzkarCubit azkarCubit = context.read<AzkarCubit>();
+        final SettingsBloc setting = SettingsBloc.of(context);
+        final ReadQuranCubit readQuran = ReadQuranCubit.of(context);
+        final AzkarCubit azkarCubit = AzkarCubit.of(context);
 
         void increaseFont() {
           readQuran.toggleToolBar();
           state.maybeWhen(
             orElse: () => false,
-            azkar: (azkar) => azkarCubit.toggleToolBar(),
+            azkar: (azkar) => azkarCubit.resetTimer(),
           );
           setting.increaseFontSize();
         }
@@ -36,7 +36,7 @@ class ToolBar extends StatelessWidget {
           readQuran.toggleToolBar();
           state.maybeWhen(
             orElse: () => false,
-            azkar: (azkar) => azkarCubit.toggleToolBar(),
+            azkar: (azkar) => azkarCubit.resetTimer(),
           );
           setting.decreaseFontSize();
         }
@@ -45,7 +45,7 @@ class ToolBar extends StatelessWidget {
           readQuran.toggleToolBar();
           state.maybeWhen(
             orElse: () => false,
-            azkar: (azkar) => azkarCubit.toggleToolBar(),
+            azkar: (azkar) => azkarCubit.resetTimer(),
           );
           setting.updateFont();
         }
@@ -77,9 +77,7 @@ class ToolBar extends StatelessWidget {
                     icon: const Icon(Icons.font_download_rounded),
                     onPressed: changeFont,
                   ),
-                  if (speedCtrl != null)
-                    const SizedBox()
-                  else if (state.maybeWhen(orElse: () => false, readSurah: () => true))
+                  if (speedCtrl == null && state.maybeWhen(orElse: () => false, readSurah: () => true))
                     Column(
                       children: [
                         const SizedBox(width: 34, child: Divider(thickness: 1)),
@@ -127,9 +125,7 @@ class ToolBar extends StatelessWidget {
                     icon: const Icon(Icons.font_download_rounded),
                     onPressed: changeFont,
                   ),
-                  if (speedCtrl != null)
-                    const SizedBox()
-                  else if (state.maybeWhen(orElse: () => false, readSurah: () => true))
+                  if (speedCtrl == null && state.maybeWhen(orElse: () => false, readSurah: () => true))
                     Row(
                       children: [
                         const SizedBox(height: 35, child: VerticalDivider(thickness: 1)),

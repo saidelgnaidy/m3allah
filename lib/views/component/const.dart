@@ -1,9 +1,8 @@
 import 'package:animate_icons/animate_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:m3allah/blocs/setting_bloc/settings_cubit.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
-Color lightBack1 = const Color(0xffE4E6EB);
+Color lightBack1 = const Color.fromARGB(255, 240, 240, 241);
 Color lightBack2 = const Color(0xfff1fafa);
 Color lightBack3 = const Color(0xffffffff);
 Color lightBack4 = const Color(0xffffffff);
@@ -12,16 +11,14 @@ Color lightShadow = Colors.black38;
 Color lightText1 = Colors.grey.shade800;
 Color lightText2 = Colors.black45;
 
-Color darkBack1 = const Color(0xff121212);
-Color darkBack2 = const Color(0xff18191A);
-Color darkBack3 = const Color(0xff1c1f20);
-Color darkBack4 = const Color.fromARGB(255, 36, 36, 36);
+Color darkBack1 = const Color(0xff191919);
+Color darkBack2 = const Color(0xff202121);
+Color darkBack3 = const Color(0xff232323);
+Color darkBack4 = const Color.fromARGB(255, 38, 40, 41);
 Color darkIcon = const Color(0xff5899da);
 Color darkShadow = Colors.black;
 Color darkText1 = Colors.grey.shade300;
 Color darkText2 = Colors.grey.shade500;
-
-enum MainView { quran, azkar, readQuran, readJuz, listen }
 
 class FloatingBtn extends StatelessWidget {
   final bool Function() onTap;
@@ -47,7 +44,7 @@ class FloatingBtn extends StatelessWidget {
         endIcon: eIcon,
         size: 22.0,
         onStartIconPress: onTap,
-        onEndIconPress:onEnd ?? onTap,
+        onEndIconPress: onEnd ?? onTap,
         duration: const Duration(milliseconds: 200),
         endIconColor: Theme.of(context).iconTheme.color,
         startIconColor: Theme.of(context).iconTheme.color,
@@ -90,7 +87,7 @@ List<TileModel> kTileList = [
 ];
 
 isMobile(BuildContext context) {
-  return  MediaQuery.of(context).size.width < 450;
+  return MediaQuery.of(context).size.width < 450;
 }
 
 showSnakBar(BuildContext context, String msg) {
@@ -113,9 +110,9 @@ showSnakBar(BuildContext context, String msg) {
 }
 
 class IndexesOfJuz {
-  final int length, start; 
+  final int length, start;
 
-  IndexesOfJuz( {required this.length, required this.start});
+  IndexesOfJuz({required this.length, required this.start});
 }
 
 class BuildBasmla extends StatelessWidget {
@@ -124,12 +121,11 @@ class BuildBasmla extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20),
-      child: Center(
-        child: Image.asset(
-          'assets/images/bsmla${!context.read<SettingsBloc>().settingsModel.isLight}.png',
-          width: MediaQuery.of(context).size.width * .5,
-        ),
+      padding: const EdgeInsets.fromLTRB(40, 15, 40, 30),
+      child: SvgPicture.asset(
+        'assets/images/start.svg',
+        color: Theme.of(context).textTheme.caption!.color,
+        height: 80,
       ),
     );
   }
@@ -141,12 +137,11 @@ class BuildEnd extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20),
-      child: Center(
-        child: Image.asset(
-          'assets/images/end${!context.read<SettingsBloc>().settingsModel.isLight}.png',
-          width: MediaQuery.of(context).size.width * .5,
-        ),
+      padding: const EdgeInsets.fromLTRB(40, 15, 40, 30),
+      child: SvgPicture.asset(
+        'assets/images/end.svg',
+        color: Theme.of(context).textTheme.caption!.color,
+        height: 80,
       ),
     );
   }

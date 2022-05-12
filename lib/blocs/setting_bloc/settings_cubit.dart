@@ -16,7 +16,7 @@ class SettingsBloc extends Cubit<SettingsState> {
   SettingsBloc() : super(SettingsLoading());
 
   static SettingsBloc of(BuildContext context) {
-    return SettingsBloc();
+    return BlocProvider.of<SettingsBloc>(context);
   }
 
   toggleThemeData() async {

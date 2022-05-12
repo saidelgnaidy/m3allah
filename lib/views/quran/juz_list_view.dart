@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:m3allah/blocs/setting_bloc/settings_cubit.dart';
 import 'package:m3allah/blocs/view_bloc/build_view_cubit.dart';
 import 'package:m3allah/modle/juz_list_modle/juz_list_modle.dart';
-import 'package:m3allah/views/component/animation.dart';
 import 'package:m3allah/views/component/continue_reading_btn.dart';
 import 'package:provider/provider.dart';
 
@@ -14,36 +13,33 @@ class JuzListView extends StatelessWidget {
     final juzList = context.read<BuildViewBloc>().juzList;
     final settings = context.read<SettingsBloc>();
 
-    return FadeScale(
-      delay: 100,
-      child: Column(
-        children: [
-          settings.settingsModel.lastJuz != null
-              ? ContinueReading(
-                  onPresed: () {
-                    context.read<BuildViewBloc>().getFullJuz(settings.settingsModel.lastJuz!);
-                  },
-                  name: settings.settingsModel.lastJuz!.name.toString(),
-                )
-              : const SizedBox(),
-          Expanded(
-            child: ListView.separated(
-              itemCount: juzList.length,
-              itemBuilder: (context, index) {
-                return JuzTile(
-                  juz: juzList[index],
-                );
-              },
-              separatorBuilder: (context, index) {
-                return const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: Divider(height: .5, thickness: 1),
-                );
-              },
-            ),
+    return Column(
+      children: [
+        settings.settingsModel.lastJuz != null
+            ? ContinueReading(
+                onPresed: () {
+                  context.read<BuildViewBloc>().getFullJuz(settings.settingsModel.lastJuz!);
+                },
+                name: settings.settingsModel.lastJuz!.name.toString(),
+              )
+            : const SizedBox(),
+        Expanded(
+          child: ListView.separated(
+            itemCount: juzList.length,
+            itemBuilder: (context, index) {
+              return JuzTile(
+                juz: juzList[index],
+              );
+            },
+            separatorBuilder: (context, index) {
+              return const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: Divider(height: .5, thickness: 1),
+              );
+            },
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

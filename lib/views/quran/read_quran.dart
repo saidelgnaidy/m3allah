@@ -37,7 +37,7 @@ class _ReadQuranState extends State<ReadQuran> with AutomaticKeepAliveClientMixi
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    final ReadQuranCubit readQuran = context.read<ReadQuranCubit>()..init(context);
+    final ReadQuranCubit readQuran = ReadQuranCubit.of(context)..init(context);
 
     return BlocBuilder<ReadQuranCubit, ReadQuranState>(
       builder: (context, state) {
@@ -51,10 +51,10 @@ class _ReadQuranState extends State<ReadQuran> with AutomaticKeepAliveClientMixi
                     controller: readQuran.scrollController,
                     scrollbarOrientation: ScrollbarOrientation.right,
                     isAlwaysShown: true,
-                    thicknessWhileDragging: 20,
+                    thicknessWhileDragging: 15,
                     radius: const Radius.circular(5),
                     radiusWhileDragging: const Radius.circular(20),
-                    thickness: 5,
+                    thickness: 3.5,
                     child: SingleChildScrollView(
                       controller: readQuran.scrollController,
                       child: ListView.builder(
@@ -112,8 +112,7 @@ class _ReadQuranState extends State<ReadQuran> with AutomaticKeepAliveClientMixi
                       children: [
                         FloatingBtn(
                           onTap: () {
-                            context.read<SettingsBloc>().saveLastRead(context: context, lastOffset: readQuran.scrollController.offset);
-                            context.read<BuildViewBloc>().push(BuildViewState.quran(initTap: readQuran.selectedJus == null ? 0 : 1));
+                            BuildViewBloc.of(context).push(BuildViewState.quran(initTap: readQuran.selectedJus == null ? 0 : 1));
                             return true;
                           },
                           eIcon: Icons.arrow_back,
@@ -121,7 +120,7 @@ class _ReadQuranState extends State<ReadQuran> with AutomaticKeepAliveClientMixi
                         ),
                         StoreProgress(
                           onSave: () {
-                            context.read<SettingsBloc>().saveLastRead(context: context, lastOffset: readQuran.scrollController.offset);
+                            SettingsBloc.of(context).saveLastRead(context: context, lastOffset: readQuran.scrollController.offset);
                           },
                         ),
                         FloatingBtn(

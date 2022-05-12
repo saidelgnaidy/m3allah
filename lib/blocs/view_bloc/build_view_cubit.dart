@@ -14,12 +14,29 @@ class BuildViewBloc extends Cubit<BuildViewState> {
   List<JuzList> juzList = <JuzList>[];
   JuzList? selectedJuzList;
   SurahList? selectedSurahList;
+  List<AzkarList> azkarList = [];
+  String lastAzkar = '';
   late ReadQuranFullDetails readQuranFullDetails;
   final AnimationController animationController;
 
   BuildViewBloc(this.animationController) : super(const BuildViewState.initial());
 
-  push(BuildViewState route) => emit(route);
+  static BuildViewBloc of(BuildContext context) {
+    return BlocProvider.of<BuildViewBloc>(context);
+  }
+
+  push(BuildViewState route) {
+    if (state != const BuildViewState.readSurah()) {
+      emit(route);
+      animationController.reverse();
+      return;
+    }
+    if (!animationController.isCompleted) {
+      emit(route);
+      return;
+    }
+    animationController.reverse();
+  }
 
   void toggleDrawer() async {
     if (isMobile(Get.context!)) {
@@ -27,26 +44,43 @@ class BuildViewBloc extends Cubit<BuildViewState> {
     }
   }
 
-  getQuranLists() async {
-    emit(const BuildViewState.initial());
-    var surahJson = await DefaultAssetBundle.of(Get.context!).loadString('assets/surah.json');
-    surahList = surahListFromJson(surahJson);
-
-    var juzJson = await DefaultAssetBundle.of(Get.context!).loadString('assets/juz.json');
-    juzList = juzListFromJson(juzJson);
-
-    emit(const BuildViewState.quran(initTap: 0));
+  getSeb7a() {
+    animationController.reverse();
+    emit(const BuildViewState.sebha());
   }
 
   getAzkar(String str) async {
-    emit(const BuildViewState.initial());
-    animationController.reverse();
+    if (lastAzkar == str) {
+      animationController.reverse();
+      if (state.maybeMap(azkar: (val) => false, orElse: () => true)) {
+        emit(BuildViewState.azkar(list: azkarList));
+      }
+    } else {
+      lastAzkar = str;
+      animationController.reverse();
+      emit(const BuildViewState.initial());
 
-    var zekrFile = await DefaultAssetBundle.of(Get.context!).loadString(str);
-    await Future.delayed(const Duration(milliseconds: 10));
-    final _azkarList = azkarListFromJson(zekrFile);
+      var zekrFile = await DefaultAssetBundle.of(Get.context!).loadString(str);
+      final _azkarList = azkarListFromJson(zekrFile);
+      azkarList = _azkarList;
+      await Future.delayed(const Duration(milliseconds: 10));
 
-    emit(BuildViewState.azkar(list: _azkarList));
+      emit(BuildViewState.azkar(list: _azkarList));
+    }
+  }
+
+  getQuranLists() async {
+    if (surahList.isEmpty) {
+      emit(const BuildViewState.initial());
+      var surahJson = await DefaultAssetBundle.of(Get.context!).loadString('assets/surah.json');
+      surahList = surahListFromJson(surahJson);
+
+      var juzJson = await DefaultAssetBundle.of(Get.context!).loadString('assets/juz.json');
+      juzList = juzListFromJson(juzJson);
+    } else {
+      animationController.reverse();
+    }
+    emit(const BuildViewState.quran(initTap: 0));
   }
 
   getFullSurah(SurahList surah) async {

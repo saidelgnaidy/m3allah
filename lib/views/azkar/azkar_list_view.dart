@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:m3allah/blocs/azkar/azkar_cubit.dart';
+import 'package:m3allah/blocs/azkar/zekr_counter.dart';
 import 'package:m3allah/blocs/view_bloc/build_view_cubit.dart';
 import 'package:m3allah/modle/azkar/azkar_model.dart';
 import 'package:m3allah/views/component/const.dart';
@@ -15,28 +16,27 @@ class AzkarListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AzkarCubit, AzkarState>(
       builder: (context, state) {
-        final azkarCubit = context.read<AzkarCubit>();
         return LayoutBuilder(builder: (context, size) {
           return Stack(
             alignment: Alignment.center,
             children: [
               ScrollablePositionedList.builder(
-                itemScrollController: azkarCubit.itemScrollController,
-                itemPositionsListener: azkarCubit.itemPositionsListener,
+                itemScrollController: AzkarCubit.of(context).itemScrollController,
+                itemPositionsListener: AzkarCubit.of(context).itemPositionsListener,
                 addAutomaticKeepAlives: true,
                 physics: const BouncingScrollPhysics(),
                 padding: const EdgeInsets.only(top: 5),
-                itemCount: azkarList.length,
+                itemCount: BuildViewBloc.of(context).azkarList.length,
                 itemBuilder: (BuildContext context, int index) {
                   return ZekrTile(
-                    zekr: azkarList[index],
-                    scrollToNext: () => azkarCubit.scrollTo(index),
+                    zekr: BuildViewBloc.of(context).azkarList[index],
+                    index: index,
                   );
                 },
               ),
               AnimatedPositioned(
-                left: isMobile(context) ? azkarCubit.toolBarPos : null,
-                bottom: isMobile(context) ? null : azkarCubit.toolBarPos,
+                left: isMobile(context) ? state.toolBarPos : null,
+                bottom: isMobile(context) ? null : state.toolBarPos,
                 curve: Curves.easeInOutBack,
                 duration: const Duration(milliseconds: 500),
                 child: ToolBar(),
@@ -52,7 +52,7 @@ class AzkarListView extends StatelessWidget {
                       if (isMobile(context))
                         FloatingBtn(
                           onTap: () {
-                            context.read<BuildViewBloc>().onPopScope();
+                            BuildViewBloc.of(context).onPopScope();
                             return true;
                           },
                           eIcon: Icons.arrow_back,
@@ -60,11 +60,11 @@ class AzkarListView extends StatelessWidget {
                         ),
                       FloatingBtn(
                         onTap: () {
-                          azkarCubit.openToolBar();
+                          AzkarCubit.of(context).openToolBar();
                           return true;
                         },
-                        sIcon: azkarCubit.isToolBarOpen() ? Icons.settings : Icons.close,
-                        eIcon: azkarCubit.isToolBarOpen() ? Icons.settings : Icons.close,
+                        sIcon: AzkarCubit.of(context).isToolBarOpen() ? Icons.settings : Icons.close,
+                        eIcon: AzkarCubit.of(context).isToolBarOpen() ? Icons.settings : Icons.close,
                       ),
                     ],
                   ),
@@ -78,98 +78,91 @@ class AzkarListView extends StatelessWidget {
   }
 }
 
-class ZekrTile extends StatefulWidget {
+class ZekrTile extends StatelessWidget {
   final AzkarList zekr;
-  final Function scrollToNext;
-  const ZekrTile({Key? key, required this.zekr, required this.scrollToNext}) : super(key: key);
-
-  @override
-  State<ZekrTile> createState() => _ZekrTileState();
-}
-
-class _ZekrTileState extends State<ZekrTile> {
-  int _count = 1;
-  @override
-  void initState() {
-    _count = widget.zekr.count.isNotEmpty ? int.parse(widget.zekr.count) : 1;
-    super.initState();
-  }
+  final int index;
+  const ZekrTile({Key? key, required this.zekr, required this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Opacity(
-      opacity: _count == 0 ? .6 : 1.0,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-        child: RawMaterialButton(
-          fillColor: Theme.of(context).colorScheme.surface,
-          elevation: 5,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-          onPressed: () {
-            if (_count > 0) {
-              setState(() => _count--);
-            }
-            if (_count == 0) {
-              widget.scrollToNext();
-            }
-          },
-          child: Column(
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.only(topRight: Radius.circular(10), topLeft: Radius.circular(10)),
-                  color: Theme.of(context).colorScheme.surface,
-                  boxShadow: kBoxShadow(),
-                ),
+    return BlocProvider(
+      create: (context) => ZekrCountCubit(zekr.count.isNotEmpty ? int.parse(zekr.count) : 1),
+      child: BlocBuilder<ZekrCountCubit, ZekrCounterState>(
+          builder: (context, state) {
+          return Opacity(
+            opacity: ZekrCountCubit.of(context).count == 0 ? 0.6: 1.0,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+              child: RawMaterialButton(
+                fillColor: Theme.of(context).colorScheme.surface,
+                elevation: 5,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                onPressed: () {
+                  ZekrCountCubit.of(context).decrease();
+                  if (ZekrCountCubit.of(context).count <= 0) {
+                    AzkarCubit.of(context).scrollTo(index);
+                  }
+                },
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.only(topRight: Radius.circular(10), topLeft: Radius.circular(10)),
+                        color: Theme.of(context).colorScheme.surface,
+                        boxShadow: kBoxShadow(),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            widget.zekr.category,
-                            textAlign: TextAlign.right,
-                            style: Theme.of(context).textTheme.headline2?.copyWith(fontSize: 14),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  zekr.category,
+                                  textAlign: TextAlign.right,
+                                  style: Theme.of(context).textTheme.headline2?.copyWith(fontSize: 14),
+                                ),
+                                 Text(state.count.toString(), textAlign: TextAlign.center, style: Theme.of(context).textTheme.subtitle1)
+                              ],
+                            ),
                           ),
-                          Text(_count.toString(), textAlign: TextAlign.center, style: Theme.of(context).textTheme.subtitle1),
                         ],
                       ),
                     ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+                            child: Text(
+                              zekr.zekr,
+                              textAlign: TextAlign.center,
+                              style: Theme.of(context).textTheme.caption,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    if (zekr.reference.isNotEmpty)
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 2),
+                          child: Text(
+                            'المصدر  : ' + zekr.reference,
+                            style: Theme.of(context).textTheme.headline2?.copyWith(fontSize: 11),
+                          ),
+                        ),
+                      ),
                   ],
                 ),
               ),
-              Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
-                      child: Text(
-                        widget.zekr.zekr,
-                        textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.caption,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              if (widget.zekr.reference.isNotEmpty)
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 2),
-                    child: Text(
-                      'المصدر  : ' + widget.zekr.reference,
-                      style: Theme.of(context).textTheme.headline2?.copyWith(fontSize: 11),
-                    ),
-                  ),
-                ),
-            ],
-          ),
-        ),
+            ),
+          );
+        }
       ),
     );
   }

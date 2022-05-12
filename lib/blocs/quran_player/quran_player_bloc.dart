@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:audioplayers/audioplayers.dart';
-import 'package:bloc/bloc.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,6 +9,11 @@ import 'package:m3allah/modle/quran/surah_model.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class QuranPlayerBloc extends Bloc<QuranPlayerEvent, QuranPlayerState> {
+
+  static QuranPlayerBloc of(BuildContext context) {
+   return BlocProvider.of<QuranPlayerBloc>(context);
+  }
+
   final AudioPlayer audioPlayer = AudioPlayer();
   bool playAll = false;
   String lastPlayed = '';

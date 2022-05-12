@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:m3allah/blocs/view_bloc/build_view_cubit.dart';
 import 'package:m3allah/blocs/view_bloc/build_view_state.dart';
@@ -15,7 +14,7 @@ class KDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final view = context.read<BuildViewBloc>();
+    final view = BuildViewBloc.of(context);
     final size = MediaQuery.of(context).size;
 
     return Container(
@@ -23,7 +22,7 @@ class KDrawer extends StatelessWidget {
       width: isMobile(context) ? size.width : 160,
       height: size.height,
       child: SingleChildScrollView(
-        padding: EdgeInsets.only(top: isMobile(context) ? size.height * .05 : 0, left: isMobile(context) ? size.width * .15 + 8 : 8, right: 8),
+        padding: EdgeInsets.only(top: isMobile(context) ? size.height * .05 : 0, left: isMobile(context) ? size.width * .15 + 12 : 8, right: 12),
         physics: const BouncingScrollPhysics(),
         child: Column(
           children: [
@@ -48,10 +47,9 @@ class KDrawer extends StatelessWidget {
               children: [
                 StaggeredGridTile.count(
                   crossAxisCellCount: isMobile(context) ? crossAxisCellCountM : crossAxisCellCountD,
-                  mainAxisCellCount: isMobile(context) ? 3.1 : mainAxisCellCount / 8,
+                  mainAxisCellCount: isMobile(context) ? 3.2 : mainAxisCellCount / 8,
                   child: CustomTile(
                     onPressed: () {
-                      view.animationController.reverse();
                       view.push(const BuildViewState.quran(initTap: 0));
                     },
                     title: kTileList[0].title,
@@ -140,8 +138,7 @@ class KDrawer extends StatelessWidget {
                   mainAxisCellCount: isMobile(context) ? 2.4 : mainAxisCellCount / 8,
                   child: CustomTile(
                     onPressed: () {
-                      view.toggleDrawer();
-                      view.push(const BuildViewState.sebha());
+                      view.getSeb7a();
                     },
                     title: 'السبحة',
                   ),

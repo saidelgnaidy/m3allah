@@ -15,8 +15,8 @@ class SettingsLoaded with SettingsState {
   @override
   ThemeData getThemeData() {
     final bool isLight = settingsModel.isLight;
+
     return ThemeData(
-      visualDensity: VisualDensity.adaptivePlatformDensity,
       brightness: isLight ? Brightness.light : Brightness.dark,
       fontFamily: 'font5',
       shadowColor: isLight ? lightShadow : darkShadow,
@@ -32,11 +32,12 @@ class SettingsLoaded with SettingsState {
         shadowColor: isLight ? lightShadow : darkShadow,
         color: isLight ? lightBack2 : darkBack2,
         systemOverlayStyle: SystemUiOverlayStyle(
-          statusBarColor: isLight ? lightBack2.withOpacity(0.0) : darkBack2.withOpacity(0.0),
-          systemNavigationBarColor: isLight ? lightBack2.withOpacity(0.0) : darkBack2.withOpacity(0.0),
+          statusBarColor: isLight ? lightBack2 : darkBack2,
           statusBarBrightness: isLight ? Brightness.dark : Brightness.light,
           statusBarIconBrightness: isLight ? Brightness.dark : Brightness.light,
-          systemNavigationBarIconBrightness: !isLight ? Brightness.dark : Brightness.light,
+          systemNavigationBarIconBrightness: isLight ? Brightness.dark : Brightness.light,
+          systemNavigationBarColor: isLight ? lightBack2 : darkBack2,
+          systemNavigationBarDividerColor: isLight ? lightBack2 : darkBack2,
         ),
       ),
       iconTheme: IconThemeData(color: isLight ? lightIcon : darkIcon),

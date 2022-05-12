@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
@@ -12,8 +13,6 @@ import 'package:m3allah/blocs/setting_bloc/settings_cubit.dart';
 import 'package:m3allah/blocs/view_bloc/build_view_cubit.dart';
 import 'package:m3allah/views/home_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
-
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,12 +33,8 @@ class M3Allah extends StatefulWidget {
   State<M3Allah> createState() => _M3AllahState();
 }
 
-class _M3AllahState extends State<M3Allah> with SingleTickerProviderStateMixin{
-
+class _M3AllahState extends State<M3Allah> with SingleTickerProviderStateMixin {
   late AnimationController animationController = AnimationController(duration: const Duration(milliseconds: 300), vsync: this, value: 1.0);
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -55,25 +50,26 @@ class _M3AllahState extends State<M3Allah> with SingleTickerProviderStateMixin{
           BlocProvider(create: (context) => ReadQuranCubit()),
           BlocProvider(create: (context) => AzkarCubit()),
         ],
-        child: BlocBuilder<SettingsBloc, SettingsState>(builder: (context, state) {
-          return GetMaterialApp(
-            debugShowCheckedModeBanner: false,
-            localizationsDelegates: const [
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
-            theme: state.getThemeData(),
-            themeMode: ThemeMode.dark,
-            locale: const Locale('ar', ''),
-            localeResolutionCallback: (local, list) => list.first,
-            supportedLocales: const [
-              Locale('ar', ''),
-            ],
-            title: 'مع الله',
-            home: const HomeScreen(),
-          );
-        }),
+        child: BlocBuilder<SettingsBloc, SettingsState>(
+          builder: (context, state) {
+            return GetMaterialApp(
+              debugShowCheckedModeBanner: false,
+              localizationsDelegates: const [
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              theme: state.getThemeData(),
+              locale: const Locale('ar', ''),
+              title: 'مع الله',
+              home: AnnotatedRegion<SystemUiOverlayStyle>(
+                value: state.getThemeData()!.appBarTheme.systemOverlayStyle!,
+                child: const SafeArea(child: HomeScreen()),
+                
+              ),
+            );
+          },
+        ),
       ),
     );
   }

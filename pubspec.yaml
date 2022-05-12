@@ -22,6 +22,7 @@ dependencies:
   firebase_storage:
   audioplayers:
   awesome_notifications: 
+  flutter_svg:
   workmanager: ^0.4.1
 
 

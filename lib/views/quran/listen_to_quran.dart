@@ -19,13 +19,11 @@ class QuranPlayer extends StatefulWidget {
   State<QuranPlayer> createState() => _QuranPlayerState();
 }
 
-class _QuranPlayerState extends State<QuranPlayer> {
-  double toolBarPos = -80;
-
+class _QuranPlayerState extends State<QuranPlayer> with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
-    final QuranPlayerBloc quranPlayer = context.read<QuranPlayerBloc>();
-    final ReadQuranCubit readQuran = context.read<ReadQuranCubit>();
+    final ReadQuranCubit readQuran = ReadQuranCubit.of(context);
+    super.build(context);
 
     return Stack(
       alignment: Alignment.center,
@@ -33,9 +31,9 @@ class _QuranPlayerState extends State<QuranPlayer> {
         if (readQuran.selectedJus == null)
           ScrollablePositionedList.builder(
             itemCount: readQuran.surahList.first.verse.verses.length + 2,
-            padding: const EdgeInsets.fromLTRB(0, 10, 0, 80),
-            itemScrollController: quranPlayer.versScrollCtrl,
-            itemPositionsListener: quranPlayer.versPositionsListener,
+            padding: const EdgeInsets.fromLTRB(8, 10, 8, 80),
+            itemScrollController: QuranPlayerBloc.of(context).versScrollCtrl,
+            itemPositionsListener: QuranPlayerBloc.of(context).versPositionsListener,
             shrinkWrap: true,
             itemBuilder: (context, index) {
               if (index == 0) {
@@ -49,7 +47,7 @@ class _QuranPlayerState extends State<QuranPlayer> {
           )
         else
           ScrollablePositionedList.builder(
-            padding: const EdgeInsets.fromLTRB(0, 10, 0, 80),
+            padding: const EdgeInsets.fromLTRB(8, 10, 8, 80),
             itemCount: readQuran.surahList.length + 1,
             itemBuilder: (context, surahI) {
               if (surahI == readQuran.surahList.length) {
@@ -60,7 +58,7 @@ class _QuranPlayerState extends State<QuranPlayer> {
                     const BuildBasmla(),
                     ScrollablePositionedList.builder(
                       itemCount: readQuran.calcStartIndex(surah: readQuran.surahList[surahI], i: 1).length,
-                      shrinkWrap: true, // 1st add
+                      shrinkWrap: true,
                       physics: const ClampingScrollPhysics(),
                       itemBuilder: (context, index) {
                         return QuranPlayerTile(
@@ -74,19 +72,39 @@ class _QuranPlayerState extends State<QuranPlayer> {
               }
             },
           ),
-        AnimatedPositioned(
-          left: isMobile(context) ? toolBarPos : null,
-          top: isMobile(context) ? null : toolBarPos,
-          curve: Curves.easeInOutBack,
-          duration: const Duration(milliseconds: 500),
-          child: ToolBar(speedCtrl: false),
+        BlocBuilder<ReadQuranCubit, ReadQuranState>(
+          builder: (context, state) {
+            return AnimatedPositioned(
+              left: isMobile(context) ? state.toolBarPos : null,
+              top: isMobile(context) ? null : state.toolBarPos,
+              curve: Curves.easeInOutBack,
+              duration: const Duration(milliseconds: 500),
+              child: ToolBar(speedCtrl: false),
+            );
+          },
+        ),
+        Positioned(
+          bottom: 8,
+          left: 8,
+          child: BlocBuilder<ReadQuranCubit, ReadQuranState>(
+            builder: (context, state) {
+              return FloatingBtn(
+                onTap: () {
+                  ReadQuranCubit.of(context).openToolBar();
+                  return true;
+                },
+                sIcon: ReadQuranCubit.of(context).isToolBarOpen() ? Icons.settings : Icons.close,
+                eIcon: ReadQuranCubit.of(context).isToolBarOpen() ? Icons.settings : Icons.close,
+              );
+            },
+          ),
         ),
         Positioned(
           bottom: 8,
           right: 8,
           child: FloatingBtn(
             onTap: () {
-              context.read<BuildViewBloc>().push(BuildViewState.quran(initTap: readQuran.selectedJus == null ? 0 : 1));
+              BuildViewBloc.of(context).push(BuildViewState.quran(initTap: readQuran.selectedJus == null ? 0 : 1));
               return true;
             },
             eIcon: Icons.arrow_back,
@@ -100,32 +118,21 @@ class _QuranPlayerState extends State<QuranPlayer> {
                 bottom: 8,
                 child: FloatingBtn(
                   onTap: () {
-                    quranPlayer.add(QuranPlayerEvent.playAll(surah: readQuran.surahList.first, versIndex: 1));
+                    QuranPlayerBloc.of(context).add(QuranPlayerEvent.playAll(surah: readQuran.surahList.first, versIndex: 1));
                     return true;
                   },
-                  sIcon: quranPlayer.playAll ? Icons.pause_rounded : Icons.playlist_play_rounded,
-                  eIcon: quranPlayer.playAll ? Icons.pause_rounded : Icons.playlist_play_rounded,
+                  sIcon: QuranPlayerBloc.of(context).playAll ? Icons.pause_rounded : Icons.playlist_play_rounded,
+                  eIcon: QuranPlayerBloc.of(context).playAll ? Icons.pause_rounded : Icons.playlist_play_rounded,
                 ),
               );
             },
           ),
-        Positioned(
-          bottom: 8,
-          left: 8,
-          child: FloatingBtn(
-            onTap: () {
-              setState(() {
-                toolBarPos = toolBarPos == -80 ? 8 : -80;
-              });
-              return true;
-            },
-            sIcon: toolBarPos == -80 ? Icons.settings : Icons.close,
-            eIcon: toolBarPos == -80 ? Icons.settings : Icons.close,
-          ),
-        ),
       ],
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
 
 class QuranPlayerTile extends StatelessWidget {
@@ -164,7 +171,7 @@ class QuranPlayerTile extends StatelessWidget {
               initial: (playNow) {
                 return AnimatedContainer(
                   duration: const Duration(milliseconds: 350),
-                  margin: const EdgeInsets.symmetric(vertical: 2, horizontal: 8),
+                  margin: const EdgeInsets.symmetric(vertical: 2, horizontal: 0),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     color: Theme.of(context).colorScheme.surface,

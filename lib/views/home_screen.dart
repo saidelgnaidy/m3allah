@@ -21,6 +21,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  
   Widget _buildView(BuildViewState state) {
     return Container(
       decoration: BoxDecoration(
@@ -30,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: state.map(
         initial: (init) => const Center(child: LinearProgressIndicator()),
         quran: (quran) => QuranTaps(initTap: quran.initTap),
-        azkar: (azkar) =>  AzkarListView(azkarList: azkar.list),
+        azkar: (azkar) => AzkarListView(azkarList: azkar.list),
         readSurah: (value) => const ReadOrListen(),
         sebha: (sebha) => const Seb7a(),
       ),
@@ -39,8 +40,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final BuildViewBloc viewBloc = BlocProvider.of<BuildViewBloc>(context);
-
     if (MediaQuery.of(context).orientation.index == 0) {
       SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     } else {
@@ -51,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
       builder: (context, state) {
         return WillPopScope(
           onWillPop: () {
-            return context.read<BuildViewBloc>().onPopScope();
+            return BuildViewBloc.of(context).onPopScope();
           },
           child: Scaffold(
             backgroundColor: Theme.of(context).drawerTheme.backgroundColor,
@@ -65,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       leading: MenuIcon(
                         color: Theme.of(context).iconTheme.color!,
                         onPressed: () {
-                          viewBloc.toggleDrawer();
+                          BuildViewBloc.of(context).toggleDrawer();
                         },
                       ),
                       actions: [
@@ -75,16 +74,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
             body: isMobile(context)
                 ? Landing(
-                    animationController: viewBloc.animationController,
+                    animationController: BuildViewBloc.of(context).animationController,
                     child: _buildView(state),
                   )
                 : Row(
                     children: [
                       const KDrawer(),
                       Expanded(
-                        child: SafeArea(
-                          child: _buildView(state),
-                        ),
+                        child: _buildView(state),
                       ),
                     ],
                   ),

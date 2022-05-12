@@ -18,7 +18,7 @@ class _ReadOrListenState extends State<ReadOrListen> with SingleTickerProviderSt
   late TabController tabController;
   @override
   void initState() {
-    tabController = TabController(length: 2, vsync: this, animationDuration: const Duration(milliseconds: 0));
+    tabController = TabController(length: 2, vsync: this);
     super.initState();
   }
 

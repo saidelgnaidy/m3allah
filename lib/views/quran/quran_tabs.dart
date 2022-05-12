@@ -30,7 +30,6 @@ class _QuranTapsState extends State<QuranTaps> with SingleTickerProviderStateMix
         Expanded(
           child: TabBarView(
             controller: tabController,
-            physics: const NeverScrollableScrollPhysics(),
             children: const [
               SurahListView(),
               JuzListView(),
