@@ -1,82 +1,75 @@
 import 'dart:math';
-import 'package:awesome_notifications/awesome_notifications.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/route_manager.dart';
 import 'package:m3allah/modle/azkar/seb7a_model.dart';
 import 'package:m3allah/views/home_screen.dart';
-import 'package:workmanager/workmanager.dart';
 
 class NotificationCtrl {
-  static List<Seb7aZekr> _loadSeb7aZekr() {
-    return seb7aZekrFromList(azkar);
+  static final _notification = FlutterLocalNotificationsPlugin();
+
+  static Future sendNotification() async {
+    await _initNotification();
+    Seb7aZekr _zekr = _randomZekr();
+    _notification.show(1, _zekr.content, _zekr.description, await _notificationDetails());
   }
 
-  static sendNotification() async {
-    debugPrint('***  Send Notification Calld  ***');
+  static Future<NotificationDetails> _notificationDetails() async {
 
-    AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
-      if (!isAllowed) {
-        AwesomeNotifications().requestPermissionToSendNotifications();
-      }
-    });
-
-    final int index = Random().nextInt(azkar.length - 1);
-    final Seb7aZekr _zekr = _loadSeb7aZekr()[index];
-
-    AwesomeNotifications().createNotification(
-      content: NotificationContent(
-        id: 1,
-        channelKey: '1',
-        title: _zekr.content,
-        body: _zekr.description,
-        notificationLayout: NotificationLayout.BigPicture,
-        icon: 'resource://drawable/background',
-        backgroundColor: Colors.white,
-        largeIcon: 'resource://drawable/background',
-        roundedLargeIcon: true,
-        
+    return  const NotificationDetails(
+      android: AndroidNotificationDetails(
+        '1',
+        'M3 Allah Azkar Notifications',
+        channelDescription: 'أذكار',
+        importance: Importance.max,
+        playSound: false,
+        enableVibration: false,
+        colorized: true,
+        onlyAlertOnce: true,
+        icon: '@mipmap/launcher_icon'
       ),
+      iOS: IOSNotificationDetails(presentSound: false)
+
     );
   }
 
-  static _listener() {
-    AwesomeNotifications().actionStream.listen((event) {
-      Get.offAll(() => const HomeScreen());
-    });
-  }
-
-  static initNotifications() {
-    debugPrint('***  Notifications initialized  ***');
-
-    _listener();
-    AwesomeNotifications().initialize(
-      null,
-      [
-        NotificationChannel(
-          channelKey: '1',
-          channelName: 'M3 Allah Azkar Notifications',
-          channelDescription: 'أذكار',
-          importance: NotificationImportance.Max,
-          enableVibration: false,
-          playSound: false
-        )
-      ],
+  static _initNotification() async {
+    const AndroidInitializationSettings initializationSettingsAndroid = AndroidInitializationSettings('@mipmap/launcher_icon');
+    const IOSInitializationSettings initializationSettingsIOS = IOSInitializationSettings();
+    const InitializationSettings initializationSettings = InitializationSettings(
+      android: initializationSettingsAndroid,
+      iOS: initializationSettingsIOS,
     );
+    await _notification.initialize(initializationSettings, onSelectNotification: _selectNotification);
   }
 
-  static initWorkMan() {
-    debugPrint('***  Work Manager initialized  ***');
-    Workmanager().initialize(_workManExuteTask);
-    Workmanager().registerPeriodicTask("Azkar", "azkar work manager", frequency: const Duration(hours: 2));
+  static Future _selectNotification(payload) async {
+    Get.offAll(() => const HomeScreen());
   }
+
+
+
+  static Seb7aZekr _randomZekr() {
+    List<Seb7aZekr> list =  seb7aZekrFromList(azkar);
+    final int index = Random().nextInt(list.length - 1);
+    final Seb7aZekr _zekr = list[index];
+    return _zekr ;
+  }
+
+  // static initWorkMan() {
+  //   debugPrint('***  Work Manager initialized  ***');
+  //   NotificationCtrl.sendNotification();
+  //   // Workmanager().initialize(_workManExuteTask);
+  //   // Workmanager().registerPeriodicTask("Azkar", "azkar work manager", frequency: const Duration(hours: 2));
+  // }
+
 }
 
-_workManExuteTask() {
-  Workmanager().executeTask((taskName, inputData) {
-    NotificationCtrl.sendNotification();
-    return Future.value(true);
-  });
-}
+// _workManExuteTask() {
+//   Workmanager().executeTask((taskName, inputData) {
+//     NotificationCtrl.sendNotification();
+//     return Future.value(true);
+//   });
+// }
 
 List<Map<String, dynamic>> azkar = [
   {"content": "الْلَّهُ أَكْبَرُ", "description": "من قالها كتبت له عشرون حسنة وحطت عنه عشرون سيئة", "id": 1},

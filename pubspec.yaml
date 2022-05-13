@@ -1,7 +1,7 @@
 name: m3allah
 description: com.masritech.m3allah
 publish_to: 'none'
-version: 2.5.0+9
+version: 2.5.1+10
 
 environment:
   sdk: ">=2.16.2 <3.0.0"
@@ -10,7 +10,7 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  get_storage:
+  get_storage: ^2.0.2
   animate_icons:
   simple_animations:
   scrollable_positioned_list:
@@ -18,12 +18,12 @@ dependencies:
   json_annotation:
   flutter_staggered_grid_view:
   wakelock:
-  get:
+  get: ^4.6.1
   firebase_storage:
   audioplayers:
-  awesome_notifications: 
   flutter_svg:
-  workmanager: ^0.4.1
+  #workmanager:
+  flutter_local_notifications:
 
 
 dev_dependencies:

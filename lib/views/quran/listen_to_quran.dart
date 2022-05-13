@@ -36,7 +36,7 @@ class _QuranPlayerState extends State<QuranPlayer> with AutomaticKeepAliveClient
             itemPositionsListener: QuranPlayerBloc.of(context).versPositionsListener,
             shrinkWrap: true,
             itemBuilder: (context, index) {
-              if (index == 0) {
+              if (index == 0 && readQuran.surahList.first.index != '009') {
                 return const BuildBasmla();
               } else if (index == readQuran.surahList.first.verse.verses.length + 1) {
                 return const BuildEnd();
@@ -55,7 +55,7 @@ class _QuranPlayerState extends State<QuranPlayer> with AutomaticKeepAliveClient
               } else {
                 return Column(
                   children: [
-                    const BuildBasmla(),
+                    if (readQuran.surahList[surahI].index != '009') const BuildBasmla(),
                     ScrollablePositionedList.builder(
                       itemCount: readQuran.calcStartIndex(surah: readQuran.surahList[surahI], i: 1).length,
                       shrinkWrap: true,
@@ -235,8 +235,11 @@ class QuranPlayerTile extends StatelessWidget {
                         alignment: Alignment.centerLeft,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-                          child: Text(surah.transEn.verses[versIndex].replaceAll('.', ''),
-                              textAlign: TextAlign.left, style: TextStyle(fontSize: 12, color: Colors.grey[500])),
+                          child: Text(
+                            surah.transEn.verses[versIndex].replaceAll('.', ''),
+                            textAlign: TextAlign.left,
+                            style: TextStyle(fontSize: 12, color: Colors.grey[500]),
+                          ),
                         ),
                       ),
                     ],
