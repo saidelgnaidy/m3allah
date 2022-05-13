@@ -25,7 +25,7 @@ class AzkarListView extends StatelessWidget {
                 itemPositionsListener: AzkarCubit.of(context).itemPositionsListener,
                 addAutomaticKeepAlives: true,
                 physics: const BouncingScrollPhysics(),
-                padding: const EdgeInsets.only(top: 5),
+                padding: const EdgeInsets.only(top: 8 ,bottom: 80),
                 itemCount: BuildViewBloc.of(context).azkarList.length,
                 itemBuilder: (BuildContext context, int index) {
                   return ZekrTile(

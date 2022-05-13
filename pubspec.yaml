@@ -22,7 +22,7 @@ dependencies:
   firebase_storage:
   audioplayers:
   flutter_svg:
-  #workmanager:
+  workmanager:
   flutter_local_notifications:
 
 

@@ -36,8 +36,12 @@ class _QuranPlayerState extends State<QuranPlayer> with AutomaticKeepAliveClient
             itemPositionsListener: QuranPlayerBloc.of(context).versPositionsListener,
             shrinkWrap: true,
             itemBuilder: (context, index) {
-              if (index == 0 && readQuran.surahList.first.index != '009') {
-                return const BuildBasmla();
+              if (index == 0 ) {
+                if(readQuran.surahList.first.index == '009' ) {
+                  return const SizedBox(height: 15);
+                } else {
+                  return const BuildBasmla();
+                }
               } else if (index == readQuran.surahList.first.verse.verses.length + 1) {
                 return const BuildEnd();
               } else {

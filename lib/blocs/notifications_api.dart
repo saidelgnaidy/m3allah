@@ -1,14 +1,15 @@
 import 'dart:math';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/route_manager.dart';
 import 'package:m3allah/modle/azkar/seb7a_model.dart';
 import 'package:m3allah/views/home_screen.dart';
+import 'package:workmanager/workmanager.dart';
 
 class NotificationCtrl {
   static final _notification = FlutterLocalNotificationsPlugin();
 
   static Future sendNotification() async {
-    await _initNotification();
     Seb7aZekr _zekr = _randomZekr();
     _notification.show(1, _zekr.content, _zekr.description, await _notificationDetails());
   }
@@ -32,7 +33,7 @@ class NotificationCtrl {
     );
   }
 
-  static _initNotification() async {
+  static initNotification() async {
     const AndroidInitializationSettings initializationSettingsAndroid = AndroidInitializationSettings('@mipmap/launcher_icon');
     const IOSInitializationSettings initializationSettingsIOS = IOSInitializationSettings();
     const InitializationSettings initializationSettings = InitializationSettings(
@@ -55,21 +56,20 @@ class NotificationCtrl {
     return _zekr ;
   }
 
-  // static initWorkMan() {
-  //   debugPrint('***  Work Manager initialized  ***');
-  //   NotificationCtrl.sendNotification();
-  //   // Workmanager().initialize(_workManExuteTask);
-  //   // Workmanager().registerPeriodicTask("Azkar", "azkar work manager", frequency: const Duration(hours: 2));
-  // }
+  static initWorkMan() {
+    debugPrint('***  Work Manager initialized  ***');
+    Workmanager().initialize(_workManExecuteTask);
+    Workmanager().registerPeriodicTask("Azkar", "azkar work manager", frequency: const Duration(hours: 2));
+  }
 
 }
 
-// _workManExuteTask() {
-//   Workmanager().executeTask((taskName, inputData) {
-//     NotificationCtrl.sendNotification();
-//     return Future.value(true);
-//   });
-// }
+_workManExecuteTask() {
+  Workmanager().executeTask((taskName, inputData) {
+    NotificationCtrl.sendNotification();
+    return Future.value(true);
+  });
+}
 
 List<Map<String, dynamic>> azkar = [
   {"content": "الْلَّهُ أَكْبَرُ", "description": "من قالها كتبت له عشرون حسنة وحطت عنه عشرون سيئة", "id": 1},

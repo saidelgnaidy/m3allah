@@ -70,7 +70,8 @@ class _ReadQuranState extends State<ReadQuran> with AutomaticKeepAliveClientMixi
                               controller: readQuran.scrollController,
                               child: Column(
                                 children: [
-                                  const BuildBasmla(),
+                                  if(readQuran.surahList[surahI].index == '009' ) const SizedBox(height: 15)
+                                  else const BuildBasmla(),
                                   SelectableText.rich(
                                     TextSpan(
                                       children:
