@@ -7,39 +7,30 @@ import 'package:m3allah/views/home_screen.dart';
 import 'package:workmanager/workmanager.dart';
 
 class NotificationCtrl {
+
   static final _notification = FlutterLocalNotificationsPlugin();
 
-  static Future sendNotification() async {
-    Seb7aZekr _zekr = _randomZekr();
-    _notification.show(1, _zekr.content, _zekr.description, await _notificationDetails());
-  }
+  static InitializationSettings initializationSettings = const InitializationSettings(
+    android: AndroidInitializationSettings('@mipmap/launcher_icon'),
+    iOS: IOSInitializationSettings(),
+  );
 
-  static Future<NotificationDetails> _notificationDetails() async {
-
-    return  const NotificationDetails(
-      android: AndroidNotificationDetails(
-        '1',
-        'M3 Allah Azkar Notifications',
-        channelDescription: 'أذكار',
-        importance: Importance.max,
-        playSound: false,
-        enableVibration: false,
-        colorized: true,
-        onlyAlertOnce: true,
-        icon: '@mipmap/launcher_icon'
-      ),
-      iOS: IOSNotificationDetails(presentSound: false)
-
-    );
-  }
+  static const NotificationDetails _notificationDetails = NotificationDetails(
+    android: AndroidNotificationDetails(
+      '1',
+      'Notifications',
+      channelDescription: 'أذكار',
+      importance: Importance.max,
+      playSound: false,
+      enableVibration: false,
+      colorized: true,
+      onlyAlertOnce: true,
+      icon: '@mipmap/launcher_icon',
+    ),
+    iOS: IOSNotificationDetails(presentSound: false),
+  );
 
   static initNotification() async {
-    const AndroidInitializationSettings initializationSettingsAndroid = AndroidInitializationSettings('@mipmap/launcher_icon');
-    const IOSInitializationSettings initializationSettingsIOS = IOSInitializationSettings();
-    const InitializationSettings initializationSettings = InitializationSettings(
-      android: initializationSettingsAndroid,
-      iOS: initializationSettingsIOS,
-    );
     await _notification.initialize(initializationSettings, onSelectNotification: _selectNotification);
   }
 
@@ -48,25 +39,28 @@ class NotificationCtrl {
   }
 
 
+  static Future _sendNotification() async {
+    Seb7aZekr _zekr = _randomZekr();
+    _notification.show(1, _zekr.content, _zekr.description, _notificationDetails);
+  }
 
   static Seb7aZekr _randomZekr() {
-    List<Seb7aZekr> list =  seb7aZekrFromList(azkar);
+    List<Seb7aZekr> list = seb7aZekrFromList(azkar);
     final int index = Random().nextInt(list.length - 1);
     final Seb7aZekr _zekr = list[index];
-    return _zekr ;
+    return _zekr;
   }
 
   static initWorkMan() {
     debugPrint('***  Work Manager initialized  ***');
     Workmanager().initialize(_workManExecuteTask);
-    Workmanager().registerPeriodicTask("Azkar", "azkar work manager", frequency: const Duration(hours: 2));
+    Workmanager().registerPeriodicTask("Azkar", "azkar work manager", frequency: const Duration(hours: 3));
   }
-
 }
 
 _workManExecuteTask() {
   Workmanager().executeTask((taskName, inputData) {
-    NotificationCtrl.sendNotification();
+    NotificationCtrl._sendNotification();
     return Future.value(true);
   });
 }
@@ -81,7 +75,7 @@ List<Map<String, dynamic>> azkar = [
   {"content": "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ ، سُبْحَانَ اللَّهِ الْعَظِيمِ ", "description": "ثقيلتان في الميزان حبيبتان إلى الرحمن", "id": 7},
   {"content": "لا حَوْلَ وَلا قُوَّةَ إِلا بِاللَّهِ ", "description": "كنز من كنوز الجنة", "id": 8},
   {"content": "الْلَّهُم صَلِّ وَسَلِم وَبَارِك عَلَى سَيِّدِنَا مُحَمَّد ", "description": '', "id": 9},
-  {"content": "أستغفر الله", "description": "", "id": 10},
+  {"content": "أستغفر الله العظيم اللذي لا اله الا هو الحي القيوم و اتوب اليه", "description": "", "id": 10},
   {"content": "لَا إِلَهَ إِلَّا اللَّهُ", "description": "أفضل الذكر لا إله إلاّ الله", "id": 11},
   {"content": "اللَّهُ أَكْبَرُ كَبِيرًا ، وَالْحَمْدُ لِلَّهِ كَثِيرًا ، وَسُبْحَانَ اللَّهِ بُكْرَةً وَأَصِيلاً ", "description": "", "id": 12},
   {"content": "الْحَمْدُ لِلَّهِ حَمْدًا كَثِيرًا طَيِّبًا مُبَارَكًا فِيهِ", "description": "", "id": 13},
@@ -103,4 +97,5 @@ List<Map<String, dynamic>> azkar = [
   {"content": "اللهمَّ اكفِنِي بحلالِكَ عن حرَامِكَ، وأغْنِنِي بفَضْلِكَ عمَّن سواكَ", "description": "", "id": 16},
   {"content": "رَبَّنَا آتِنَا مِن لَّدُنكَ رَحْمَةً وَهَيِّئْ لَنَا مِنْ أَمْرِنَا رَشَدًا", "description": "", "id": 16},
   {"content": "اللَّهمَّ إنِّي أعوذُ بِكَ منَ الفقرِ ، والقلَّةِ ، والذِّلَّةِ", "description": "", "id": 16},
+  {"content": "اللهم اني اعوذ بك من ضيق الدنيا و من ضيق يوم القيامة", "description": "", "id": 16},
 ];
