@@ -10,7 +10,7 @@ class NotificationCtrl {
 
   static final _notification = FlutterLocalNotificationsPlugin();
 
-  static InitializationSettings initializationSettings = const InitializationSettings(
+  static const InitializationSettings _initializationSettings = InitializationSettings(
     android: AndroidInitializationSettings('@mipmap/launcher_icon'),
     iOS: IOSInitializationSettings(),
   );
@@ -31,7 +31,7 @@ class NotificationCtrl {
   );
 
   static initNotification() async {
-    await _notification.initialize(initializationSettings, onSelectNotification: _selectNotification);
+    await _notification.initialize(_initializationSettings, onSelectNotification: _selectNotification);
   }
 
   static Future _selectNotification(payload) async {
