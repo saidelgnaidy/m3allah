@@ -1,5 +1,7 @@
 
 
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:m3allah/modle/quran/surah_model.dart';
 part 'quran_player_event.freezed.dart';

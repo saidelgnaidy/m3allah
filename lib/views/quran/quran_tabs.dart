@@ -1,29 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:m3allah/blocs/setting_bloc/settings_cubit.dart';
-
 import 'package:m3allah/views/quran/juz_list_view.dart';
 import 'package:m3allah/views/quran/surah_list_view.dart';
-import 'package:provider/provider.dart';
+
+
 
 class QuranTaps extends StatefulWidget {
-  final int? initTap;
-  const QuranTaps({Key? key, this.initTap}) : super(key: key);
+  final int? initTap ;
+  const QuranTaps({Key? key,  this.initTap}) : super(key: key);
 
   @override
-  _QuranTapsState createState() => _QuranTapsState();
+  State<QuranTaps> createState() => _QuranTapsState();
 }
 
 class _QuranTapsState extends State<QuranTaps> with SingleTickerProviderStateMixin {
   late TabController tabController;
   @override
   void initState() {
-    tabController = TabController(length: 2, vsync: this, initialIndex: widget.initTap ?? 0);
+    tabController = TabController(length: 2, vsync: this, initialIndex: widget.initTap  ?? 0);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    final isLight = context.read<SettingsBloc>().settingsModel.isLight;
+    final isLight = SettingsBloc.of(context).settingsModel.isLight;
     final double w = MediaQuery.of(context).size.width;
     return Column(
       children: [

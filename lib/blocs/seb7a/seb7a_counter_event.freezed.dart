@@ -12,38 +12,11 @@ part of 'seb7a_counter_event.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$Seb7aCounterEventTearOff {
-  const _$Seb7aCounterEventTearOff();
-
-  IncreaseSeb7aCounter increase({required Seb7aZekr seb7aZekr}) {
-    return IncreaseSeb7aCounter(
-      seb7aZekr: seb7aZekr,
-    );
-  }
-
-  ResetSeb7aCounter reset({required Seb7aZekr seb7aZekr}) {
-    return ResetSeb7aCounter(
-      seb7aZekr: seb7aZekr,
-    );
-  }
-
-  SelecteSeb7aZekr selecteZekr({required Seb7aZekr seb7aZekr}) {
-    return SelecteSeb7aZekr(
-      seb7aZekr: seb7aZekr,
-    );
-  }
-}
-
-/// @nodoc
-const $Seb7aCounterEvent = _$Seb7aCounterEventTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$Seb7aCounterEvent {
   Seb7aZekr get seb7aZekr => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Seb7aZekr seb7aZekr) increase,
@@ -125,31 +98,31 @@ class _$Seb7aCounterEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $IncreaseSeb7aCounterCopyWith<$Res>
+abstract class _$$IncreaseSeb7aCounterCopyWith<$Res>
     implements $Seb7aCounterEventCopyWith<$Res> {
-  factory $IncreaseSeb7aCounterCopyWith(IncreaseSeb7aCounter value,
-          $Res Function(IncreaseSeb7aCounter) then) =
-      _$IncreaseSeb7aCounterCopyWithImpl<$Res>;
+  factory _$$IncreaseSeb7aCounterCopyWith(_$IncreaseSeb7aCounter value,
+          $Res Function(_$IncreaseSeb7aCounter) then) =
+      __$$IncreaseSeb7aCounterCopyWithImpl<$Res>;
   @override
   $Res call({Seb7aZekr seb7aZekr});
 }
 
 /// @nodoc
-class _$IncreaseSeb7aCounterCopyWithImpl<$Res>
+class __$$IncreaseSeb7aCounterCopyWithImpl<$Res>
     extends _$Seb7aCounterEventCopyWithImpl<$Res>
-    implements $IncreaseSeb7aCounterCopyWith<$Res> {
-  _$IncreaseSeb7aCounterCopyWithImpl(
-      IncreaseSeb7aCounter _value, $Res Function(IncreaseSeb7aCounter) _then)
-      : super(_value, (v) => _then(v as IncreaseSeb7aCounter));
+    implements _$$IncreaseSeb7aCounterCopyWith<$Res> {
+  __$$IncreaseSeb7aCounterCopyWithImpl(_$IncreaseSeb7aCounter _value,
+      $Res Function(_$IncreaseSeb7aCounter) _then)
+      : super(_value, (v) => _then(v as _$IncreaseSeb7aCounter));
 
   @override
-  IncreaseSeb7aCounter get _value => super._value as IncreaseSeb7aCounter;
+  _$IncreaseSeb7aCounter get _value => super._value as _$IncreaseSeb7aCounter;
 
   @override
   $Res call({
     Object? seb7aZekr = freezed,
   }) {
-    return _then(IncreaseSeb7aCounter(
+    return _then(_$IncreaseSeb7aCounter(
       seb7aZekr: seb7aZekr == freezed
           ? _value.seb7aZekr
           : seb7aZekr // ignore: cast_nullable_to_non_nullable
@@ -175,7 +148,7 @@ class _$IncreaseSeb7aCounter implements IncreaseSeb7aCounter {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is IncreaseSeb7aCounter &&
+            other is _$IncreaseSeb7aCounter &&
             const DeepCollectionEquality().equals(other.seb7aZekr, seb7aZekr));
   }
 
@@ -185,8 +158,8 @@ class _$IncreaseSeb7aCounter implements IncreaseSeb7aCounter {
 
   @JsonKey(ignore: true)
   @override
-  $IncreaseSeb7aCounterCopyWith<IncreaseSeb7aCounter> get copyWith =>
-      _$IncreaseSeb7aCounterCopyWithImpl<IncreaseSeb7aCounter>(
+  _$$IncreaseSeb7aCounterCopyWith<_$IncreaseSeb7aCounter> get copyWith =>
+      __$$IncreaseSeb7aCounterCopyWithImpl<_$IncreaseSeb7aCounter>(
           this, _$identity);
 
   @override
@@ -259,43 +232,43 @@ class _$IncreaseSeb7aCounter implements IncreaseSeb7aCounter {
 }
 
 abstract class IncreaseSeb7aCounter implements Seb7aCounterEvent {
-  const factory IncreaseSeb7aCounter({required Seb7aZekr seb7aZekr}) =
+  const factory IncreaseSeb7aCounter({required final Seb7aZekr seb7aZekr}) =
       _$IncreaseSeb7aCounter;
 
   @override
-  Seb7aZekr get seb7aZekr;
+  Seb7aZekr get seb7aZekr => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $IncreaseSeb7aCounterCopyWith<IncreaseSeb7aCounter> get copyWith =>
+  _$$IncreaseSeb7aCounterCopyWith<_$IncreaseSeb7aCounter> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ResetSeb7aCounterCopyWith<$Res>
+abstract class _$$ResetSeb7aCounterCopyWith<$Res>
     implements $Seb7aCounterEventCopyWith<$Res> {
-  factory $ResetSeb7aCounterCopyWith(
-          ResetSeb7aCounter value, $Res Function(ResetSeb7aCounter) then) =
-      _$ResetSeb7aCounterCopyWithImpl<$Res>;
+  factory _$$ResetSeb7aCounterCopyWith(
+          _$ResetSeb7aCounter value, $Res Function(_$ResetSeb7aCounter) then) =
+      __$$ResetSeb7aCounterCopyWithImpl<$Res>;
   @override
   $Res call({Seb7aZekr seb7aZekr});
 }
 
 /// @nodoc
-class _$ResetSeb7aCounterCopyWithImpl<$Res>
+class __$$ResetSeb7aCounterCopyWithImpl<$Res>
     extends _$Seb7aCounterEventCopyWithImpl<$Res>
-    implements $ResetSeb7aCounterCopyWith<$Res> {
-  _$ResetSeb7aCounterCopyWithImpl(
-      ResetSeb7aCounter _value, $Res Function(ResetSeb7aCounter) _then)
-      : super(_value, (v) => _then(v as ResetSeb7aCounter));
+    implements _$$ResetSeb7aCounterCopyWith<$Res> {
+  __$$ResetSeb7aCounterCopyWithImpl(
+      _$ResetSeb7aCounter _value, $Res Function(_$ResetSeb7aCounter) _then)
+      : super(_value, (v) => _then(v as _$ResetSeb7aCounter));
 
   @override
-  ResetSeb7aCounter get _value => super._value as ResetSeb7aCounter;
+  _$ResetSeb7aCounter get _value => super._value as _$ResetSeb7aCounter;
 
   @override
   $Res call({
     Object? seb7aZekr = freezed,
   }) {
-    return _then(ResetSeb7aCounter(
+    return _then(_$ResetSeb7aCounter(
       seb7aZekr: seb7aZekr == freezed
           ? _value.seb7aZekr
           : seb7aZekr // ignore: cast_nullable_to_non_nullable
@@ -321,7 +294,7 @@ class _$ResetSeb7aCounter implements ResetSeb7aCounter {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is ResetSeb7aCounter &&
+            other is _$ResetSeb7aCounter &&
             const DeepCollectionEquality().equals(other.seb7aZekr, seb7aZekr));
   }
 
@@ -331,8 +304,8 @@ class _$ResetSeb7aCounter implements ResetSeb7aCounter {
 
   @JsonKey(ignore: true)
   @override
-  $ResetSeb7aCounterCopyWith<ResetSeb7aCounter> get copyWith =>
-      _$ResetSeb7aCounterCopyWithImpl<ResetSeb7aCounter>(this, _$identity);
+  _$$ResetSeb7aCounterCopyWith<_$ResetSeb7aCounter> get copyWith =>
+      __$$ResetSeb7aCounterCopyWithImpl<_$ResetSeb7aCounter>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -404,43 +377,43 @@ class _$ResetSeb7aCounter implements ResetSeb7aCounter {
 }
 
 abstract class ResetSeb7aCounter implements Seb7aCounterEvent {
-  const factory ResetSeb7aCounter({required Seb7aZekr seb7aZekr}) =
+  const factory ResetSeb7aCounter({required final Seb7aZekr seb7aZekr}) =
       _$ResetSeb7aCounter;
 
   @override
-  Seb7aZekr get seb7aZekr;
+  Seb7aZekr get seb7aZekr => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $ResetSeb7aCounterCopyWith<ResetSeb7aCounter> get copyWith =>
+  _$$ResetSeb7aCounterCopyWith<_$ResetSeb7aCounter> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SelecteSeb7aZekrCopyWith<$Res>
+abstract class _$$SelecteSeb7aZekrCopyWith<$Res>
     implements $Seb7aCounterEventCopyWith<$Res> {
-  factory $SelecteSeb7aZekrCopyWith(
-          SelecteSeb7aZekr value, $Res Function(SelecteSeb7aZekr) then) =
-      _$SelecteSeb7aZekrCopyWithImpl<$Res>;
+  factory _$$SelecteSeb7aZekrCopyWith(
+          _$SelecteSeb7aZekr value, $Res Function(_$SelecteSeb7aZekr) then) =
+      __$$SelecteSeb7aZekrCopyWithImpl<$Res>;
   @override
   $Res call({Seb7aZekr seb7aZekr});
 }
 
 /// @nodoc
-class _$SelecteSeb7aZekrCopyWithImpl<$Res>
+class __$$SelecteSeb7aZekrCopyWithImpl<$Res>
     extends _$Seb7aCounterEventCopyWithImpl<$Res>
-    implements $SelecteSeb7aZekrCopyWith<$Res> {
-  _$SelecteSeb7aZekrCopyWithImpl(
-      SelecteSeb7aZekr _value, $Res Function(SelecteSeb7aZekr) _then)
-      : super(_value, (v) => _then(v as SelecteSeb7aZekr));
+    implements _$$SelecteSeb7aZekrCopyWith<$Res> {
+  __$$SelecteSeb7aZekrCopyWithImpl(
+      _$SelecteSeb7aZekr _value, $Res Function(_$SelecteSeb7aZekr) _then)
+      : super(_value, (v) => _then(v as _$SelecteSeb7aZekr));
 
   @override
-  SelecteSeb7aZekr get _value => super._value as SelecteSeb7aZekr;
+  _$SelecteSeb7aZekr get _value => super._value as _$SelecteSeb7aZekr;
 
   @override
   $Res call({
     Object? seb7aZekr = freezed,
   }) {
-    return _then(SelecteSeb7aZekr(
+    return _then(_$SelecteSeb7aZekr(
       seb7aZekr: seb7aZekr == freezed
           ? _value.seb7aZekr
           : seb7aZekr // ignore: cast_nullable_to_non_nullable
@@ -466,7 +439,7 @@ class _$SelecteSeb7aZekr implements SelecteSeb7aZekr {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is SelecteSeb7aZekr &&
+            other is _$SelecteSeb7aZekr &&
             const DeepCollectionEquality().equals(other.seb7aZekr, seb7aZekr));
   }
 
@@ -476,8 +449,8 @@ class _$SelecteSeb7aZekr implements SelecteSeb7aZekr {
 
   @JsonKey(ignore: true)
   @override
-  $SelecteSeb7aZekrCopyWith<SelecteSeb7aZekr> get copyWith =>
-      _$SelecteSeb7aZekrCopyWithImpl<SelecteSeb7aZekr>(this, _$identity);
+  _$$SelecteSeb7aZekrCopyWith<_$SelecteSeb7aZekr> get copyWith =>
+      __$$SelecteSeb7aZekrCopyWithImpl<_$SelecteSeb7aZekr>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -549,32 +522,16 @@ class _$SelecteSeb7aZekr implements SelecteSeb7aZekr {
 }
 
 abstract class SelecteSeb7aZekr implements Seb7aCounterEvent {
-  const factory SelecteSeb7aZekr({required Seb7aZekr seb7aZekr}) =
+  const factory SelecteSeb7aZekr({required final Seb7aZekr seb7aZekr}) =
       _$SelecteSeb7aZekr;
 
   @override
-  Seb7aZekr get seb7aZekr;
+  Seb7aZekr get seb7aZekr => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $SelecteSeb7aZekrCopyWith<SelecteSeb7aZekr> get copyWith =>
+  _$$SelecteSeb7aZekrCopyWith<_$SelecteSeb7aZekr> get copyWith =>
       throw _privateConstructorUsedError;
 }
-
-/// @nodoc
-class _$Seb7aCounterStateTearOff {
-  const _$Seb7aCounterStateTearOff();
-
-  Seb7aCounterStateLoaded call(
-      {required int counter, required Seb7aZekr selectedZekr}) {
-    return Seb7aCounterStateLoaded(
-      counter: counter,
-      selectedZekr: selectedZekr,
-    );
-  }
-}
-
-/// @nodoc
-const $Seb7aCounterState = _$Seb7aCounterStateTearOff();
 
 /// @nodoc
 mixin _$Seb7aCounterState {
@@ -622,32 +579,33 @@ class _$Seb7aCounterStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $Seb7aCounterStateLoadedCopyWith<$Res>
+abstract class _$$Seb7aCounterStateLoadedCopyWith<$Res>
     implements $Seb7aCounterStateCopyWith<$Res> {
-  factory $Seb7aCounterStateLoadedCopyWith(Seb7aCounterStateLoaded value,
-          $Res Function(Seb7aCounterStateLoaded) then) =
-      _$Seb7aCounterStateLoadedCopyWithImpl<$Res>;
+  factory _$$Seb7aCounterStateLoadedCopyWith(_$Seb7aCounterStateLoaded value,
+          $Res Function(_$Seb7aCounterStateLoaded) then) =
+      __$$Seb7aCounterStateLoadedCopyWithImpl<$Res>;
   @override
   $Res call({int counter, Seb7aZekr selectedZekr});
 }
 
 /// @nodoc
-class _$Seb7aCounterStateLoadedCopyWithImpl<$Res>
+class __$$Seb7aCounterStateLoadedCopyWithImpl<$Res>
     extends _$Seb7aCounterStateCopyWithImpl<$Res>
-    implements $Seb7aCounterStateLoadedCopyWith<$Res> {
-  _$Seb7aCounterStateLoadedCopyWithImpl(Seb7aCounterStateLoaded _value,
-      $Res Function(Seb7aCounterStateLoaded) _then)
-      : super(_value, (v) => _then(v as Seb7aCounterStateLoaded));
+    implements _$$Seb7aCounterStateLoadedCopyWith<$Res> {
+  __$$Seb7aCounterStateLoadedCopyWithImpl(_$Seb7aCounterStateLoaded _value,
+      $Res Function(_$Seb7aCounterStateLoaded) _then)
+      : super(_value, (v) => _then(v as _$Seb7aCounterStateLoaded));
 
   @override
-  Seb7aCounterStateLoaded get _value => super._value as Seb7aCounterStateLoaded;
+  _$Seb7aCounterStateLoaded get _value =>
+      super._value as _$Seb7aCounterStateLoaded;
 
   @override
   $Res call({
     Object? counter = freezed,
     Object? selectedZekr = freezed,
   }) {
-    return _then(Seb7aCounterStateLoaded(
+    return _then(_$Seb7aCounterStateLoaded(
       counter: counter == freezed
           ? _value.counter
           : counter // ignore: cast_nullable_to_non_nullable
@@ -680,7 +638,7 @@ class _$Seb7aCounterStateLoaded implements Seb7aCounterStateLoaded {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is Seb7aCounterStateLoaded &&
+            other is _$Seb7aCounterStateLoaded &&
             const DeepCollectionEquality().equals(other.counter, counter) &&
             const DeepCollectionEquality()
                 .equals(other.selectedZekr, selectedZekr));
@@ -694,22 +652,22 @@ class _$Seb7aCounterStateLoaded implements Seb7aCounterStateLoaded {
 
   @JsonKey(ignore: true)
   @override
-  $Seb7aCounterStateLoadedCopyWith<Seb7aCounterStateLoaded> get copyWith =>
-      _$Seb7aCounterStateLoadedCopyWithImpl<Seb7aCounterStateLoaded>(
+  _$$Seb7aCounterStateLoadedCopyWith<_$Seb7aCounterStateLoaded> get copyWith =>
+      __$$Seb7aCounterStateLoadedCopyWithImpl<_$Seb7aCounterStateLoaded>(
           this, _$identity);
 }
 
 abstract class Seb7aCounterStateLoaded implements Seb7aCounterState {
   const factory Seb7aCounterStateLoaded(
-      {required int counter,
-      required Seb7aZekr selectedZekr}) = _$Seb7aCounterStateLoaded;
+      {required final int counter,
+      required final Seb7aZekr selectedZekr}) = _$Seb7aCounterStateLoaded;
 
   @override
-  int get counter;
+  int get counter => throw _privateConstructorUsedError;
   @override
-  Seb7aZekr get selectedZekr;
+  Seb7aZekr get selectedZekr => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $Seb7aCounterStateLoadedCopyWith<Seb7aCounterStateLoaded> get copyWith =>
+  _$$Seb7aCounterStateLoadedCopyWith<_$Seb7aCounterStateLoaded> get copyWith =>
       throw _privateConstructorUsedError;
 }

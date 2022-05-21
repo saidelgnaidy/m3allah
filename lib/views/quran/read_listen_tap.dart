@@ -11,7 +11,7 @@ class ReadOrListen extends StatefulWidget {
   const ReadOrListen({Key? key}) : super(key: key);
 
   @override
-  _ReadOrListenState createState() => _ReadOrListenState();
+  State<ReadOrListen> createState() => _ReadOrListenState();
 }
 
 class _ReadOrListenState extends State<ReadOrListen> with SingleTickerProviderStateMixin {

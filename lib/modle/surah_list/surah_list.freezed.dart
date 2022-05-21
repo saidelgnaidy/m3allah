@@ -12,44 +12,11 @@ part of 'surah_list.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 SurahList _$SurahListFromJson(Map<String, dynamic> json) {
   return _SurahList.fromJson(json);
 }
-
-/// @nodoc
-class _$SurahListTearOff {
-  const _$SurahListTearOff();
-
-  _SurahList call(
-      {required String place,
-      required String type,
-      required int count,
-      required String title,
-      required String titleAr,
-      required String index,
-      required String pages,
-      required List<Juz> juz}) {
-    return _SurahList(
-      place: place,
-      type: type,
-      count: count,
-      title: title,
-      titleAr: titleAr,
-      index: index,
-      pages: pages,
-      juz: juz,
-    );
-  }
-
-  SurahList fromJson(Map<String, Object?> json) {
-    return SurahList.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $SurahList = _$SurahListTearOff();
 
 /// @nodoc
 mixin _$SurahList {
@@ -140,10 +107,10 @@ class _$SurahListCopyWithImpl<$Res> implements $SurahListCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$SurahListCopyWith<$Res> implements $SurahListCopyWith<$Res> {
-  factory _$SurahListCopyWith(
-          _SurahList value, $Res Function(_SurahList) then) =
-      __$SurahListCopyWithImpl<$Res>;
+abstract class _$$_SurahListCopyWith<$Res> implements $SurahListCopyWith<$Res> {
+  factory _$$_SurahListCopyWith(
+          _$_SurahList value, $Res Function(_$_SurahList) then) =
+      __$$_SurahListCopyWithImpl<$Res>;
   @override
   $Res call(
       {String place,
@@ -157,13 +124,14 @@ abstract class _$SurahListCopyWith<$Res> implements $SurahListCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$SurahListCopyWithImpl<$Res> extends _$SurahListCopyWithImpl<$Res>
-    implements _$SurahListCopyWith<$Res> {
-  __$SurahListCopyWithImpl(_SurahList _value, $Res Function(_SurahList) _then)
-      : super(_value, (v) => _then(v as _SurahList));
+class __$$_SurahListCopyWithImpl<$Res> extends _$SurahListCopyWithImpl<$Res>
+    implements _$$_SurahListCopyWith<$Res> {
+  __$$_SurahListCopyWithImpl(
+      _$_SurahList _value, $Res Function(_$_SurahList) _then)
+      : super(_value, (v) => _then(v as _$_SurahList));
 
   @override
-  _SurahList get _value => super._value as _SurahList;
+  _$_SurahList get _value => super._value as _$_SurahList;
 
   @override
   $Res call({
@@ -176,7 +144,7 @@ class __$SurahListCopyWithImpl<$Res> extends _$SurahListCopyWithImpl<$Res>
     Object? pages = freezed,
     Object? juz = freezed,
   }) {
-    return _then(_SurahList(
+    return _then(_$_SurahList(
       place: place == freezed
           ? _value.place
           : place // ignore: cast_nullable_to_non_nullable
@@ -206,7 +174,7 @@ class __$SurahListCopyWithImpl<$Res> extends _$SurahListCopyWithImpl<$Res>
           : pages // ignore: cast_nullable_to_non_nullable
               as String,
       juz: juz == freezed
-          ? _value.juz
+          ? _value._juz
           : juz // ignore: cast_nullable_to_non_nullable
               as List<Juz>,
     ));
@@ -224,7 +192,8 @@ class _$_SurahList implements _SurahList {
       required this.titleAr,
       required this.index,
       required this.pages,
-      required this.juz});
+      required final List<Juz> juz})
+      : _juz = juz;
 
   factory _$_SurahList.fromJson(Map<String, dynamic> json) =>
       _$$_SurahListFromJson(json);
@@ -243,8 +212,12 @@ class _$_SurahList implements _SurahList {
   final String index;
   @override
   final String pages;
+  final List<Juz> _juz;
   @override
-  final List<Juz> juz;
+  List<Juz> get juz {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_juz);
+  }
 
   @override
   String toString() {
@@ -255,7 +228,7 @@ class _$_SurahList implements _SurahList {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _SurahList &&
+            other is _$_SurahList &&
             const DeepCollectionEquality().equals(other.place, place) &&
             const DeepCollectionEquality().equals(other.type, type) &&
             const DeepCollectionEquality().equals(other.count, count) &&
@@ -263,9 +236,10 @@ class _$_SurahList implements _SurahList {
             const DeepCollectionEquality().equals(other.titleAr, titleAr) &&
             const DeepCollectionEquality().equals(other.index, index) &&
             const DeepCollectionEquality().equals(other.pages, pages) &&
-            const DeepCollectionEquality().equals(other.juz, juz));
+            const DeepCollectionEquality().equals(other._juz, _juz));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -276,12 +250,12 @@ class _$_SurahList implements _SurahList {
       const DeepCollectionEquality().hash(titleAr),
       const DeepCollectionEquality().hash(index),
       const DeepCollectionEquality().hash(pages),
-      const DeepCollectionEquality().hash(juz));
+      const DeepCollectionEquality().hash(_juz));
 
   @JsonKey(ignore: true)
   @override
-  _$SurahListCopyWith<_SurahList> get copyWith =>
-      __$SurahListCopyWithImpl<_SurahList>(this, _$identity);
+  _$$_SurahListCopyWith<_$_SurahList> get copyWith =>
+      __$$_SurahListCopyWithImpl<_$_SurahList>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -291,62 +265,43 @@ class _$_SurahList implements _SurahList {
 
 abstract class _SurahList implements SurahList {
   const factory _SurahList(
-      {required String place,
-      required String type,
-      required int count,
-      required String title,
-      required String titleAr,
-      required String index,
-      required String pages,
-      required List<Juz> juz}) = _$_SurahList;
+      {required final String place,
+      required final String type,
+      required final int count,
+      required final String title,
+      required final String titleAr,
+      required final String index,
+      required final String pages,
+      required final List<Juz> juz}) = _$_SurahList;
 
   factory _SurahList.fromJson(Map<String, dynamic> json) =
       _$_SurahList.fromJson;
 
   @override
-  String get place;
+  String get place => throw _privateConstructorUsedError;
   @override
-  String get type;
+  String get type => throw _privateConstructorUsedError;
   @override
-  int get count;
+  int get count => throw _privateConstructorUsedError;
   @override
-  String get title;
+  String get title => throw _privateConstructorUsedError;
   @override
-  String get titleAr;
+  String get titleAr => throw _privateConstructorUsedError;
   @override
-  String get index;
+  String get index => throw _privateConstructorUsedError;
   @override
-  String get pages;
+  String get pages => throw _privateConstructorUsedError;
   @override
-  List<Juz> get juz;
+  List<Juz> get juz => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$SurahListCopyWith<_SurahList> get copyWith =>
+  _$$_SurahListCopyWith<_$_SurahList> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 Verse _$VerseFromJson(Map<String, dynamic> json) {
   return _Verse.fromJson(json);
 }
-
-/// @nodoc
-class _$VerseTearOff {
-  const _$VerseTearOff();
-
-  _Verse call({required String start, required String end}) {
-    return _Verse(
-      start: start,
-      end: end,
-    );
-  }
-
-  Verse fromJson(Map<String, Object?> json) {
-    return Verse.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $Verse = _$VerseTearOff();
 
 /// @nodoc
 mixin _$Verse {
@@ -392,28 +347,28 @@ class _$VerseCopyWithImpl<$Res> implements $VerseCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$VerseCopyWith<$Res> implements $VerseCopyWith<$Res> {
-  factory _$VerseCopyWith(_Verse value, $Res Function(_Verse) then) =
-      __$VerseCopyWithImpl<$Res>;
+abstract class _$$_VerseCopyWith<$Res> implements $VerseCopyWith<$Res> {
+  factory _$$_VerseCopyWith(_$_Verse value, $Res Function(_$_Verse) then) =
+      __$$_VerseCopyWithImpl<$Res>;
   @override
   $Res call({String start, String end});
 }
 
 /// @nodoc
-class __$VerseCopyWithImpl<$Res> extends _$VerseCopyWithImpl<$Res>
-    implements _$VerseCopyWith<$Res> {
-  __$VerseCopyWithImpl(_Verse _value, $Res Function(_Verse) _then)
-      : super(_value, (v) => _then(v as _Verse));
+class __$$_VerseCopyWithImpl<$Res> extends _$VerseCopyWithImpl<$Res>
+    implements _$$_VerseCopyWith<$Res> {
+  __$$_VerseCopyWithImpl(_$_Verse _value, $Res Function(_$_Verse) _then)
+      : super(_value, (v) => _then(v as _$_Verse));
 
   @override
-  _Verse get _value => super._value as _Verse;
+  _$_Verse get _value => super._value as _$_Verse;
 
   @override
   $Res call({
     Object? start = freezed,
     Object? end = freezed,
   }) {
-    return _then(_Verse(
+    return _then(_$_Verse(
       start: start == freezed
           ? _value.start
           : start // ignore: cast_nullable_to_non_nullable
@@ -448,11 +403,12 @@ class _$_Verse implements _Verse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Verse &&
+            other is _$_Verse &&
             const DeepCollectionEquality().equals(other.start, start) &&
             const DeepCollectionEquality().equals(other.end, end));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -461,8 +417,8 @@ class _$_Verse implements _Verse {
 
   @JsonKey(ignore: true)
   @override
-  _$VerseCopyWith<_Verse> get copyWith =>
-      __$VerseCopyWithImpl<_Verse>(this, _$identity);
+  _$$_VerseCopyWith<_$_Verse> get copyWith =>
+      __$$_VerseCopyWithImpl<_$_Verse>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -471,41 +427,24 @@ class _$_Verse implements _Verse {
 }
 
 abstract class _Verse implements Verse {
-  const factory _Verse({required String start, required String end}) = _$_Verse;
+  const factory _Verse(
+      {required final String start, required final String end}) = _$_Verse;
 
   factory _Verse.fromJson(Map<String, dynamic> json) = _$_Verse.fromJson;
 
   @override
-  String get start;
+  String get start => throw _privateConstructorUsedError;
   @override
-  String get end;
+  String get end => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$VerseCopyWith<_Verse> get copyWith => throw _privateConstructorUsedError;
+  _$$_VerseCopyWith<_$_Verse> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 Juz _$JuzFromJson(Map<String, dynamic> json) {
   return _Juz.fromJson(json);
 }
-
-/// @nodoc
-class _$JuzTearOff {
-  const _$JuzTearOff();
-
-  _Juz call({required String index, required JuzVerse verse}) {
-    return _Juz(
-      index: index,
-      verse: verse,
-    );
-  }
-
-  Juz fromJson(Map<String, Object?> json) {
-    return Juz.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $Juz = _$JuzTearOff();
 
 /// @nodoc
 mixin _$Juz {
@@ -560,9 +499,9 @@ class _$JuzCopyWithImpl<$Res> implements $JuzCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$JuzCopyWith<$Res> implements $JuzCopyWith<$Res> {
-  factory _$JuzCopyWith(_Juz value, $Res Function(_Juz) then) =
-      __$JuzCopyWithImpl<$Res>;
+abstract class _$$_JuzCopyWith<$Res> implements $JuzCopyWith<$Res> {
+  factory _$$_JuzCopyWith(_$_Juz value, $Res Function(_$_Juz) then) =
+      __$$_JuzCopyWithImpl<$Res>;
   @override
   $Res call({String index, JuzVerse verse});
 
@@ -571,20 +510,20 @@ abstract class _$JuzCopyWith<$Res> implements $JuzCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$JuzCopyWithImpl<$Res> extends _$JuzCopyWithImpl<$Res>
-    implements _$JuzCopyWith<$Res> {
-  __$JuzCopyWithImpl(_Juz _value, $Res Function(_Juz) _then)
-      : super(_value, (v) => _then(v as _Juz));
+class __$$_JuzCopyWithImpl<$Res> extends _$JuzCopyWithImpl<$Res>
+    implements _$$_JuzCopyWith<$Res> {
+  __$$_JuzCopyWithImpl(_$_Juz _value, $Res Function(_$_Juz) _then)
+      : super(_value, (v) => _then(v as _$_Juz));
 
   @override
-  _Juz get _value => super._value as _Juz;
+  _$_Juz get _value => super._value as _$_Juz;
 
   @override
   $Res call({
     Object? index = freezed,
     Object? verse = freezed,
   }) {
-    return _then(_Juz(
+    return _then(_$_Juz(
       index: index == freezed
           ? _value.index
           : index // ignore: cast_nullable_to_non_nullable
@@ -618,11 +557,12 @@ class _$_Juz implements _Juz {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Juz &&
+            other is _$_Juz &&
             const DeepCollectionEquality().equals(other.index, index) &&
             const DeepCollectionEquality().equals(other.verse, verse));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -631,8 +571,8 @@ class _$_Juz implements _Juz {
 
   @JsonKey(ignore: true)
   @override
-  _$JuzCopyWith<_Juz> get copyWith =>
-      __$JuzCopyWithImpl<_Juz>(this, _$identity);
+  _$$_JuzCopyWith<_$_Juz> get copyWith =>
+      __$$_JuzCopyWithImpl<_$_Juz>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -641,41 +581,23 @@ class _$_Juz implements _Juz {
 }
 
 abstract class _Juz implements Juz {
-  const factory _Juz({required String index, required JuzVerse verse}) = _$_Juz;
+  const factory _Juz(
+      {required final String index, required final JuzVerse verse}) = _$_Juz;
 
   factory _Juz.fromJson(Map<String, dynamic> json) = _$_Juz.fromJson;
 
   @override
-  String get index;
+  String get index => throw _privateConstructorUsedError;
   @override
-  JuzVerse get verse;
+  JuzVerse get verse => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$JuzCopyWith<_Juz> get copyWith => throw _privateConstructorUsedError;
+  _$$_JuzCopyWith<_$_Juz> get copyWith => throw _privateConstructorUsedError;
 }
 
 JuzVerse _$JuzVerseFromJson(Map<String, dynamic> json) {
   return _JuzVerse.fromJson(json);
 }
-
-/// @nodoc
-class _$JuzVerseTearOff {
-  const _$JuzVerseTearOff();
-
-  _JuzVerse call({required String start, required String end}) {
-    return _JuzVerse(
-      start: start,
-      end: end,
-    );
-  }
-
-  JuzVerse fromJson(Map<String, Object?> json) {
-    return JuzVerse.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $JuzVerse = _$JuzVerseTearOff();
 
 /// @nodoc
 mixin _$JuzVerse {
@@ -722,28 +644,30 @@ class _$JuzVerseCopyWithImpl<$Res> implements $JuzVerseCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$JuzVerseCopyWith<$Res> implements $JuzVerseCopyWith<$Res> {
-  factory _$JuzVerseCopyWith(_JuzVerse value, $Res Function(_JuzVerse) then) =
-      __$JuzVerseCopyWithImpl<$Res>;
+abstract class _$$_JuzVerseCopyWith<$Res> implements $JuzVerseCopyWith<$Res> {
+  factory _$$_JuzVerseCopyWith(
+          _$_JuzVerse value, $Res Function(_$_JuzVerse) then) =
+      __$$_JuzVerseCopyWithImpl<$Res>;
   @override
   $Res call({String start, String end});
 }
 
 /// @nodoc
-class __$JuzVerseCopyWithImpl<$Res> extends _$JuzVerseCopyWithImpl<$Res>
-    implements _$JuzVerseCopyWith<$Res> {
-  __$JuzVerseCopyWithImpl(_JuzVerse _value, $Res Function(_JuzVerse) _then)
-      : super(_value, (v) => _then(v as _JuzVerse));
+class __$$_JuzVerseCopyWithImpl<$Res> extends _$JuzVerseCopyWithImpl<$Res>
+    implements _$$_JuzVerseCopyWith<$Res> {
+  __$$_JuzVerseCopyWithImpl(
+      _$_JuzVerse _value, $Res Function(_$_JuzVerse) _then)
+      : super(_value, (v) => _then(v as _$_JuzVerse));
 
   @override
-  _JuzVerse get _value => super._value as _JuzVerse;
+  _$_JuzVerse get _value => super._value as _$_JuzVerse;
 
   @override
   $Res call({
     Object? start = freezed,
     Object? end = freezed,
   }) {
-    return _then(_JuzVerse(
+    return _then(_$_JuzVerse(
       start: start == freezed
           ? _value.start
           : start // ignore: cast_nullable_to_non_nullable
@@ -778,11 +702,12 @@ class _$_JuzVerse implements _JuzVerse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _JuzVerse &&
+            other is _$_JuzVerse &&
             const DeepCollectionEquality().equals(other.start, start) &&
             const DeepCollectionEquality().equals(other.end, end));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -791,8 +716,8 @@ class _$_JuzVerse implements _JuzVerse {
 
   @JsonKey(ignore: true)
   @override
-  _$JuzVerseCopyWith<_JuzVerse> get copyWith =>
-      __$JuzVerseCopyWithImpl<_JuzVerse>(this, _$identity);
+  _$$_JuzVerseCopyWith<_$_JuzVerse> get copyWith =>
+      __$$_JuzVerseCopyWithImpl<_$_JuzVerse>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -801,17 +726,17 @@ class _$_JuzVerse implements _JuzVerse {
 }
 
 abstract class _JuzVerse implements JuzVerse {
-  const factory _JuzVerse({required String start, required String end}) =
-      _$_JuzVerse;
+  const factory _JuzVerse(
+      {required final String start, required final String end}) = _$_JuzVerse;
 
   factory _JuzVerse.fromJson(Map<String, dynamic> json) = _$_JuzVerse.fromJson;
 
   @override
-  String get start;
+  String get start => throw _privateConstructorUsedError;
   @override
-  String get end;
+  String get end => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$JuzVerseCopyWith<_JuzVerse> get copyWith =>
+  _$$_JuzVerseCopyWith<_$_JuzVerse> get copyWith =>
       throw _privateConstructorUsedError;
 }

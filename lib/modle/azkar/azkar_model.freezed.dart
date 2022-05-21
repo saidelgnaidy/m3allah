@@ -12,38 +12,11 @@ part of 'azkar_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 AzkarList _$AzkarListFromJson(Map<String, dynamic> json) {
   return _AzkarList.fromJson(json);
 }
-
-/// @nodoc
-class _$AzkarListTearOff {
-  const _$AzkarListTearOff();
-
-  _AzkarList call(
-      {required String category,
-      required String count,
-      required String description,
-      required String reference,
-      required String zekr}) {
-    return _AzkarList(
-      category: category,
-      count: count,
-      description: description,
-      reference: reference,
-      zekr: zekr,
-    );
-  }
-
-  AzkarList fromJson(Map<String, Object?> json) {
-    return AzkarList.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $AzkarList = _$AzkarListTearOff();
 
 /// @nodoc
 mixin _$AzkarList {
@@ -113,10 +86,10 @@ class _$AzkarListCopyWithImpl<$Res> implements $AzkarListCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$AzkarListCopyWith<$Res> implements $AzkarListCopyWith<$Res> {
-  factory _$AzkarListCopyWith(
-          _AzkarList value, $Res Function(_AzkarList) then) =
-      __$AzkarListCopyWithImpl<$Res>;
+abstract class _$$_AzkarListCopyWith<$Res> implements $AzkarListCopyWith<$Res> {
+  factory _$$_AzkarListCopyWith(
+          _$_AzkarList value, $Res Function(_$_AzkarList) then) =
+      __$$_AzkarListCopyWithImpl<$Res>;
   @override
   $Res call(
       {String category,
@@ -127,13 +100,14 @@ abstract class _$AzkarListCopyWith<$Res> implements $AzkarListCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$AzkarListCopyWithImpl<$Res> extends _$AzkarListCopyWithImpl<$Res>
-    implements _$AzkarListCopyWith<$Res> {
-  __$AzkarListCopyWithImpl(_AzkarList _value, $Res Function(_AzkarList) _then)
-      : super(_value, (v) => _then(v as _AzkarList));
+class __$$_AzkarListCopyWithImpl<$Res> extends _$AzkarListCopyWithImpl<$Res>
+    implements _$$_AzkarListCopyWith<$Res> {
+  __$$_AzkarListCopyWithImpl(
+      _$_AzkarList _value, $Res Function(_$_AzkarList) _then)
+      : super(_value, (v) => _then(v as _$_AzkarList));
 
   @override
-  _AzkarList get _value => super._value as _AzkarList;
+  _$_AzkarList get _value => super._value as _$_AzkarList;
 
   @override
   $Res call({
@@ -143,7 +117,7 @@ class __$AzkarListCopyWithImpl<$Res> extends _$AzkarListCopyWithImpl<$Res>
     Object? reference = freezed,
     Object? zekr = freezed,
   }) {
-    return _then(_AzkarList(
+    return _then(_$_AzkarList(
       category: category == freezed
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -201,7 +175,7 @@ class _$_AzkarList implements _AzkarList {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _AzkarList &&
+            other is _$_AzkarList &&
             const DeepCollectionEquality().equals(other.category, category) &&
             const DeepCollectionEquality().equals(other.count, count) &&
             const DeepCollectionEquality()
@@ -210,6 +184,7 @@ class _$_AzkarList implements _AzkarList {
             const DeepCollectionEquality().equals(other.zekr, zekr));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -221,8 +196,8 @@ class _$_AzkarList implements _AzkarList {
 
   @JsonKey(ignore: true)
   @override
-  _$AzkarListCopyWith<_AzkarList> get copyWith =>
-      __$AzkarListCopyWithImpl<_AzkarList>(this, _$identity);
+  _$$_AzkarListCopyWith<_$_AzkarList> get copyWith =>
+      __$$_AzkarListCopyWithImpl<_$_AzkarList>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -232,27 +207,27 @@ class _$_AzkarList implements _AzkarList {
 
 abstract class _AzkarList implements AzkarList {
   const factory _AzkarList(
-      {required String category,
-      required String count,
-      required String description,
-      required String reference,
-      required String zekr}) = _$_AzkarList;
+      {required final String category,
+      required final String count,
+      required final String description,
+      required final String reference,
+      required final String zekr}) = _$_AzkarList;
 
   factory _AzkarList.fromJson(Map<String, dynamic> json) =
       _$_AzkarList.fromJson;
 
   @override
-  String get category;
+  String get category => throw _privateConstructorUsedError;
   @override
-  String get count;
+  String get count => throw _privateConstructorUsedError;
   @override
-  String get description;
+  String get description => throw _privateConstructorUsedError;
   @override
-  String get reference;
+  String get reference => throw _privateConstructorUsedError;
   @override
-  String get zekr;
+  String get zekr => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$AzkarListCopyWith<_AzkarList> get copyWith =>
+  _$$_AzkarListCopyWith<_$_AzkarList> get copyWith =>
       throw _privateConstructorUsedError;
 }

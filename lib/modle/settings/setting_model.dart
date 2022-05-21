@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:m3allah/modle/juz_list_modle/juz_list_modle.dart';
 import 'package:m3allah/modle/surah_list/surah_list.dart';

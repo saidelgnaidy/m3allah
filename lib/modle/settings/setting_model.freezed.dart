@@ -12,42 +12,11 @@ part of 'setting_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 SettingsModel _$SettingsModelFromJson(Map<String, dynamic> json) {
   return _SettingsModel.fromJson(json);
 }
-
-/// @nodoc
-class _$SettingsModelTearOff {
-  const _$SettingsModelTearOff();
-
-  _SettingsModel call(
-      {required bool isLight,
-      required int fontCode,
-      required double fontSize,
-      required double lastSurahOffset,
-      required SurahList? lastSurah,
-      required double lastJuzOffset,
-      JuzList? lastJuz}) {
-    return _SettingsModel(
-      isLight: isLight,
-      fontCode: fontCode,
-      fontSize: fontSize,
-      lastSurahOffset: lastSurahOffset,
-      lastSurah: lastSurah,
-      lastJuzOffset: lastJuzOffset,
-      lastJuz: lastJuz,
-    );
-  }
-
-  SettingsModel fromJson(Map<String, Object?> json) {
-    return SettingsModel.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $SettingsModel = _$SettingsModelTearOff();
 
 /// @nodoc
 mixin _$SettingsModel {
@@ -146,11 +115,11 @@ class _$SettingsModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$SettingsModelCopyWith<$Res>
+abstract class _$$_SettingsModelCopyWith<$Res>
     implements $SettingsModelCopyWith<$Res> {
-  factory _$SettingsModelCopyWith(
-          _SettingsModel value, $Res Function(_SettingsModel) then) =
-      __$SettingsModelCopyWithImpl<$Res>;
+  factory _$$_SettingsModelCopyWith(
+          _$_SettingsModel value, $Res Function(_$_SettingsModel) then) =
+      __$$_SettingsModelCopyWithImpl<$Res>;
   @override
   $Res call(
       {bool isLight,
@@ -166,15 +135,15 @@ abstract class _$SettingsModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$SettingsModelCopyWithImpl<$Res>
+class __$$_SettingsModelCopyWithImpl<$Res>
     extends _$SettingsModelCopyWithImpl<$Res>
-    implements _$SettingsModelCopyWith<$Res> {
-  __$SettingsModelCopyWithImpl(
-      _SettingsModel _value, $Res Function(_SettingsModel) _then)
-      : super(_value, (v) => _then(v as _SettingsModel));
+    implements _$$_SettingsModelCopyWith<$Res> {
+  __$$_SettingsModelCopyWithImpl(
+      _$_SettingsModel _value, $Res Function(_$_SettingsModel) _then)
+      : super(_value, (v) => _then(v as _$_SettingsModel));
 
   @override
-  _SettingsModel get _value => super._value as _SettingsModel;
+  _$_SettingsModel get _value => super._value as _$_SettingsModel;
 
   @override
   $Res call({
@@ -186,7 +155,7 @@ class __$SettingsModelCopyWithImpl<$Res>
     Object? lastJuzOffset = freezed,
     Object? lastJuz = freezed,
   }) {
-    return _then(_SettingsModel(
+    return _then(_$_SettingsModel(
       isLight: isLight == freezed
           ? _value.isLight
           : isLight // ignore: cast_nullable_to_non_nullable
@@ -258,7 +227,7 @@ class _$_SettingsModel implements _SettingsModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _SettingsModel &&
+            other is _$_SettingsModel &&
             const DeepCollectionEquality().equals(other.isLight, isLight) &&
             const DeepCollectionEquality().equals(other.fontCode, fontCode) &&
             const DeepCollectionEquality().equals(other.fontSize, fontSize) &&
@@ -270,6 +239,7 @@ class _$_SettingsModel implements _SettingsModel {
             const DeepCollectionEquality().equals(other.lastJuz, lastJuz));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -283,8 +253,8 @@ class _$_SettingsModel implements _SettingsModel {
 
   @JsonKey(ignore: true)
   @override
-  _$SettingsModelCopyWith<_SettingsModel> get copyWith =>
-      __$SettingsModelCopyWithImpl<_SettingsModel>(this, _$identity);
+  _$$_SettingsModelCopyWith<_$_SettingsModel> get copyWith =>
+      __$$_SettingsModelCopyWithImpl<_$_SettingsModel>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -294,33 +264,33 @@ class _$_SettingsModel implements _SettingsModel {
 
 abstract class _SettingsModel implements SettingsModel {
   const factory _SettingsModel(
-      {required bool isLight,
-      required int fontCode,
-      required double fontSize,
-      required double lastSurahOffset,
-      required SurahList? lastSurah,
-      required double lastJuzOffset,
-      JuzList? lastJuz}) = _$_SettingsModel;
+      {required final bool isLight,
+      required final int fontCode,
+      required final double fontSize,
+      required final double lastSurahOffset,
+      required final SurahList? lastSurah,
+      required final double lastJuzOffset,
+      final JuzList? lastJuz}) = _$_SettingsModel;
 
   factory _SettingsModel.fromJson(Map<String, dynamic> json) =
       _$_SettingsModel.fromJson;
 
   @override
-  bool get isLight;
+  bool get isLight => throw _privateConstructorUsedError;
   @override
-  int get fontCode;
+  int get fontCode => throw _privateConstructorUsedError;
   @override
-  double get fontSize;
+  double get fontSize => throw _privateConstructorUsedError;
   @override
-  double get lastSurahOffset;
+  double get lastSurahOffset => throw _privateConstructorUsedError;
   @override
-  SurahList? get lastSurah;
+  SurahList? get lastSurah => throw _privateConstructorUsedError;
   @override
-  double get lastJuzOffset;
+  double get lastJuzOffset => throw _privateConstructorUsedError;
   @override
-  JuzList? get lastJuz;
+  JuzList? get lastJuz => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$SettingsModelCopyWith<_SettingsModel> get copyWith =>
+  _$$_SettingsModelCopyWith<_$_SettingsModel> get copyWith =>
       throw _privateConstructorUsedError;
 }

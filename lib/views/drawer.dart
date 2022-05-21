@@ -33,7 +33,7 @@ class KDrawer extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Transform.scale(child: ThemeToggleBtn(), scale: 1.2),
+                      Transform.scale(scale: 1.2, child: ThemeToggleBtn()),
                       Text('مع الله', style: Theme.of(context).textTheme.headline5),
                       const SizedBox(width: 40),
                     ],

@@ -174,7 +174,7 @@ class QuranPlayerTile extends StatelessWidget {
               orElse: (() => const SizedBox()),
               initial: (playNow) {
                 return AnimatedContainer(
-                  duration: const Duration(milliseconds: 350),
+                  duration: const Duration(milliseconds: 200),
                   margin: const EdgeInsets.symmetric(vertical: 2, horizontal: 0),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),

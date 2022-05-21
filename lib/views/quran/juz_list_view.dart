@@ -3,32 +3,31 @@ import 'package:m3allah/blocs/setting_bloc/settings_cubit.dart';
 import 'package:m3allah/blocs/view_bloc/build_view_cubit.dart';
 import 'package:m3allah/modle/juz_list_modle/juz_list_modle.dart';
 import 'package:m3allah/views/component/continue_reading_btn.dart';
-import 'package:provider/provider.dart';
 
 class JuzListView extends StatelessWidget {
   const JuzListView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final juzList = context.read<BuildViewBloc>().juzList;
-    final settings = context.read<SettingsBloc>();
+    final viewBloc = BuildViewBloc.of(context);
+    final settings = SettingsBloc.of(context);
 
     return Column(
       children: [
         settings.settingsModel.lastJuz != null
             ? ContinueReading(
                 onPresed: () {
-                  context.read<BuildViewBloc>().getFullJuz(settings.settingsModel.lastJuz!);
+                  viewBloc.getFullJuz(settings.settingsModel.lastJuz!);
                 },
                 name: settings.settingsModel.lastJuz!.name.toString(),
               )
             : const SizedBox(),
         Expanded(
           child: ListView.separated(
-            itemCount: juzList.length,
+            itemCount: viewBloc.juzList.length,
             itemBuilder: (context, index) {
               return JuzTile(
-                juz: juzList[index],
+                juz: viewBloc.juzList[index],
               );
             },
             separatorBuilder: (context, index) {
@@ -51,10 +50,10 @@ class JuzTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final settings = context.read<SettingsBloc>();
+    final settings = SettingsBloc.of(context);
     return ListTile(
       onTap: () {
-        context.read<BuildViewBloc>().getFullJuz(juz);
+        BuildViewBloc.of(context).getFullJuz(juz);
       },
       title: Text(
         juz.name,

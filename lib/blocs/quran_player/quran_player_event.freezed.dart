@@ -12,39 +12,7 @@ part of 'quran_player_event.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$QuranPlayerEventTearOff {
-  const _$QuranPlayerEventTearOff();
-
-  QuranPlayerPlayVers playVers(
-      {required int versIndex, required String surahIndex}) {
-    return QuranPlayerPlayVers(
-      versIndex: versIndex,
-      surahIndex: surahIndex,
-    );
-  }
-
-  QuranPlayerPlayAllVers playAll(
-      {required int versIndex, required FullSurah surah}) {
-    return QuranPlayerPlayAllVers(
-      versIndex: versIndex,
-      surah: surah,
-    );
-  }
-
-  QuranPlayerStopVers stopVers() {
-    return const QuranPlayerStopVers();
-  }
-
-  QuranPlayerCancleSup cansleSub() {
-    return const QuranPlayerCancleSup();
-  }
-}
-
-/// @nodoc
-const $QuranPlayerEvent = _$QuranPlayerEventTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$QuranPlayerEvent {
@@ -118,30 +86,30 @@ class _$QuranPlayerEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $QuranPlayerPlayVersCopyWith<$Res> {
-  factory $QuranPlayerPlayVersCopyWith(
-          QuranPlayerPlayVers value, $Res Function(QuranPlayerPlayVers) then) =
-      _$QuranPlayerPlayVersCopyWithImpl<$Res>;
+abstract class _$$QuranPlayerPlayVersCopyWith<$Res> {
+  factory _$$QuranPlayerPlayVersCopyWith(_$QuranPlayerPlayVers value,
+          $Res Function(_$QuranPlayerPlayVers) then) =
+      __$$QuranPlayerPlayVersCopyWithImpl<$Res>;
   $Res call({int versIndex, String surahIndex});
 }
 
 /// @nodoc
-class _$QuranPlayerPlayVersCopyWithImpl<$Res>
+class __$$QuranPlayerPlayVersCopyWithImpl<$Res>
     extends _$QuranPlayerEventCopyWithImpl<$Res>
-    implements $QuranPlayerPlayVersCopyWith<$Res> {
-  _$QuranPlayerPlayVersCopyWithImpl(
-      QuranPlayerPlayVers _value, $Res Function(QuranPlayerPlayVers) _then)
-      : super(_value, (v) => _then(v as QuranPlayerPlayVers));
+    implements _$$QuranPlayerPlayVersCopyWith<$Res> {
+  __$$QuranPlayerPlayVersCopyWithImpl(
+      _$QuranPlayerPlayVers _value, $Res Function(_$QuranPlayerPlayVers) _then)
+      : super(_value, (v) => _then(v as _$QuranPlayerPlayVers));
 
   @override
-  QuranPlayerPlayVers get _value => super._value as QuranPlayerPlayVers;
+  _$QuranPlayerPlayVers get _value => super._value as _$QuranPlayerPlayVers;
 
   @override
   $Res call({
     Object? versIndex = freezed,
     Object? surahIndex = freezed,
   }) {
-    return _then(QuranPlayerPlayVers(
+    return _then(_$QuranPlayerPlayVers(
       versIndex: versIndex == freezed
           ? _value.versIndex
           : versIndex // ignore: cast_nullable_to_non_nullable
@@ -174,7 +142,7 @@ class _$QuranPlayerPlayVers implements QuranPlayerPlayVers {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is QuranPlayerPlayVers &&
+            other is _$QuranPlayerPlayVers &&
             const DeepCollectionEquality().equals(other.versIndex, versIndex) &&
             const DeepCollectionEquality()
                 .equals(other.surahIndex, surahIndex));
@@ -188,8 +156,9 @@ class _$QuranPlayerPlayVers implements QuranPlayerPlayVers {
 
   @JsonKey(ignore: true)
   @override
-  $QuranPlayerPlayVersCopyWith<QuranPlayerPlayVers> get copyWith =>
-      _$QuranPlayerPlayVersCopyWithImpl<QuranPlayerPlayVers>(this, _$identity);
+  _$$QuranPlayerPlayVersCopyWith<_$QuranPlayerPlayVers> get copyWith =>
+      __$$QuranPlayerPlayVersCopyWithImpl<_$QuranPlayerPlayVers>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -268,41 +237,42 @@ class _$QuranPlayerPlayVers implements QuranPlayerPlayVers {
 
 abstract class QuranPlayerPlayVers implements QuranPlayerEvent {
   const factory QuranPlayerPlayVers(
-      {required int versIndex,
-      required String surahIndex}) = _$QuranPlayerPlayVers;
+      {required final int versIndex,
+      required final String surahIndex}) = _$QuranPlayerPlayVers;
 
-  int get versIndex;
-  String get surahIndex;
+  int get versIndex => throw _privateConstructorUsedError;
+  String get surahIndex => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $QuranPlayerPlayVersCopyWith<QuranPlayerPlayVers> get copyWith =>
+  _$$QuranPlayerPlayVersCopyWith<_$QuranPlayerPlayVers> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $QuranPlayerPlayAllVersCopyWith<$Res> {
-  factory $QuranPlayerPlayAllVersCopyWith(QuranPlayerPlayAllVers value,
-          $Res Function(QuranPlayerPlayAllVers) then) =
-      _$QuranPlayerPlayAllVersCopyWithImpl<$Res>;
+abstract class _$$QuranPlayerPlayAllVersCopyWith<$Res> {
+  factory _$$QuranPlayerPlayAllVersCopyWith(_$QuranPlayerPlayAllVers value,
+          $Res Function(_$QuranPlayerPlayAllVers) then) =
+      __$$QuranPlayerPlayAllVersCopyWithImpl<$Res>;
   $Res call({int versIndex, FullSurah surah});
 }
 
 /// @nodoc
-class _$QuranPlayerPlayAllVersCopyWithImpl<$Res>
+class __$$QuranPlayerPlayAllVersCopyWithImpl<$Res>
     extends _$QuranPlayerEventCopyWithImpl<$Res>
-    implements $QuranPlayerPlayAllVersCopyWith<$Res> {
-  _$QuranPlayerPlayAllVersCopyWithImpl(QuranPlayerPlayAllVers _value,
-      $Res Function(QuranPlayerPlayAllVers) _then)
-      : super(_value, (v) => _then(v as QuranPlayerPlayAllVers));
+    implements _$$QuranPlayerPlayAllVersCopyWith<$Res> {
+  __$$QuranPlayerPlayAllVersCopyWithImpl(_$QuranPlayerPlayAllVers _value,
+      $Res Function(_$QuranPlayerPlayAllVers) _then)
+      : super(_value, (v) => _then(v as _$QuranPlayerPlayAllVers));
 
   @override
-  QuranPlayerPlayAllVers get _value => super._value as QuranPlayerPlayAllVers;
+  _$QuranPlayerPlayAllVers get _value =>
+      super._value as _$QuranPlayerPlayAllVers;
 
   @override
   $Res call({
     Object? versIndex = freezed,
     Object? surah = freezed,
   }) {
-    return _then(QuranPlayerPlayAllVers(
+    return _then(_$QuranPlayerPlayAllVers(
       versIndex: versIndex == freezed
           ? _value.versIndex
           : versIndex // ignore: cast_nullable_to_non_nullable
@@ -335,7 +305,7 @@ class _$QuranPlayerPlayAllVers implements QuranPlayerPlayAllVers {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is QuranPlayerPlayAllVers &&
+            other is _$QuranPlayerPlayAllVers &&
             const DeepCollectionEquality().equals(other.versIndex, versIndex) &&
             const DeepCollectionEquality().equals(other.surah, surah));
   }
@@ -348,8 +318,8 @@ class _$QuranPlayerPlayAllVers implements QuranPlayerPlayAllVers {
 
   @JsonKey(ignore: true)
   @override
-  $QuranPlayerPlayAllVersCopyWith<QuranPlayerPlayAllVers> get copyWith =>
-      _$QuranPlayerPlayAllVersCopyWithImpl<QuranPlayerPlayAllVers>(
+  _$$QuranPlayerPlayAllVersCopyWith<_$QuranPlayerPlayAllVers> get copyWith =>
+      __$$QuranPlayerPlayAllVersCopyWithImpl<_$QuranPlayerPlayAllVers>(
           this, _$identity);
 
   @override
@@ -429,33 +399,33 @@ class _$QuranPlayerPlayAllVers implements QuranPlayerPlayAllVers {
 
 abstract class QuranPlayerPlayAllVers implements QuranPlayerEvent {
   const factory QuranPlayerPlayAllVers(
-      {required int versIndex,
-      required FullSurah surah}) = _$QuranPlayerPlayAllVers;
+      {required final int versIndex,
+      required final FullSurah surah}) = _$QuranPlayerPlayAllVers;
 
-  int get versIndex;
-  FullSurah get surah;
+  int get versIndex => throw _privateConstructorUsedError;
+  FullSurah get surah => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $QuranPlayerPlayAllVersCopyWith<QuranPlayerPlayAllVers> get copyWith =>
+  _$$QuranPlayerPlayAllVersCopyWith<_$QuranPlayerPlayAllVers> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $QuranPlayerStopVersCopyWith<$Res> {
-  factory $QuranPlayerStopVersCopyWith(
-          QuranPlayerStopVers value, $Res Function(QuranPlayerStopVers) then) =
-      _$QuranPlayerStopVersCopyWithImpl<$Res>;
+abstract class _$$QuranPlayerStopVersCopyWith<$Res> {
+  factory _$$QuranPlayerStopVersCopyWith(_$QuranPlayerStopVers value,
+          $Res Function(_$QuranPlayerStopVers) then) =
+      __$$QuranPlayerStopVersCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$QuranPlayerStopVersCopyWithImpl<$Res>
+class __$$QuranPlayerStopVersCopyWithImpl<$Res>
     extends _$QuranPlayerEventCopyWithImpl<$Res>
-    implements $QuranPlayerStopVersCopyWith<$Res> {
-  _$QuranPlayerStopVersCopyWithImpl(
-      QuranPlayerStopVers _value, $Res Function(QuranPlayerStopVers) _then)
-      : super(_value, (v) => _then(v as QuranPlayerStopVers));
+    implements _$$QuranPlayerStopVersCopyWith<$Res> {
+  __$$QuranPlayerStopVersCopyWithImpl(
+      _$QuranPlayerStopVers _value, $Res Function(_$QuranPlayerStopVers) _then)
+      : super(_value, (v) => _then(v as _$QuranPlayerStopVers));
 
   @override
-  QuranPlayerStopVers get _value => super._value as QuranPlayerStopVers;
+  _$QuranPlayerStopVers get _value => super._value as _$QuranPlayerStopVers;
 }
 
 /// @nodoc
@@ -471,7 +441,7 @@ class _$QuranPlayerStopVers implements QuranPlayerStopVers {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is QuranPlayerStopVers);
+        (other.runtimeType == runtimeType && other is _$QuranPlayerStopVers);
   }
 
   @override
@@ -557,22 +527,22 @@ abstract class QuranPlayerStopVers implements QuranPlayerEvent {
 }
 
 /// @nodoc
-abstract class $QuranPlayerCancleSupCopyWith<$Res> {
-  factory $QuranPlayerCancleSupCopyWith(QuranPlayerCancleSup value,
-          $Res Function(QuranPlayerCancleSup) then) =
-      _$QuranPlayerCancleSupCopyWithImpl<$Res>;
+abstract class _$$QuranPlayerCancleSupCopyWith<$Res> {
+  factory _$$QuranPlayerCancleSupCopyWith(_$QuranPlayerCancleSup value,
+          $Res Function(_$QuranPlayerCancleSup) then) =
+      __$$QuranPlayerCancleSupCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$QuranPlayerCancleSupCopyWithImpl<$Res>
+class __$$QuranPlayerCancleSupCopyWithImpl<$Res>
     extends _$QuranPlayerEventCopyWithImpl<$Res>
-    implements $QuranPlayerCancleSupCopyWith<$Res> {
-  _$QuranPlayerCancleSupCopyWithImpl(
-      QuranPlayerCancleSup _value, $Res Function(QuranPlayerCancleSup) _then)
-      : super(_value, (v) => _then(v as QuranPlayerCancleSup));
+    implements _$$QuranPlayerCancleSupCopyWith<$Res> {
+  __$$QuranPlayerCancleSupCopyWithImpl(_$QuranPlayerCancleSup _value,
+      $Res Function(_$QuranPlayerCancleSup) _then)
+      : super(_value, (v) => _then(v as _$QuranPlayerCancleSup));
 
   @override
-  QuranPlayerCancleSup get _value => super._value as QuranPlayerCancleSup;
+  _$QuranPlayerCancleSup get _value => super._value as _$QuranPlayerCancleSup;
 }
 
 /// @nodoc
@@ -588,7 +558,7 @@ class _$QuranPlayerCancleSup implements QuranPlayerCancleSup {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is QuranPlayerCancleSup);
+        (other.runtimeType == runtimeType && other is _$QuranPlayerCancleSup);
   }
 
   @override
@@ -674,34 +644,6 @@ abstract class QuranPlayerCancleSup implements QuranPlayerEvent {
 }
 
 /// @nodoc
-class _$QuranPlayerStateTearOff {
-  const _$QuranPlayerStateTearOff();
-
-  _QuranPlayerStateInitial initial({required String nawPlayingPath}) {
-    return _QuranPlayerStateInitial(
-      nawPlayingPath: nawPlayingPath,
-    );
-  }
-
-  _QuranPlayerStateLoading loadingVers() {
-    return const _QuranPlayerStateLoading();
-  }
-
-  _QuranPlayerStateLoaded loaded() {
-    return const _QuranPlayerStateLoaded();
-  }
-
-  _QuranPlayerStateError error(String error) {
-    return _QuranPlayerStateError(
-      error,
-    );
-  }
-}
-
-/// @nodoc
-const $QuranPlayerState = _$QuranPlayerStateTearOff();
-
-/// @nodoc
 mixin _$QuranPlayerState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -773,30 +715,30 @@ class _$QuranPlayerStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$QuranPlayerStateInitialCopyWith<$Res> {
-  factory _$QuranPlayerStateInitialCopyWith(_QuranPlayerStateInitial value,
-          $Res Function(_QuranPlayerStateInitial) then) =
-      __$QuranPlayerStateInitialCopyWithImpl<$Res>;
+abstract class _$$_QuranPlayerStateInitialCopyWith<$Res> {
+  factory _$$_QuranPlayerStateInitialCopyWith(_$_QuranPlayerStateInitial value,
+          $Res Function(_$_QuranPlayerStateInitial) then) =
+      __$$_QuranPlayerStateInitialCopyWithImpl<$Res>;
   $Res call({String nawPlayingPath});
 }
 
 /// @nodoc
-class __$QuranPlayerStateInitialCopyWithImpl<$Res>
+class __$$_QuranPlayerStateInitialCopyWithImpl<$Res>
     extends _$QuranPlayerStateCopyWithImpl<$Res>
-    implements _$QuranPlayerStateInitialCopyWith<$Res> {
-  __$QuranPlayerStateInitialCopyWithImpl(_QuranPlayerStateInitial _value,
-      $Res Function(_QuranPlayerStateInitial) _then)
-      : super(_value, (v) => _then(v as _QuranPlayerStateInitial));
+    implements _$$_QuranPlayerStateInitialCopyWith<$Res> {
+  __$$_QuranPlayerStateInitialCopyWithImpl(_$_QuranPlayerStateInitial _value,
+      $Res Function(_$_QuranPlayerStateInitial) _then)
+      : super(_value, (v) => _then(v as _$_QuranPlayerStateInitial));
 
   @override
-  _QuranPlayerStateInitial get _value =>
-      super._value as _QuranPlayerStateInitial;
+  _$_QuranPlayerStateInitial get _value =>
+      super._value as _$_QuranPlayerStateInitial;
 
   @override
   $Res call({
     Object? nawPlayingPath = freezed,
   }) {
-    return _then(_QuranPlayerStateInitial(
+    return _then(_$_QuranPlayerStateInitial(
       nawPlayingPath: nawPlayingPath == freezed
           ? _value.nawPlayingPath
           : nawPlayingPath // ignore: cast_nullable_to_non_nullable
@@ -822,7 +764,7 @@ class _$_QuranPlayerStateInitial implements _QuranPlayerStateInitial {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _QuranPlayerStateInitial &&
+            other is _$_QuranPlayerStateInitial &&
             const DeepCollectionEquality()
                 .equals(other.nawPlayingPath, nawPlayingPath));
   }
@@ -833,9 +775,10 @@ class _$_QuranPlayerStateInitial implements _QuranPlayerStateInitial {
 
   @JsonKey(ignore: true)
   @override
-  _$QuranPlayerStateInitialCopyWith<_QuranPlayerStateInitial> get copyWith =>
-      __$QuranPlayerStateInitialCopyWithImpl<_QuranPlayerStateInitial>(
-          this, _$identity);
+  _$$_QuranPlayerStateInitialCopyWith<_$_QuranPlayerStateInitial>
+      get copyWith =>
+          __$$_QuranPlayerStateInitialCopyWithImpl<_$_QuranPlayerStateInitial>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -913,33 +856,33 @@ class _$_QuranPlayerStateInitial implements _QuranPlayerStateInitial {
 }
 
 abstract class _QuranPlayerStateInitial implements QuranPlayerState {
-  const factory _QuranPlayerStateInitial({required String nawPlayingPath}) =
-      _$_QuranPlayerStateInitial;
+  const factory _QuranPlayerStateInitial(
+      {required final String nawPlayingPath}) = _$_QuranPlayerStateInitial;
 
-  String get nawPlayingPath;
+  String get nawPlayingPath => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$QuranPlayerStateInitialCopyWith<_QuranPlayerStateInitial> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_QuranPlayerStateInitialCopyWith<_$_QuranPlayerStateInitial>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$QuranPlayerStateLoadingCopyWith<$Res> {
-  factory _$QuranPlayerStateLoadingCopyWith(_QuranPlayerStateLoading value,
-          $Res Function(_QuranPlayerStateLoading) then) =
-      __$QuranPlayerStateLoadingCopyWithImpl<$Res>;
+abstract class _$$_QuranPlayerStateLoadingCopyWith<$Res> {
+  factory _$$_QuranPlayerStateLoadingCopyWith(_$_QuranPlayerStateLoading value,
+          $Res Function(_$_QuranPlayerStateLoading) then) =
+      __$$_QuranPlayerStateLoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$QuranPlayerStateLoadingCopyWithImpl<$Res>
+class __$$_QuranPlayerStateLoadingCopyWithImpl<$Res>
     extends _$QuranPlayerStateCopyWithImpl<$Res>
-    implements _$QuranPlayerStateLoadingCopyWith<$Res> {
-  __$QuranPlayerStateLoadingCopyWithImpl(_QuranPlayerStateLoading _value,
-      $Res Function(_QuranPlayerStateLoading) _then)
-      : super(_value, (v) => _then(v as _QuranPlayerStateLoading));
+    implements _$$_QuranPlayerStateLoadingCopyWith<$Res> {
+  __$$_QuranPlayerStateLoadingCopyWithImpl(_$_QuranPlayerStateLoading _value,
+      $Res Function(_$_QuranPlayerStateLoading) _then)
+      : super(_value, (v) => _then(v as _$_QuranPlayerStateLoading));
 
   @override
-  _QuranPlayerStateLoading get _value =>
-      super._value as _QuranPlayerStateLoading;
+  _$_QuranPlayerStateLoading get _value =>
+      super._value as _$_QuranPlayerStateLoading;
 }
 
 /// @nodoc
@@ -955,7 +898,8 @@ class _$_QuranPlayerStateLoading implements _QuranPlayerStateLoading {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _QuranPlayerStateLoading);
+        (other.runtimeType == runtimeType &&
+            other is _$_QuranPlayerStateLoading);
   }
 
   @override
@@ -1041,22 +985,23 @@ abstract class _QuranPlayerStateLoading implements QuranPlayerState {
 }
 
 /// @nodoc
-abstract class _$QuranPlayerStateLoadedCopyWith<$Res> {
-  factory _$QuranPlayerStateLoadedCopyWith(_QuranPlayerStateLoaded value,
-          $Res Function(_QuranPlayerStateLoaded) then) =
-      __$QuranPlayerStateLoadedCopyWithImpl<$Res>;
+abstract class _$$_QuranPlayerStateLoadedCopyWith<$Res> {
+  factory _$$_QuranPlayerStateLoadedCopyWith(_$_QuranPlayerStateLoaded value,
+          $Res Function(_$_QuranPlayerStateLoaded) then) =
+      __$$_QuranPlayerStateLoadedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$QuranPlayerStateLoadedCopyWithImpl<$Res>
+class __$$_QuranPlayerStateLoadedCopyWithImpl<$Res>
     extends _$QuranPlayerStateCopyWithImpl<$Res>
-    implements _$QuranPlayerStateLoadedCopyWith<$Res> {
-  __$QuranPlayerStateLoadedCopyWithImpl(_QuranPlayerStateLoaded _value,
-      $Res Function(_QuranPlayerStateLoaded) _then)
-      : super(_value, (v) => _then(v as _QuranPlayerStateLoaded));
+    implements _$$_QuranPlayerStateLoadedCopyWith<$Res> {
+  __$$_QuranPlayerStateLoadedCopyWithImpl(_$_QuranPlayerStateLoaded _value,
+      $Res Function(_$_QuranPlayerStateLoaded) _then)
+      : super(_value, (v) => _then(v as _$_QuranPlayerStateLoaded));
 
   @override
-  _QuranPlayerStateLoaded get _value => super._value as _QuranPlayerStateLoaded;
+  _$_QuranPlayerStateLoaded get _value =>
+      super._value as _$_QuranPlayerStateLoaded;
 }
 
 /// @nodoc
@@ -1072,7 +1017,8 @@ class _$_QuranPlayerStateLoaded implements _QuranPlayerStateLoaded {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _QuranPlayerStateLoaded);
+        (other.runtimeType == runtimeType &&
+            other is _$_QuranPlayerStateLoaded);
   }
 
   @override
@@ -1158,29 +1104,30 @@ abstract class _QuranPlayerStateLoaded implements QuranPlayerState {
 }
 
 /// @nodoc
-abstract class _$QuranPlayerStateErrorCopyWith<$Res> {
-  factory _$QuranPlayerStateErrorCopyWith(_QuranPlayerStateError value,
-          $Res Function(_QuranPlayerStateError) then) =
-      __$QuranPlayerStateErrorCopyWithImpl<$Res>;
+abstract class _$$_QuranPlayerStateErrorCopyWith<$Res> {
+  factory _$$_QuranPlayerStateErrorCopyWith(_$_QuranPlayerStateError value,
+          $Res Function(_$_QuranPlayerStateError) then) =
+      __$$_QuranPlayerStateErrorCopyWithImpl<$Res>;
   $Res call({String error});
 }
 
 /// @nodoc
-class __$QuranPlayerStateErrorCopyWithImpl<$Res>
+class __$$_QuranPlayerStateErrorCopyWithImpl<$Res>
     extends _$QuranPlayerStateCopyWithImpl<$Res>
-    implements _$QuranPlayerStateErrorCopyWith<$Res> {
-  __$QuranPlayerStateErrorCopyWithImpl(_QuranPlayerStateError _value,
-      $Res Function(_QuranPlayerStateError) _then)
-      : super(_value, (v) => _then(v as _QuranPlayerStateError));
+    implements _$$_QuranPlayerStateErrorCopyWith<$Res> {
+  __$$_QuranPlayerStateErrorCopyWithImpl(_$_QuranPlayerStateError _value,
+      $Res Function(_$_QuranPlayerStateError) _then)
+      : super(_value, (v) => _then(v as _$_QuranPlayerStateError));
 
   @override
-  _QuranPlayerStateError get _value => super._value as _QuranPlayerStateError;
+  _$_QuranPlayerStateError get _value =>
+      super._value as _$_QuranPlayerStateError;
 
   @override
   $Res call({
     Object? error = freezed,
   }) {
-    return _then(_QuranPlayerStateError(
+    return _then(_$_QuranPlayerStateError(
       error == freezed
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -1206,7 +1153,7 @@ class _$_QuranPlayerStateError implements _QuranPlayerStateError {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _QuranPlayerStateError &&
+            other is _$_QuranPlayerStateError &&
             const DeepCollectionEquality().equals(other.error, error));
   }
 
@@ -1216,8 +1163,8 @@ class _$_QuranPlayerStateError implements _QuranPlayerStateError {
 
   @JsonKey(ignore: true)
   @override
-  _$QuranPlayerStateErrorCopyWith<_QuranPlayerStateError> get copyWith =>
-      __$QuranPlayerStateErrorCopyWithImpl<_QuranPlayerStateError>(
+  _$$_QuranPlayerStateErrorCopyWith<_$_QuranPlayerStateError> get copyWith =>
+      __$$_QuranPlayerStateErrorCopyWithImpl<_$_QuranPlayerStateError>(
           this, _$identity);
 
   @override
@@ -1296,10 +1243,11 @@ class _$_QuranPlayerStateError implements _QuranPlayerStateError {
 }
 
 abstract class _QuranPlayerStateError implements QuranPlayerState {
-  const factory _QuranPlayerStateError(String error) = _$_QuranPlayerStateError;
+  const factory _QuranPlayerStateError(final String error) =
+      _$_QuranPlayerStateError;
 
-  String get error;
+  String get error => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$QuranPlayerStateErrorCopyWith<_QuranPlayerStateError> get copyWith =>
+  _$$_QuranPlayerStateErrorCopyWith<_$_QuranPlayerStateError> get copyWith =>
       throw _privateConstructorUsedError;
 }

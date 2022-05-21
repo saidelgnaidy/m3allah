@@ -7,6 +7,7 @@ import 'package:m3allah/blocs/view_bloc/build_view_cubit.dart';
 import 'package:m3allah/modle/juz_list_modle/juz_list_modle.dart';
 import 'package:m3allah/modle/quran/surah_model.dart';
 import 'package:m3allah/views/component/const.dart';
+import 'package:wakelock/wakelock.dart';
 
 @immutable
 class ReadQuranState {
@@ -29,6 +30,7 @@ class ReadQuranCubit extends Cubit<ReadQuranState> {
   Timer? _timer;
 
   void init(BuildContext context) {
+    Wakelock.enable();
     surahList = BuildViewBloc.of(context).readQuranFullDetails.surahlist;
     selectedJus = BuildViewBloc.of(context).readQuranFullDetails.juzList;
     WidgetsBinding.instance?.addPostFrameCallback((duration) async {
@@ -67,28 +69,27 @@ class ReadQuranCubit extends Cubit<ReadQuranState> {
   }
 
   IndexesOfJuz calcStartIndex({required FullSurah surah, required int i}) {
-    if (selectedJus != null) {
-      if (selectedJus!.start.index == surah.index && selectedJus!.end.index == surah.index) {
-        return IndexesOfJuz(
-          length: int.parse(selectedJus!.end.verse) - int.parse(selectedJus!.start.verse),
-          start: int.parse(selectedJus!.start.verse) + i - 1,
-        );
-      } else if (selectedJus!.start.index == surah.index) {
-        return IndexesOfJuz(
-          length: surah.count - int.parse(selectedJus!.start.verse) + 1,
-          start: int.parse(selectedJus!.start.verse) + i - 1,
-        );
-      } else if (selectedJus!.end.index == surah.index) {
-        return IndexesOfJuz(
-          length: int.parse(selectedJus!.end.verse),
-          start: i,
-        );
-      } else {
-        return IndexesOfJuz(
-          length: surah.count,
-          start: i,
-        );
-      }
+    if (selectedJus == null) {
+      return IndexesOfJuz(
+        length: surah.count,
+        start: i,
+      );
+    }
+    if (selectedJus!.start.index == surah.index && selectedJus!.end.index == surah.index) {
+      return IndexesOfJuz(
+        length: int.parse(selectedJus!.end.verse) - int.parse(selectedJus!.start.verse),
+        start: int.parse(selectedJus!.start.verse) + i - 1,
+      );
+    } else if (selectedJus!.start.index == surah.index) {
+      return IndexesOfJuz(
+        length: surah.count - int.parse(selectedJus!.start.verse) + 1,
+        start: int.parse(selectedJus!.start.verse) + i - 1,
+      );
+    } else if (selectedJus!.end.index == surah.index) {
+      return IndexesOfJuz(
+        length: int.parse(selectedJus!.end.verse),
+        start: i,
+      );
     } else {
       return IndexesOfJuz(
         length: surah.count,
@@ -113,5 +114,11 @@ class ReadQuranCubit extends Cubit<ReadQuranState> {
         emit(ReadQuranState(toolBarPos));
       }
     });
+  }
+
+  @override
+  close() async {
+    Wakelock.disable();
+    super.close();
   }
 }

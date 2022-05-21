@@ -15,9 +15,11 @@ class Seb7a extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    final GetStorage _box = GetStorage();
+    final GetStorage box = GetStorage();
 
-    return BlocBuilder<Seb7aCounterBloc, Seb7aCounterState>(builder: (context, state) {
+    return BlocBuilder<Seb7aCounterBloc, Seb7aCounterState>(
+      buildWhen: (previous, current) => current.selectedZekr != previous.selectedZekr,
+        builder: (context, state) {
       final counterBloc = context.read<Seb7aCounterBloc>();
       var formatter = format.NumberFormat('###,000');
       return SizedBox(
@@ -54,9 +56,13 @@ class Seb7a extends StatelessWidget {
                                     style: Theme.of(context).textTheme.headline5,
                                   ),
                                   const SizedBox(height: 8),
-                                  Text(
-                                    'اجمالي هذا الذكر : ${(formatter.format(_box.read(state.selectedZekr.id.toString()) ?? 0)).toString()}',
-                                    style: TextStyle(fontFamily: 'font3', color: Theme.of(context).iconTheme.color),
+                                  BlocBuilder<Seb7aCounterBloc, Seb7aCounterState>(
+                                    builder: (context , state) {
+                                      return Text(
+                                        'اجمالي هذا الذكر : ${(formatter.format(box.read(state.selectedZekr.id.toString()) ?? 0)).toString()}',
+                                        style: TextStyle(fontFamily: 'font3', color: Theme.of(context).iconTheme.color),
+                                      );
+                                    }
                                   ),
                                 ],
                               ),
@@ -67,19 +73,23 @@ class Seb7a extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: size.height * .02),
-                    SizedBox(
-                      width: size.height * .8,
-                      child: Directionality(
-                        textDirection: TextDirection.ltr,
-                        child: Row(
-                          children: [
-                            Expanded(child: OneDigit(digit: state.counter ~/ 1000)),
-                            Expanded(child: OneDigit(digit: (state.counter % 1000) ~/ 100)),
-                            Expanded(child: OneDigit(digit: (state.counter % 100) ~/ 10)),
-                            Expanded(child: OneDigit(digit: state.counter % 10)),
-                          ],
-                        ),
-                      ),
+                    BlocBuilder<Seb7aCounterBloc, Seb7aCounterState>(
+                      builder: (context , state) {
+                        return SizedBox(
+                          width: size.height * .8,
+                          child: Directionality(
+                            textDirection: TextDirection.ltr,
+                            child: Row(
+                              children: [
+                                Expanded(child: OneDigit(digit: state.counter ~/ 1000)),
+                                Expanded(child: OneDigit(digit: (state.counter % 1000) ~/ 100)),
+                                Expanded(child: OneDigit(digit: (state.counter % 100) ~/ 10)),
+                                Expanded(child: OneDigit(digit: state.counter % 10)),
+                              ],
+                            ),
+                          ),
+                        );
+                      }
                     ),
                     SizedBox(height: size.height * .02),
                     Container(

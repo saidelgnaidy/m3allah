@@ -11,7 +11,7 @@ class SearchSurah extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController _ctrl = TextEditingController();
+    final TextEditingController ctrl = TextEditingController();
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 15),
       child: SizedBox(
@@ -23,7 +23,7 @@ class SearchSurah extends StatelessWidget {
             boxShadow: kBoxShadow(),
           ),
           child: TextField(
-            controller: _ctrl,
+            controller: ctrl,
             onChanged: onChanged ?? (value) => context.read<SearchCubit>().search(value),
             decoration: InputDecoration(
               prefixIcon: Icon(Icons.search_rounded, color: Theme.of(context).iconTheme.color!),
@@ -34,7 +34,7 @@ class SearchSurah extends StatelessWidget {
                 icon: Icon(Icons.clear, color: Theme.of(context).iconTheme.color!),
                 onPressed: () {
                   context.read<SearchCubit>().search('');
-                  _ctrl.clear();
+                  ctrl.clear();
                 },
               ),
             ),

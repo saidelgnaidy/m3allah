@@ -8,7 +8,7 @@ class Landing extends StatefulWidget {
   const Landing({Key? key, required this.child, required this.animationController}) : super(key: key);
 
   @override
-  _LandingState createState() => _LandingState();
+  State<Landing> createState() => _LandingState();
 }
 
 class _LandingState extends State<Landing> with SingleTickerProviderStateMixin {

@@ -33,9 +33,9 @@ if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 }
 
-
 android {
     compileSdkVersion flutter.compileSdkVersion
+    //ndkVersion flutter.ndkVersion
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -51,14 +51,14 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        minSdkVersion 16
         applicationId "com.masritech.m3allah"
+        minSdkVersion 19
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true
     }
+
     signingConfigs {
         release {
             keyAlias keystoreProperties['keyAlias']
@@ -69,10 +69,10 @@ android {
     }
     buildTypes {
         release {
-            signingConfig signingConfigs.release
+            signingConfig signingConfigs.debug
         }
     }
-
+    namespace 'com.masritech.m3allah'
 }
 
 flutter {
@@ -81,7 +81,7 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation platform('com.google.firebase:firebase-bom:29.3.0')
-    implementation 'com.google.android.material:material:1.6.0'
+    implementation platform('com.google.firebase:firebase-bom:30.0.1')
+    implementation 'com.google.firebase:firebase-analytics'
     implementation 'androidx.work:work-runtime-ktx:2.7.1'
 }

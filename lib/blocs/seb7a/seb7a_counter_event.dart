@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:m3allah/modle/azkar/seb7a_model.dart';
 part 'seb7a_counter_event.freezed.dart';
@@ -10,7 +12,7 @@ class Seb7aCounterEvent with _$Seb7aCounterEvent {
 }
 
 @freezed
-abstract class Seb7aCounterState with _$Seb7aCounterState {
+ class Seb7aCounterState with _$Seb7aCounterState {
   const factory Seb7aCounterState({required int counter, required  Seb7aZekr selectedZekr}) = Seb7aCounterStateLoaded;
 }
 // flutter pub run build_runner watch --delete-conflicting-outputs 

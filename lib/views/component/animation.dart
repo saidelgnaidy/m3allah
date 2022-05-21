@@ -22,7 +22,6 @@ class FadeScale extends StatelessWidget {
       duration: Duration(milliseconds: duration ?? 350),
       tween: tween,
       curve: curve ?? Curves.easeOutCubic,
-      child: child,
       delay: Duration(milliseconds: delay ?? 0),
       builder: (context, child, value) => Opacity(
         opacity: value.get(_AniProps.opacity),
@@ -31,6 +30,7 @@ class FadeScale extends StatelessWidget {
           child: child,
         ),
       ),
+      child: child,
     );
   }
 }

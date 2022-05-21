@@ -7,18 +7,25 @@ class ZekrCounterState {
 }
 
 class ZekrCountCubit extends Cubit<ZekrCounterState> {
-  int count;
+  int _count;
 
-  ZekrCountCubit(this.count) : super(ZekrCounterState(count));
+  ZekrCountCubit(this._count) : super(ZekrCounterState(_count));
 
   static ZekrCountCubit of(BuildContext context) {
     return BlocProvider.of<ZekrCountCubit>(context);
   }
 
   decrease() {
-    if (count >= 1) {
-      count--;
-      emit(ZekrCounterState(count));
+    if (_count >= 1) {
+      _count--;
+      emit(ZekrCounterState(_count));
     }
   }
+
+  reset(int count ){
+    _count = count ;
+    emit(ZekrCounterState(_count));
+  }
+
+
 }

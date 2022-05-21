@@ -25,11 +25,11 @@ class AzkarListView extends StatelessWidget {
                 itemPositionsListener: AzkarCubit.of(context).itemPositionsListener,
                 addAutomaticKeepAlives: true,
                 physics: const BouncingScrollPhysics(),
-                padding: const EdgeInsets.only(top: 8 ,bottom: 80),
-                itemCount: BuildViewBloc.of(context).azkarList.length,
+                padding: const EdgeInsets.only(top: 8, bottom: 80),
+                itemCount: azkarList.length,
                 itemBuilder: (BuildContext context, int index) {
                   return ZekrTile(
-                    zekr: BuildViewBloc.of(context).azkarList[index],
+                    zekr: azkarList[index],
                     index: index,
                   );
                 },
@@ -88,9 +88,10 @@ class ZekrTile extends StatelessWidget {
     return BlocProvider(
       create: (context) => ZekrCountCubit(zekr.count.isNotEmpty ? int.parse(zekr.count) : 1),
       child: BlocBuilder<ZekrCountCubit, ZekrCounterState>(
-          builder: (context, state) {
+        buildWhen: (previous, current) => (current.count <= 1 || current.count == (zekr.count.isNotEmpty ? int.parse(zekr.count) : 1)),
+        builder: (context, state) {
           return Opacity(
-            opacity: ZekrCountCubit.of(context).count == 0 ? 0.6: 1.0,
+            opacity: state.count == 0 ? 0.6 : 1.0,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
               child: RawMaterialButton(
@@ -99,7 +100,7 @@ class ZekrTile extends StatelessWidget {
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                 onPressed: () {
                   ZekrCountCubit.of(context).decrease();
-                  if (ZekrCountCubit.of(context).count <= 0) {
+                  if (state.count <= 1) {
                     AzkarCubit.of(context).scrollTo(index);
                   }
                 },
@@ -115,18 +116,44 @@ class ZekrTile extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  zekr.category,
-                                  textAlign: TextAlign.right,
-                                  style: Theme.of(context).textTheme.headline2?.copyWith(fontSize: 14),
-                                ),
-                                 Text(state.count.toString(), textAlign: TextAlign.center, style: Theme.of(context).textTheme.subtitle1)
-                              ],
+                          SizedBox(
+                            height: 32,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    zekr.category,
+                                    textAlign: TextAlign.right,
+                                    style: Theme.of(context).textTheme.headline2?.copyWith(fontSize: 14),
+                                  ),
+                                  Row(
+                                    children: [
+                                      BlocBuilder<ZekrCountCubit, ZekrCounterState>(
+                                        buildWhen: (previous, current) => previous != current,
+                                        builder: (context, state) {
+                                          return Text(
+                                            state.count.toString(),
+                                            textAlign: TextAlign.center,
+                                            style: Theme.of(context).textTheme.subtitle1,
+                                          );
+                                        },
+                                      ),
+                                      if (state.count <= 0)
+                                        Padding(
+                                          padding: const EdgeInsets.only(right: 8),
+                                          child: InkWell(
+                                            onTap: () {
+                                              ZekrCountCubit.of(context).reset(zekr.count.isNotEmpty ? int.parse(zekr.count) : 1);
+                                            },
+                                            child: const Icon(Icons.refresh, size: 22),
+                                          ),
+                                        )
+                                    ],
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ],
@@ -152,7 +179,7 @@ class ZekrTile extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 2),
                           child: Text(
-                            'المصدر  : ' + zekr.reference,
+                            'المصدر  : ${zekr.reference}',
                             style: Theme.of(context).textTheme.headline2?.copyWith(fontSize: 11),
                           ),
                         ),
@@ -162,7 +189,7 @@ class ZekrTile extends StatelessWidget {
               ),
             ),
           );
-        }
+        },
       ),
     );
   }

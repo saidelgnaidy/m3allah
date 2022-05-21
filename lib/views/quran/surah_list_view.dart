@@ -15,7 +15,7 @@ class SurahListView extends StatelessWidget {
     final settings = SettingsBloc.of(context);
 
     return BlocProvider(
-      create: (context) => SearchCubit(context.read<BuildViewBloc>().surahList),
+      create: (context) => SearchCubit(BuildViewBloc.of(context).surahList),
       child: BlocBuilder<SearchCubit, SearchState>(
         builder: (context, state) {
           return Column(
@@ -63,7 +63,7 @@ class SurahTile extends StatelessWidget {
     final isLight = SettingsBloc.of(context).settingsModel.isLight;
     return ListTile(
       onTap: () {
-        context.read<BuildViewBloc>().getFullSurah(surah);
+        BuildViewBloc.of(context).getFullSurah(surah);
       },
       title: Text(
         surah.titleAr,
@@ -96,9 +96,7 @@ class SurahTile extends StatelessWidget {
           SizedBox(
             width: 20,
             height: 20,
-            child: Image.asset(
-              'assets/images/${surah.place}.png',
-            ),
+            child: Image.asset('assets/images/${surah.place}.png'),
           ),
         ],
       ),

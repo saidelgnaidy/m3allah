@@ -24,7 +24,7 @@ class ContinueReading extends StatelessWidget {
             children: [
               Image.asset('assets/images/quran.png', width: 25, height: 25),
               Text(
-                ' اكمل قراءة : ' + name,
+                ' اكمل قراءة : $name',
                 style: Theme.of(context).textTheme.headline5?.copyWith(fontSize: 16),
               ),
               const SizedBox(width: 25)

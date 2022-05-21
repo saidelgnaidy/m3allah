@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -22,7 +24,6 @@ void main() async {
     await Firebase.initializeApp();
   }
   await GetStorage.init();
-
   runApp(const M3Allah());
 }
 
@@ -34,18 +35,14 @@ class M3Allah extends StatefulWidget {
 }
 
 class _M3AllahState extends State<M3Allah> with SingleTickerProviderStateMixin {
-  late AnimationController animationController = AnimationController(duration: const Duration(milliseconds: 300), vsync: this, value: 1.0);
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        FocusScope.of(context).requestFocus(FocusNode());
-      },
+      onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
       child: MultiBlocProvider(
         providers: [
           BlocProvider(create: (context) => SettingsBloc()..loadSavedTheme()),
-          BlocProvider(create: (context) => BuildViewBloc(animationController)..getQuranLists()),
+          BlocProvider(create: (context) => BuildViewBloc(this)..getQuranLists()),
           BlocProvider(create: (context) => Seb7aCounterBloc()),
           BlocProvider(create: (context) => ReadQuranCubit()),
           BlocProvider(create: (context) => AzkarCubit()),
@@ -59,13 +56,14 @@ class _M3AllahState extends State<M3Allah> with SingleTickerProviderStateMixin {
                 GlobalWidgetsLocalizations.delegate,
                 GlobalCupertinoLocalizations.delegate,
               ],
-              theme: state.getThemeData(),
-              locale: const Locale('ar', ''),
+              theme: state.getThemeData,
+              locale: const Locale('ar'),
               title: 'مع الله',
               home: AnnotatedRegion<SystemUiOverlayStyle>(
-                value: state.getThemeData()!.appBarTheme.systemOverlayStyle!,
-                child: const SafeArea(child: HomeScreen()),
-                
+                value: state.getThemeData!.appBarTheme.systemOverlayStyle!,
+                child: const SafeArea(
+                  child: HomeScreen(),
+                ),
               ),
             );
           },

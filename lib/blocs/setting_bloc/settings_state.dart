@@ -1,7 +1,7 @@
 part of 'settings_cubit.dart';
 
-abstract class SettingsState {
-  ThemeData? getThemeData() {
+ class SettingsState {
+  ThemeData? get getThemeData {
     return null;
   }
 }
@@ -13,7 +13,7 @@ class SettingsLoaded with SettingsState {
   SettingsLoaded(this.settingsModel);
 
   @override
-  ThemeData getThemeData() {
+  ThemeData get getThemeData {
     final bool isLight = settingsModel.isLight;
 
     return ThemeData(

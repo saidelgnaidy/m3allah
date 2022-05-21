@@ -8,24 +8,26 @@ import 'package:workmanager/workmanager.dart';
 
 class NotificationCtrl {
 
+  static const String _icon = '@mipmap/ic_launcher' ;
+
   static final _notification = FlutterLocalNotificationsPlugin();
 
   static const InitializationSettings _initializationSettings = InitializationSettings(
-    android: AndroidInitializationSettings('@mipmap/launcher_icon'),
+    android: AndroidInitializationSettings(_icon),
     iOS: IOSInitializationSettings(),
   );
 
   static const NotificationDetails _notificationDetails = NotificationDetails(
     android: AndroidNotificationDetails(
       '1',
-      'Notifications',
+      'Azkar Notifications',
       channelDescription: 'أذكار',
       importance: Importance.max,
       playSound: false,
       enableVibration: false,
       colorized: true,
       onlyAlertOnce: true,
-      icon: '@mipmap/launcher_icon',
+      icon: _icon,
     ),
     iOS: IOSNotificationDetails(presentSound: false),
   );
@@ -40,15 +42,14 @@ class NotificationCtrl {
 
 
   static Future _sendNotification() async {
-    Seb7aZekr _zekr = _randomZekr();
-    _notification.show(1, _zekr.content, _zekr.description, _notificationDetails);
+    Seb7aZekr zekr = _randomZekr();
+    _notification.show(1, zekr.content, zekr.description, _notificationDetails);
   }
 
   static Seb7aZekr _randomZekr() {
     List<Seb7aZekr> list = seb7aZekrFromList(azkar);
     final int index = Random().nextInt(list.length - 1);
-    final Seb7aZekr _zekr = list[index];
-    return _zekr;
+    return list[index];
   }
 
   static initWorkMan() {

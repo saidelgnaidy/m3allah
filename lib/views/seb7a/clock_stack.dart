@@ -8,7 +8,7 @@ class ClockStack extends StatefulWidget {
   const ClockStack({Key? key, required this.handTurns}) : super(key: key);
 
   @override
-  _ClockStackState createState() => _ClockStackState();
+  State<ClockStack> createState() => _ClockStackState();
 }
 
 class _ClockStackState extends State<ClockStack> {

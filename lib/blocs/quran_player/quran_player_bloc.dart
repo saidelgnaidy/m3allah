@@ -44,7 +44,7 @@ class QuranPlayerBloc extends Bloc<QuranPlayerEvent, QuranPlayerState> {
         audioPlayer.stop();
         emit(QuranPlayerState.initial(nawPlayingPath: newVers));
         lastPlayed = newVers;
-        Reference storage = FirebaseStorage.instance.ref().child(newVers + '.mp3');
+        Reference storage = FirebaseStorage.instance.ref().child('$newVers.mp3');
         var path = await storage.getDownloadURL();
         await audioPlayer.play(path);
       } catch (e) {

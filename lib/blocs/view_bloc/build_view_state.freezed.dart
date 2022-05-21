@@ -12,39 +12,7 @@ part of 'build_view_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$BuildViewStateTearOff {
-  const _$BuildViewStateTearOff();
-
-  _BuildViewStateIinitial initial() {
-    return const _BuildViewStateIinitial();
-  }
-
-  _BuildViewStateQuran quran({required int initTap}) {
-    return _BuildViewStateQuran(
-      initTap: initTap,
-    );
-  }
-
-  _BuildViewStateAzkar azkar({required List<AzkarList> list}) {
-    return _BuildViewStateAzkar(
-      list: list,
-    );
-  }
-
-  _BuildViewStateReadSurah readSurah() {
-    return const _BuildViewStateReadSurah();
-  }
-
-  _BuildViewStateSebha sebha() {
-    return const _BuildViewStateSebha();
-  }
-}
-
-/// @nodoc
-const $BuildViewState = _$BuildViewStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$BuildViewState {
@@ -124,22 +92,23 @@ class _$BuildViewStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$BuildViewStateIinitialCopyWith<$Res> {
-  factory _$BuildViewStateIinitialCopyWith(_BuildViewStateIinitial value,
-          $Res Function(_BuildViewStateIinitial) then) =
-      __$BuildViewStateIinitialCopyWithImpl<$Res>;
+abstract class _$$_BuildViewStateIinitialCopyWith<$Res> {
+  factory _$$_BuildViewStateIinitialCopyWith(_$_BuildViewStateIinitial value,
+          $Res Function(_$_BuildViewStateIinitial) then) =
+      __$$_BuildViewStateIinitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$BuildViewStateIinitialCopyWithImpl<$Res>
+class __$$_BuildViewStateIinitialCopyWithImpl<$Res>
     extends _$BuildViewStateCopyWithImpl<$Res>
-    implements _$BuildViewStateIinitialCopyWith<$Res> {
-  __$BuildViewStateIinitialCopyWithImpl(_BuildViewStateIinitial _value,
-      $Res Function(_BuildViewStateIinitial) _then)
-      : super(_value, (v) => _then(v as _BuildViewStateIinitial));
+    implements _$$_BuildViewStateIinitialCopyWith<$Res> {
+  __$$_BuildViewStateIinitialCopyWithImpl(_$_BuildViewStateIinitial _value,
+      $Res Function(_$_BuildViewStateIinitial) _then)
+      : super(_value, (v) => _then(v as _$_BuildViewStateIinitial));
 
   @override
-  _BuildViewStateIinitial get _value => super._value as _BuildViewStateIinitial;
+  _$_BuildViewStateIinitial get _value =>
+      super._value as _$_BuildViewStateIinitial;
 }
 
 /// @nodoc
@@ -155,7 +124,8 @@ class _$_BuildViewStateIinitial implements _BuildViewStateIinitial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _BuildViewStateIinitial);
+        (other.runtimeType == runtimeType &&
+            other is _$_BuildViewStateIinitial);
   }
 
   @override
@@ -247,29 +217,29 @@ abstract class _BuildViewStateIinitial implements BuildViewState {
 }
 
 /// @nodoc
-abstract class _$BuildViewStateQuranCopyWith<$Res> {
-  factory _$BuildViewStateQuranCopyWith(_BuildViewStateQuran value,
-          $Res Function(_BuildViewStateQuran) then) =
-      __$BuildViewStateQuranCopyWithImpl<$Res>;
+abstract class _$$_BuildViewStateQuranCopyWith<$Res> {
+  factory _$$_BuildViewStateQuranCopyWith(_$_BuildViewStateQuran value,
+          $Res Function(_$_BuildViewStateQuran) then) =
+      __$$_BuildViewStateQuranCopyWithImpl<$Res>;
   $Res call({int initTap});
 }
 
 /// @nodoc
-class __$BuildViewStateQuranCopyWithImpl<$Res>
+class __$$_BuildViewStateQuranCopyWithImpl<$Res>
     extends _$BuildViewStateCopyWithImpl<$Res>
-    implements _$BuildViewStateQuranCopyWith<$Res> {
-  __$BuildViewStateQuranCopyWithImpl(
-      _BuildViewStateQuran _value, $Res Function(_BuildViewStateQuran) _then)
-      : super(_value, (v) => _then(v as _BuildViewStateQuran));
+    implements _$$_BuildViewStateQuranCopyWith<$Res> {
+  __$$_BuildViewStateQuranCopyWithImpl(_$_BuildViewStateQuran _value,
+      $Res Function(_$_BuildViewStateQuran) _then)
+      : super(_value, (v) => _then(v as _$_BuildViewStateQuran));
 
   @override
-  _BuildViewStateQuran get _value => super._value as _BuildViewStateQuran;
+  _$_BuildViewStateQuran get _value => super._value as _$_BuildViewStateQuran;
 
   @override
   $Res call({
     Object? initTap = freezed,
   }) {
-    return _then(_BuildViewStateQuran(
+    return _then(_$_BuildViewStateQuran(
       initTap: initTap == freezed
           ? _value.initTap
           : initTap // ignore: cast_nullable_to_non_nullable
@@ -295,7 +265,7 @@ class _$_BuildViewStateQuran implements _BuildViewStateQuran {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _BuildViewStateQuran &&
+            other is _$_BuildViewStateQuran &&
             const DeepCollectionEquality().equals(other.initTap, initTap));
   }
 
@@ -305,8 +275,8 @@ class _$_BuildViewStateQuran implements _BuildViewStateQuran {
 
   @JsonKey(ignore: true)
   @override
-  _$BuildViewStateQuranCopyWith<_BuildViewStateQuran> get copyWith =>
-      __$BuildViewStateQuranCopyWithImpl<_BuildViewStateQuran>(
+  _$$_BuildViewStateQuranCopyWith<_$_BuildViewStateQuran> get copyWith =>
+      __$$_BuildViewStateQuranCopyWithImpl<_$_BuildViewStateQuran>(
           this, _$identity);
 
   @override
@@ -391,41 +361,41 @@ class _$_BuildViewStateQuran implements _BuildViewStateQuran {
 }
 
 abstract class _BuildViewStateQuran implements BuildViewState {
-  const factory _BuildViewStateQuran({required int initTap}) =
+  const factory _BuildViewStateQuran({required final int initTap}) =
       _$_BuildViewStateQuran;
 
-  int get initTap;
+  int get initTap => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$BuildViewStateQuranCopyWith<_BuildViewStateQuran> get copyWith =>
+  _$$_BuildViewStateQuranCopyWith<_$_BuildViewStateQuran> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$BuildViewStateAzkarCopyWith<$Res> {
-  factory _$BuildViewStateAzkarCopyWith(_BuildViewStateAzkar value,
-          $Res Function(_BuildViewStateAzkar) then) =
-      __$BuildViewStateAzkarCopyWithImpl<$Res>;
+abstract class _$$_BuildViewStateAzkarCopyWith<$Res> {
+  factory _$$_BuildViewStateAzkarCopyWith(_$_BuildViewStateAzkar value,
+          $Res Function(_$_BuildViewStateAzkar) then) =
+      __$$_BuildViewStateAzkarCopyWithImpl<$Res>;
   $Res call({List<AzkarList> list});
 }
 
 /// @nodoc
-class __$BuildViewStateAzkarCopyWithImpl<$Res>
+class __$$_BuildViewStateAzkarCopyWithImpl<$Res>
     extends _$BuildViewStateCopyWithImpl<$Res>
-    implements _$BuildViewStateAzkarCopyWith<$Res> {
-  __$BuildViewStateAzkarCopyWithImpl(
-      _BuildViewStateAzkar _value, $Res Function(_BuildViewStateAzkar) _then)
-      : super(_value, (v) => _then(v as _BuildViewStateAzkar));
+    implements _$$_BuildViewStateAzkarCopyWith<$Res> {
+  __$$_BuildViewStateAzkarCopyWithImpl(_$_BuildViewStateAzkar _value,
+      $Res Function(_$_BuildViewStateAzkar) _then)
+      : super(_value, (v) => _then(v as _$_BuildViewStateAzkar));
 
   @override
-  _BuildViewStateAzkar get _value => super._value as _BuildViewStateAzkar;
+  _$_BuildViewStateAzkar get _value => super._value as _$_BuildViewStateAzkar;
 
   @override
   $Res call({
     Object? list = freezed,
   }) {
-    return _then(_BuildViewStateAzkar(
+    return _then(_$_BuildViewStateAzkar(
       list: list == freezed
-          ? _value.list
+          ? _value._list
           : list // ignore: cast_nullable_to_non_nullable
               as List<AzkarList>,
     ));
@@ -435,10 +405,15 @@ class __$BuildViewStateAzkarCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_BuildViewStateAzkar implements _BuildViewStateAzkar {
-  const _$_BuildViewStateAzkar({required this.list});
+  const _$_BuildViewStateAzkar({required final List<AzkarList> list})
+      : _list = list;
 
+  final List<AzkarList> _list;
   @override
-  final List<AzkarList> list;
+  List<AzkarList> get list {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_list);
+  }
 
   @override
   String toString() {
@@ -449,18 +424,18 @@ class _$_BuildViewStateAzkar implements _BuildViewStateAzkar {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _BuildViewStateAzkar &&
-            const DeepCollectionEquality().equals(other.list, list));
+            other is _$_BuildViewStateAzkar &&
+            const DeepCollectionEquality().equals(other._list, _list));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(list));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_list));
 
   @JsonKey(ignore: true)
   @override
-  _$BuildViewStateAzkarCopyWith<_BuildViewStateAzkar> get copyWith =>
-      __$BuildViewStateAzkarCopyWithImpl<_BuildViewStateAzkar>(
+  _$$_BuildViewStateAzkarCopyWith<_$_BuildViewStateAzkar> get copyWith =>
+      __$$_BuildViewStateAzkarCopyWithImpl<_$_BuildViewStateAzkar>(
           this, _$identity);
 
   @override
@@ -545,33 +520,33 @@ class _$_BuildViewStateAzkar implements _BuildViewStateAzkar {
 }
 
 abstract class _BuildViewStateAzkar implements BuildViewState {
-  const factory _BuildViewStateAzkar({required List<AzkarList> list}) =
+  const factory _BuildViewStateAzkar({required final List<AzkarList> list}) =
       _$_BuildViewStateAzkar;
 
-  List<AzkarList> get list;
+  List<AzkarList> get list => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$BuildViewStateAzkarCopyWith<_BuildViewStateAzkar> get copyWith =>
+  _$$_BuildViewStateAzkarCopyWith<_$_BuildViewStateAzkar> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$BuildViewStateReadSurahCopyWith<$Res> {
-  factory _$BuildViewStateReadSurahCopyWith(_BuildViewStateReadSurah value,
-          $Res Function(_BuildViewStateReadSurah) then) =
-      __$BuildViewStateReadSurahCopyWithImpl<$Res>;
+abstract class _$$_BuildViewStateReadSurahCopyWith<$Res> {
+  factory _$$_BuildViewStateReadSurahCopyWith(_$_BuildViewStateReadSurah value,
+          $Res Function(_$_BuildViewStateReadSurah) then) =
+      __$$_BuildViewStateReadSurahCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$BuildViewStateReadSurahCopyWithImpl<$Res>
+class __$$_BuildViewStateReadSurahCopyWithImpl<$Res>
     extends _$BuildViewStateCopyWithImpl<$Res>
-    implements _$BuildViewStateReadSurahCopyWith<$Res> {
-  __$BuildViewStateReadSurahCopyWithImpl(_BuildViewStateReadSurah _value,
-      $Res Function(_BuildViewStateReadSurah) _then)
-      : super(_value, (v) => _then(v as _BuildViewStateReadSurah));
+    implements _$$_BuildViewStateReadSurahCopyWith<$Res> {
+  __$$_BuildViewStateReadSurahCopyWithImpl(_$_BuildViewStateReadSurah _value,
+      $Res Function(_$_BuildViewStateReadSurah) _then)
+      : super(_value, (v) => _then(v as _$_BuildViewStateReadSurah));
 
   @override
-  _BuildViewStateReadSurah get _value =>
-      super._value as _BuildViewStateReadSurah;
+  _$_BuildViewStateReadSurah get _value =>
+      super._value as _$_BuildViewStateReadSurah;
 }
 
 /// @nodoc
@@ -587,7 +562,8 @@ class _$_BuildViewStateReadSurah implements _BuildViewStateReadSurah {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _BuildViewStateReadSurah);
+        (other.runtimeType == runtimeType &&
+            other is _$_BuildViewStateReadSurah);
   }
 
   @override
@@ -679,22 +655,22 @@ abstract class _BuildViewStateReadSurah implements BuildViewState {
 }
 
 /// @nodoc
-abstract class _$BuildViewStateSebhaCopyWith<$Res> {
-  factory _$BuildViewStateSebhaCopyWith(_BuildViewStateSebha value,
-          $Res Function(_BuildViewStateSebha) then) =
-      __$BuildViewStateSebhaCopyWithImpl<$Res>;
+abstract class _$$_BuildViewStateSebhaCopyWith<$Res> {
+  factory _$$_BuildViewStateSebhaCopyWith(_$_BuildViewStateSebha value,
+          $Res Function(_$_BuildViewStateSebha) then) =
+      __$$_BuildViewStateSebhaCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$BuildViewStateSebhaCopyWithImpl<$Res>
+class __$$_BuildViewStateSebhaCopyWithImpl<$Res>
     extends _$BuildViewStateCopyWithImpl<$Res>
-    implements _$BuildViewStateSebhaCopyWith<$Res> {
-  __$BuildViewStateSebhaCopyWithImpl(
-      _BuildViewStateSebha _value, $Res Function(_BuildViewStateSebha) _then)
-      : super(_value, (v) => _then(v as _BuildViewStateSebha));
+    implements _$$_BuildViewStateSebhaCopyWith<$Res> {
+  __$$_BuildViewStateSebhaCopyWithImpl(_$_BuildViewStateSebha _value,
+      $Res Function(_$_BuildViewStateSebha) _then)
+      : super(_value, (v) => _then(v as _$_BuildViewStateSebha));
 
   @override
-  _BuildViewStateSebha get _value => super._value as _BuildViewStateSebha;
+  _$_BuildViewStateSebha get _value => super._value as _$_BuildViewStateSebha;
 }
 
 /// @nodoc
@@ -710,7 +686,7 @@ class _$_BuildViewStateSebha implements _BuildViewStateSebha {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _BuildViewStateSebha);
+        (other.runtimeType == runtimeType && other is _$_BuildViewStateSebha);
   }
 
   @override
