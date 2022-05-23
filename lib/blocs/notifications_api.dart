@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/route_manager.dart';
@@ -7,8 +8,7 @@ import 'package:m3allah/views/home_screen.dart';
 import 'package:workmanager/workmanager.dart';
 
 class NotificationCtrl {
-
-  static const String _icon = '@mipmap/ic_launcher' ;
+  static const String _icon = '@mipmap/ic_notification';
 
   static final _notification = FlutterLocalNotificationsPlugin();
 
@@ -39,7 +39,6 @@ class NotificationCtrl {
   static Future _selectNotification(payload) async {
     Get.offAll(() => const HomeScreen());
   }
-
 
   static Future _sendNotification() async {
     Seb7aZekr zekr = _randomZekr();
@@ -81,7 +80,11 @@ List<Map<String, dynamic>> azkar = [
   {"content": "اللَّهُ أَكْبَرُ كَبِيرًا ، وَالْحَمْدُ لِلَّهِ كَثِيرًا ، وَسُبْحَانَ اللَّهِ بُكْرَةً وَأَصِيلاً ", "description": "", "id": 12},
   {"content": "الْحَمْدُ لِلَّهِ حَمْدًا كَثِيرًا طَيِّبًا مُبَارَكًا فِيهِ", "description": "", "id": 13},
   {"content": "سُبْحَانَ الْلَّهِ، وَالْحَمْدُ لِلَّهِ، وَلَا إِلَهَ إِلَّا الْلَّهُ، وَالْلَّهُ أَكْبَر", "description": "", "id": 14},
-  {"content": "لَا إلَه إلّا اللهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلُّ شَيْءِ قَدِيرِ", "description": "", "id": 15},
+  {
+    "content": "لَا إلَه إلّا اللهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلُّ شَيْءِ قَدِيرِ",
+    "description": "",
+    "id": 15
+  },
   {"content": "لَّا إِلَٰهَ إِلَّا أَنتَ سُبْحَانَكَ إِنِّي كُنتُ مِنَ الظَّالِمِينَ", "description": "", "id": 16},
   {"content": 'رَبَّنَا أَتْمِمْ لَنَا نُورَنَا وَاغْفِرْ لَنَا ۖ إِنَّكَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ', "description": "", "id": 16},
   {"content": 'رَّبِّ أَنزِلْنِي مُنزَلًا مُّبَارَكًا وَأَنتَ خَيْرُ الْمُنزِلِينَ', "description": "", "id": 16},
@@ -89,7 +92,7 @@ List<Map<String, dynamic>> azkar = [
   {"content": 'لَّا إِلَٰهَ إِلَّا أَنتَ سُبْحَانَكَ إِنِّي كُنتُ مِنَ الظَّالِمِينَ', "description": "", "id": 16},
   {"content": 'رَّبِّ زِدْنِي عِلْمًا', "description": "", "id": 16},
   {"content": 'رَبَّنَا لَا تُزِغْ قُلُوبَنَا بَعْدَ إِذْ هَدَيْتَنَا وَهَبْ لَنَا مِن لَّدُنكَ رَحْمَةً', "description": "", "id": 16},
-  {"content": 'قَالَ رَبِّ اشْرَحْ لِي صَدْرِي*وَيَسِّرْ لِي أَمْرِي', "description": "", "id": 16},
+  {"content": 'قَالَ رَبِّ اشْرَحْ لِي صَدْرِي * وَيَسِّرْ لِي أَمْرِي', "description": "", "id": 16},
   {"content": "رَبِّ نَجِّنِي مِنَ الْقَوْمِ الظَّالِمِينَ", "description": "", "id": 16},
   {"content": "رَبِّ هَبْ لِي حُكْمًا وَأَلْحِقْنِي بِالصَّالِحِينَ", "description": "", "id": 16},
   {"content": "رَّبِّ أَعُوذُ بِكَ مِنْ هَمَزَاتِ الشَّيَاطِينِ", "description": "", "id": 16},

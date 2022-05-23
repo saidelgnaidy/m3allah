@@ -61,7 +61,7 @@ class SettingsBloc extends Cubit<SettingsState> {
   }
 
   saveLastRead({required double lastOffset, required BuildContext context}) async {
-    final viewBloc = context.read<BuildViewBloc>();
+    final viewBloc = BuildViewBloc.of(context);
 
     if (viewBloc.readQuranFullDetails.juzList != null) {
       settingsModel = settingsModel.copyWith(lastJuzOffset: lastOffset, lastJuz: viewBloc.selectedJuzList);

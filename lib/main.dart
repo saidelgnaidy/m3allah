@@ -18,9 +18,12 @@ import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  if (Platform.isAndroid || Platform.isIOS) {
+  if (Platform.isAndroid) {
     NotificationCtrl.initNotification();
     NotificationCtrl.initWorkMan();
+    await Firebase.initializeApp();
+  }
+  if (Platform.isIOS) {
     await Firebase.initializeApp();
   }
   await GetStorage.init();

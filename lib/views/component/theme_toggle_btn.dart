@@ -4,7 +4,6 @@
 
 import 'package:animate_icons/animate_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:m3allah/blocs/setting_bloc/settings_cubit.dart';
 
 class ThemeToggleBtn extends StatelessWidget {
@@ -14,7 +13,7 @@ class ThemeToggleBtn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final settings = context.read<SettingsBloc>();
+    final settings = SettingsBloc.of(context);
 
     return AnimateIcons(
       startIcon: settings.settingsModel.isLight ? Icons.nights_stay_rounded : Icons.wb_sunny_rounded,
