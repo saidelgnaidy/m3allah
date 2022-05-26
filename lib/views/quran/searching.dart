@@ -1,17 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:m3allah/blocs/search/search_cubit.dart';
 import 'package:m3allah/views/component/const.dart';
 
-class SearchSurah extends StatelessWidget {
+class SearchSurah extends StatefulWidget {
   final Function(String)? onChanged;
-  const SearchSurah({
-    Key? key,this.onChanged
-  }) : super(key: key);
+  const SearchSurah({Key? key, this.onChanged}) : super(key: key);
+
+  @override
+  State<SearchSurah> createState() => _SearchSurahState();
+}
+
+class _SearchSurahState extends State<SearchSurah> {
+  final TextEditingController ctrl = TextEditingController();
+
+  @override
+  void dispose() {
+    ctrl.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController ctrl = TextEditingController();
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 15),
       child: SizedBox(
@@ -24,7 +33,7 @@ class SearchSurah extends StatelessWidget {
           ),
           child: TextField(
             controller: ctrl,
-            onChanged: onChanged ?? (value) => context.read<SearchCubit>().search(value),
+            onChanged: widget.onChanged ?? (value) => SearchCubit.of(context).search(value),
             decoration: InputDecoration(
               prefixIcon: Icon(Icons.search_rounded, color: Theme.of(context).iconTheme.color!),
               hintText: 'الفاتحة',
@@ -33,7 +42,7 @@ class SearchSurah extends StatelessWidget {
               suffixIcon: IconButton(
                 icon: Icon(Icons.clear, color: Theme.of(context).iconTheme.color!),
                 onPressed: () {
-                  context.read<SearchCubit>().search('');
+                  SearchCubit.of(context).search('');
                   ctrl.clear();
                 },
               ),

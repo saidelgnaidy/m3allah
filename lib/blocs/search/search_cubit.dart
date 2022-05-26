@@ -1,6 +1,6 @@
-// ignore_for_file: depend_on_referenced_packages
 
-import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:m3allah/modle/surah_list/surah_list.dart';
 
 class SearchState {
@@ -12,6 +12,10 @@ class SearchState {
 class SearchCubit extends Cubit<SearchState> {
   List<SurahList> listOfSurah;
   String _lastQ = '';
+  
+  static SearchCubit of(BuildContext context) {
+   return BlocProvider.of<SearchCubit>(context);
+  }
 
   SearchCubit(this.listOfSurah) : super(SearchState(listOfSurah));
 

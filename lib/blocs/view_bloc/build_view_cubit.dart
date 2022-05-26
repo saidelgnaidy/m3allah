@@ -34,7 +34,7 @@ class BuildViewBloc extends Cubit<BuildViewState> {
       animationController.reverse();
       return;
     }
-    if (!animationController.isCompleted) {
+    if (animationController.value == 0) {
       emit(route);
       return;
     }

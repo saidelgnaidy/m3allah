@@ -16,18 +16,18 @@ class SurahListView extends StatelessWidget {
 
     return BlocProvider(
       create: (context) => SearchCubit(BuildViewBloc.of(context).surahList),
-      child: BlocBuilder<SearchCubit, SearchState>(
-        builder: (context, state) {
-          return Column(
-            children: [
-              if (settings.settingsModel.lastSurah != null)
-                ContinueReading(
-                  onPresed: () {
-                    BuildViewBloc.of(context).getFullSurah(settings.settingsModel.lastSurah!);
-                  },
-                  name: settings.settingsModel.lastSurah!.titleAr.toString(),
-                ),
-              Expanded(
+      child: Column(
+        children: [
+          if (settings.settingsModel.lastSurah != null)
+            ContinueReading(
+              onPresed: () {
+                BuildViewBloc.of(context).getFullSurah(settings.settingsModel.lastSurah!);
+              },
+              name: settings.settingsModel.lastSurah!.titleAr.toString(),
+            ),
+          BlocBuilder<SearchCubit, SearchState>(
+            builder: (context, state) {
+              return Expanded(
                 child: ListView.separated(
                   itemCount: state.listOfSurah.length,
                   physics: const BouncingScrollPhysics(),
@@ -43,11 +43,11 @@ class SurahListView extends StatelessWidget {
                     );
                   },
                 ),
-              ),
-              const SearchSurah()
-            ],
-          );
-        },
+              );
+            },
+          ),
+          const SearchSurah()
+        ],
       ),
     );
   }
