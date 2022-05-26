@@ -23,6 +23,7 @@
             </intent-filter>
         </activity>
         <meta-data
+            android:resource="@mipmap/ic_notification"
             android:name="flutterEmbedding"
             android:value="2" />
     </application>

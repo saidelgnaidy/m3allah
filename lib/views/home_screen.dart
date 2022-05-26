@@ -2,6 +2,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:m3allah/blocs/view_bloc/build_view_cubit.dart';
 import 'package:m3allah/blocs/view_bloc/build_view_state.dart';
+import 'package:m3allah/views/bookmark/bookmark_list_view.dart';
 import 'package:m3allah/views/component/const.dart';
 import 'package:m3allah/views/component/drawer_icon.dart';
 import 'package:flutter/material.dart';
@@ -34,6 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
         azkar: (azkar) => AzkarListView(azkarList: azkar.list),
         readSurah: (value) => const ReadOrListen(),
         sebha: (sebha) => const Seb7a(),
+        bookmarks: (bookmark)=> const BookmalksListView(),
       ),
     );
   }

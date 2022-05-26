@@ -2,6 +2,7 @@ import 'package:animate_icons/animate_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:m3allah/blocs/azkar/azkar_cubit.dart';
+import 'package:m3allah/blocs/bookmarks/bookmark_bloc.dart';
 import 'package:m3allah/blocs/read_quran/read_quran_cubit.dart';
 import 'package:m3allah/blocs/setting_bloc/settings_cubit.dart';
 import 'package:m3allah/blocs/view_bloc/build_view_cubit.dart';
@@ -18,16 +19,18 @@ class ToolBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<BuildViewBloc, BuildViewState>(
       builder: (context, state) {
-        final bool show = state.maybeWhen(orElse: () => false, azkar: (azkar) => true, readSurah: () => true);
+        final bool show = state.maybeWhen(orElse: () => false, azkar: (azkar) => true, readSurah: () => true, bookmarks: () => true);
         final SettingsBloc setting = SettingsBloc.of(context);
         final ReadQuranCubit readQuran = ReadQuranCubit.of(context);
         final AzkarCubit azkarCubit = AzkarCubit.of(context);
+        final BookmarksBloc bookmark = BookmarksBloc.of(context);
 
         void increaseFont() {
           readQuran.toggleToolBar();
           state.maybeWhen(
             orElse: () => false,
             azkar: (azkar) => azkarCubit.resetTimer(),
+            bookmarks: () => bookmark.resetTimer(),
           );
           setting.increaseFontSize();
         }
@@ -37,6 +40,7 @@ class ToolBar extends StatelessWidget {
           state.maybeWhen(
             orElse: () => false,
             azkar: (azkar) => azkarCubit.resetTimer(),
+            bookmarks: () => bookmark.resetTimer(),
           );
           setting.decreaseFontSize();
         }
@@ -46,6 +50,7 @@ class ToolBar extends StatelessWidget {
           state.maybeWhen(
             orElse: () => false,
             azkar: (azkar) => azkarCubit.resetTimer(),
+            bookmarks: () => bookmark.resetTimer(),
           );
           setting.updateFont();
         }

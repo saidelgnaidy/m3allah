@@ -11,6 +11,7 @@ class BuildViewState with _$BuildViewState {
   const factory BuildViewState.azkar({required List<AzkarList> list}) = _BuildViewStateAzkar;
   const factory BuildViewState.readSurah() = _BuildViewStateReadSurah;
   const factory BuildViewState.sebha() = _BuildViewStateSebha;
+  const factory BuildViewState.bookmarks() = _BuildViewStateBookmarks;
 }
 
 /// run this

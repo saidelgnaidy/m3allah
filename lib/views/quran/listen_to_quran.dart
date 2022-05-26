@@ -8,9 +8,11 @@ import 'package:m3allah/blocs/view_bloc/build_view_cubit.dart';
 import 'package:m3allah/blocs/view_bloc/build_view_state.dart';
 import 'package:m3allah/modle/quran/surah_model.dart';
 import 'package:m3allah/views/component/const.dart';
+import 'package:m3allah/views/component/my_icon_btn.dart';
 import 'package:m3allah/views/component/tool_bar.dart';
 import 'package:m3allah/views/component/translation_sheet.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+import 'package:share_plus/share_plus.dart';
 
 class QuranPlayer extends StatefulWidget {
   const QuranPlayer({Key? key}) : super(key: key);
@@ -36,8 +38,8 @@ class _QuranPlayerState extends State<QuranPlayer> with AutomaticKeepAliveClient
             itemPositionsListener: QuranPlayerBloc.of(context).versPositionsListener,
             shrinkWrap: true,
             itemBuilder: (context, index) {
-              if (index == 0 ) {
-                if(readQuran.surahList.first.index == '009' ) {
+              if (index == 0) {
+                if (readQuran.surahList.first.index == '009') {
                   return const SizedBox(height: 15);
                 } else {
                   return const BuildBasmla();
@@ -185,7 +187,6 @@ class QuranPlayerTile extends StatelessWidget {
                   child: Column(
                     children: [
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: Theme.of(context).colorScheme.surface,
@@ -195,13 +196,13 @@ class QuranPlayerTile extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             SizedBox(
-                              width: 40,
-                              height: 40,
+                              width: 35,
+                              height: 35,
                               child: AnimateIcons(
                                 controller: ctrl,
                                 startIcon: playNow == path ? Icons.pause_rounded : Icons.play_arrow_rounded,
                                 endIcon: playNow == path ? Icons.pause_rounded : Icons.play_arrow_rounded,
-                                size: 22.0,
+                                size: 20,
                                 onStartIconPress: () {
                                   quranPlayer.add(QuranPlayerEvent.playVers(versIndex: versIndex + 1, surahIndex: surah.index));
                                   return true;
@@ -221,14 +222,24 @@ class QuranPlayerTile extends StatelessWidget {
                               style: TextStyle(
                                 color: Theme.of(context).iconTheme.color,
                                 fontSize: (Theme.of(context).textTheme.caption?.fontSize ?? 10) - 8,
-                                fontFamily: 'font3',
+                                fontFamily: 'font7',
                               ),
-                            )
+                            ),
+                            SizedBox(
+                              width: 35,
+                              height: 30,
+                              child: KIconBtn(
+                                iconData: Icons.share,
+                                onTap: () {
+                                  Share.share(surah.verse.verses[versIndex]);
+                                },
+                              ),
+                            ),
                           ],
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                        padding: const EdgeInsets.fromLTRB(15, 10, 15, 5),
                         child: Text(
                           surah.verse.verses[versIndex],
                           style: Theme.of(context).textTheme.caption,
@@ -238,11 +249,11 @@ class QuranPlayerTile extends StatelessWidget {
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                          padding: const EdgeInsets.fromLTRB(15, 0, 15, 5),
                           child: Text(
                             surah.transEn.verses[versIndex].replaceAll('.', ''),
                             textAlign: TextAlign.left,
-                            style: TextStyle(fontSize: 12, color: Colors.grey[500]),
+                            style: TextStyle(fontSize: 13, color: Colors.grey[500]),
                           ),
                         ),
                       ),

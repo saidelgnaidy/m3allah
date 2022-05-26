@@ -72,6 +72,7 @@ class BuildViewBloc extends Cubit<BuildViewState> {
     }
   }
 
+
   getQuranLists() async {
     if (surahList.isEmpty) {
       emit(const BuildViewState.initial());
@@ -111,7 +112,7 @@ class BuildViewBloc extends Cubit<BuildViewState> {
   }
 
   Future<FullSurah> decodeSurah(String index) async {
-    var surahContent = await DefaultAssetBundle.of(Get.context!).loadString('assets/surah/surah_$index.json',cache: true);
+    var surahContent = await DefaultAssetBundle.of(Get.context!).loadString('assets/surah/surah_$index.json', cache: true);
     var transAR = await DefaultAssetBundle.of(Get.context!).loadString('assets/translation/ar/ar_translation_$index.json', cache: true);
     var transEN = await DefaultAssetBundle.of(Get.context!).loadString('assets/translation/en/en_translation_$index.json', cache: true);
     var transID = await DefaultAssetBundle.of(Get.context!).loadString('assets/translation/id/id_translation_$index.json', cache: true);

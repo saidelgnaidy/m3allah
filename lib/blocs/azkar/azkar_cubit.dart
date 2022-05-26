@@ -37,7 +37,7 @@ class AzkarCubit extends Cubit<AzkarState> {
     emit(AzkarState(toolBarPos: _toolBarPos));
   }
 
-  isToolBarOpen() => _toolBarPos == -80;
+  bool get isToolBarOpen => _toolBarPos == -80;
 
   resetTimer() {
     _timer?.cancel();

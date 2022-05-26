@@ -25,7 +25,6 @@ class NotificationCtrl {
       importance: Importance.max,
       playSound: false,
       enableVibration: false,
-      colorized: true,
       onlyAlertOnce: true,
       icon: _icon,
     ),

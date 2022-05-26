@@ -1,14 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/route_manager.dart';
 import 'package:m3allah/blocs/read_quran/read_quran_cubit.dart';
 import 'package:m3allah/blocs/setting_bloc/settings_cubit.dart';
 import 'package:m3allah/blocs/view_bloc/build_view_cubit.dart';
 import 'package:m3allah/blocs/view_bloc/build_view_state.dart';
 import 'package:m3allah/views/component/animation.dart';
 import 'package:m3allah/views/component/const.dart';
-import 'package:m3allah/modle/quran/surah_model.dart';
 import 'package:m3allah/views/component/store_progress.dart';
 import 'package:m3allah/views/component/tool_bar.dart';
 
@@ -60,20 +58,22 @@ class _ReadQuranState extends State<ReadQuran> with AutomaticKeepAliveClientMixi
                                   if (readQuran.surahList[surahI].index == '009') const SizedBox(height: 15) else const BuildBasmla(),
                                   SelectableText.rich(
                                     TextSpan(
-                                      children: List.generate(readQuran.calcStartIndex(surah: readQuran.surahList[surahI], i: 0).length, (index) => index).map(
+                                      children:
+                                          List.generate(readQuran.calcStartIndex(surah: readQuran.surahList[surahI], i: 0).length, (index) => index).map(
                                         (i) {
                                           return TextSpan(
                                             children: [
                                               TextSpan(
-                                                text: readQuran.surahList[surahI].verse.verses[readQuran.calcStartIndex(surah: readQuran.surahList[surahI], i: i).start],
+                                                text: readQuran.surahList[surahI].verse
+                                                    .verses[readQuran.calcStartIndex(surah: readQuran.surahList[surahI], i: i).start],
                                                 style: Theme.of(context).textTheme.caption,
                                               ),
                                               TextSpan(
                                                 text: ' ﴿${readQuran.calcStartIndex(surah: readQuran.surahList[surahI], i: i).start + 1}﴾ ',
                                                 style: TextStyle(
                                                   color: Theme.of(context).iconTheme.color,
-                                                  fontSize: (Theme.of(context).textTheme.caption?.fontSize ?? 10) - 6,
-                                                  fontFamily: 'font3',
+                                                  fontSize: (Theme.of(context).textTheme.caption?.fontSize ?? 10) - 4,
+                                                  fontFamily: 'font7',
                                                 ),
                                               ),
                                             ],
@@ -143,23 +143,3 @@ class _ReadQuranState extends State<ReadQuran> with AutomaticKeepAliveClientMixi
   @override
   bool get wantKeepAlive => true;
 }
-
-TextSpan verseSpan({required FullSurah surah, required IndexesOfJuz indexesOfJuz}) {
-  return TextSpan(
-    children: [
-      TextSpan(
-        text: surah.verse.verses[indexesOfJuz.start],
-        style: Theme.of(Get.context!).textTheme.caption,
-      ),
-      TextSpan(
-        text: ' ﴿${indexesOfJuz.start + 1}﴾ ',
-        style: TextStyle(
-          color: Theme.of(Get.context!).iconTheme.color,
-          fontSize: (Theme.of(Get.context!).textTheme.caption?.fontSize ?? 10) - 8,
-          fontFamily: 'font3',
-        ),
-      ),
-    ],
-  );
-}
-

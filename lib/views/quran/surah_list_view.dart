@@ -79,9 +79,12 @@ class SurahTile extends StatelessWidget {
           ),
         ),
         child: Center(
-          child: Text(
-            "${int.parse(surah.index)}",
-            style: Theme.of(context).textTheme.subtitle1?.copyWith(fontSize: 13),
+          child: Padding(
+            padding: const EdgeInsets.only(top: 4),
+            child: Text(
+              "${int.parse(surah.index)}",
+              style: Theme.of(context).textTheme.subtitle1?.copyWith(fontSize: 13),
+            ),
           ),
         ),
       ),
@@ -104,9 +107,9 @@ class SurahTile extends StatelessWidget {
         children: [
           const Text('عدد الآيات ', textAlign: TextAlign.right),
           Text(
-            '{ ${surah.count} }',
+            '﴿ ${surah.count} ﴾',
             textAlign: TextAlign.right,
-            style: Theme.of(context).textTheme.subtitle2?.copyWith(fontSize: 10),
+            style: Theme.of(context).textTheme.subtitle2?.copyWith(fontSize: 10, fontFamily: 'font1'),
           ),
         ],
       ),

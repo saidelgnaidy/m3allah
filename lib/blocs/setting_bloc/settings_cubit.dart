@@ -28,7 +28,7 @@ class SettingsBloc extends Cubit<SettingsState> {
   loadSavedTheme() {
     settingsModel = SettingsModel(
       isLight: GetStorage().read('isLight') ?? true,
-      fontCode: GetStorage().read('fontCode') ?? 2,
+      fontCode: GetStorage().read('fontCode') ?? 6,
       fontSize: GetStorage().read('fontSize') ?? 20,
       lastSurahOffset: GetStorage().read('settingsModel.lastSurahOffset') ?? 0.0,
       lastJuzOffset: GetStorage().read('settingsModel.lastJuzOffset') ?? 0.0,
@@ -51,7 +51,7 @@ class SettingsBloc extends Cubit<SettingsState> {
   }
 
   updateFont() async {
-    if (settingsModel.fontCode < 6) {
+    if (settingsModel.fontCode < 7) {
       settingsModel = settingsModel.copyWith(fontCode: (settingsModel.fontCode + 1));
     } else {
       settingsModel = settingsModel.copyWith(fontCode: 1);

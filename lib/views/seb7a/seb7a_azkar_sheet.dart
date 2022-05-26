@@ -41,7 +41,7 @@ class Seb7aListile extends StatelessWidget {
                               child: Text(
                                 zekr.description,
                                 textAlign: TextAlign.center,
-                                style: Theme.of(context).textTheme.headline2?.copyWith(fontSize: 15, fontFamily: 'font2'),
+                                style: Theme.of(context).textTheme.headline2?.copyWith(fontSize: 14),
                               ),
                             ),
                             Row(

@@ -8,6 +8,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:m3allah/blocs/azkar/azkar_cubit.dart';
+import 'package:m3allah/blocs/bookmarks/bookmark_bloc.dart';
 import 'package:m3allah/blocs/notifications_api.dart';
 import 'package:m3allah/blocs/read_quran/read_quran_cubit.dart';
 import 'package:m3allah/blocs/seb7a/seb7a_counter_bloc.dart';
@@ -49,6 +50,7 @@ class _M3AllahState extends State<M3Allah> with SingleTickerProviderStateMixin {
           BlocProvider(create: (context) => Seb7aCounterBloc()),
           BlocProvider(create: (context) => ReadQuranCubit()),
           BlocProvider(create: (context) => AzkarCubit()),
+          BlocProvider(create: (context) => BookmarksBloc()..getBookmarks()),
         ],
         child: BlocBuilder<SettingsBloc, SettingsState>(
           builder: (context, state) {

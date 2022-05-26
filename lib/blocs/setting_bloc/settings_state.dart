@@ -1,6 +1,6 @@
 part of 'settings_cubit.dart';
 
- class SettingsState {
+class SettingsState {
   ThemeData? get getThemeData {
     return null;
   }
@@ -18,7 +18,7 @@ class SettingsLoaded with SettingsState {
 
     return ThemeData(
       brightness: isLight ? Brightness.light : Brightness.dark,
-      fontFamily: 'font5',
+      fontFamily: 'font6',
       shadowColor: isLight ? lightShadow : darkShadow,
       drawerTheme: DrawerThemeData(backgroundColor: isLight ? lightBack1 : darkBack1),
       colorScheme: const ColorScheme.light().copyWith(
@@ -50,9 +50,9 @@ class SettingsLoaded with SettingsState {
         headline1: TextStyle(color: isLight ? lightText1 : darkText1),
         bodyText1: TextStyle(color: isLight ? lightText1 : darkText1),
         bodyText2: TextStyle(color: isLight ? lightText1 : darkText1),
-        subtitle1: TextStyle(color: isLight ? lightText1 : darkText1, fontFamily: 'font3'),
-        subtitle2: TextStyle(color: isLight ? lightText2 : darkText2, fontFamily: 'font3'),
-        headlineLarge: TextStyle(color: isLight ? lightText1 : darkText1, fontSize: 22, fontWeight: FontWeight.bold, fontFamily: 'font5'),
+        subtitle1: TextStyle(color: isLight ? lightText1 : darkText1, fontFamily: 'font6', fontSize: 15),
+        subtitle2: TextStyle(color: isLight ? lightText2 : darkText2, fontFamily: 'font6'),
+        headlineLarge: TextStyle(color: isLight ? lightText1 : darkText1, fontSize: 22, fontWeight: FontWeight.bold, fontFamily: 'font2'),
         button: TextStyle(color: isLight ? lightText1 : darkText1),
         caption: TextStyle(color: isLight ? lightText1 : darkText1, fontSize: settingsModel.fontSize, fontFamily: 'font${settingsModel.fontCode}'),
         labelMedium: TextStyle(color: isLight ? lightText1 : darkText1),
