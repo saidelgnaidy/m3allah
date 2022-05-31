@@ -34,8 +34,8 @@ class _ReadQuranState extends State<ReadQuran> with AutomaticKeepAliveClientMixi
                   child: CupertinoScrollbar(
                     controller: readQuran.scrollController,
                     scrollbarOrientation: ScrollbarOrientation.right,
-                    isAlwaysShown: true,
-                    //thumbVisibility: true,
+                    //isAlwaysShown: true,
+                    thumbVisibility: true,
                     thicknessWhileDragging: 15,
                     radius: const Radius.circular(5),
                     radiusWhileDragging: const Radius.circular(20),

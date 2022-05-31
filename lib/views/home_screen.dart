@@ -9,10 +9,11 @@ import 'package:flutter/material.dart';
 import 'package:m3allah/views/azkar/azkar_list_view.dart';
 import 'package:m3allah/views/component/theme_toggle_btn.dart';
 import 'package:m3allah/views/drawer.dart';
-import 'package:m3allah/views/my_drawer.dart';
+import 'package:m3allah/views/landing.dart';
 import 'package:m3allah/views/quran/quran_tabs.dart';
 import 'package:m3allah/views/quran/read_listen_tap.dart';
 import 'package:m3allah/views/seb7a/seb7a.dart';
+import 'package:m3allah/views/videos/videos_view.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -36,6 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
         readSurah: (value) => const ReadOrListen(),
         sebha: (sebha) => const Seb7a(),
         bookmarks: (bookmark)=> const BookmalksListView(),
+        videos: (videos) => const VideosView()
       ),
     );
   }

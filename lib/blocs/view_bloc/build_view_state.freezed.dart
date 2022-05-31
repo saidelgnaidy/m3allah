@@ -24,6 +24,7 @@ mixin _$BuildViewState {
     required TResult Function() readSurah,
     required TResult Function() sebha,
     required TResult Function() bookmarks,
+    required TResult Function() videos,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -34,6 +35,7 @@ mixin _$BuildViewState {
     TResult Function()? readSurah,
     TResult Function()? sebha,
     TResult Function()? bookmarks,
+    TResult Function()? videos,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -44,6 +46,7 @@ mixin _$BuildViewState {
     TResult Function()? readSurah,
     TResult Function()? sebha,
     TResult Function()? bookmarks,
+    TResult Function()? videos,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -55,6 +58,7 @@ mixin _$BuildViewState {
     required TResult Function(_BuildViewStateReadSurah value) readSurah,
     required TResult Function(_BuildViewStateSebha value) sebha,
     required TResult Function(_BuildViewStateBookmarks value) bookmarks,
+    required TResult Function(_BuildViewStateVideos value) videos,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -65,6 +69,7 @@ mixin _$BuildViewState {
     TResult Function(_BuildViewStateReadSurah value)? readSurah,
     TResult Function(_BuildViewStateSebha value)? sebha,
     TResult Function(_BuildViewStateBookmarks value)? bookmarks,
+    TResult Function(_BuildViewStateVideos value)? videos,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -75,6 +80,7 @@ mixin _$BuildViewState {
     TResult Function(_BuildViewStateReadSurah value)? readSurah,
     TResult Function(_BuildViewStateSebha value)? sebha,
     TResult Function(_BuildViewStateBookmarks value)? bookmarks,
+    TResult Function(_BuildViewStateVideos value)? videos,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -146,6 +152,7 @@ class _$_BuildViewStateIinitial implements _BuildViewStateIinitial {
     required TResult Function() readSurah,
     required TResult Function() sebha,
     required TResult Function() bookmarks,
+    required TResult Function() videos,
   }) {
     return initial();
   }
@@ -159,6 +166,7 @@ class _$_BuildViewStateIinitial implements _BuildViewStateIinitial {
     TResult Function()? readSurah,
     TResult Function()? sebha,
     TResult Function()? bookmarks,
+    TResult Function()? videos,
   }) {
     return initial?.call();
   }
@@ -172,6 +180,7 @@ class _$_BuildViewStateIinitial implements _BuildViewStateIinitial {
     TResult Function()? readSurah,
     TResult Function()? sebha,
     TResult Function()? bookmarks,
+    TResult Function()? videos,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -189,6 +198,7 @@ class _$_BuildViewStateIinitial implements _BuildViewStateIinitial {
     required TResult Function(_BuildViewStateReadSurah value) readSurah,
     required TResult Function(_BuildViewStateSebha value) sebha,
     required TResult Function(_BuildViewStateBookmarks value) bookmarks,
+    required TResult Function(_BuildViewStateVideos value) videos,
   }) {
     return initial(this);
   }
@@ -202,6 +212,7 @@ class _$_BuildViewStateIinitial implements _BuildViewStateIinitial {
     TResult Function(_BuildViewStateReadSurah value)? readSurah,
     TResult Function(_BuildViewStateSebha value)? sebha,
     TResult Function(_BuildViewStateBookmarks value)? bookmarks,
+    TResult Function(_BuildViewStateVideos value)? videos,
   }) {
     return initial?.call(this);
   }
@@ -215,6 +226,7 @@ class _$_BuildViewStateIinitial implements _BuildViewStateIinitial {
     TResult Function(_BuildViewStateReadSurah value)? readSurah,
     TResult Function(_BuildViewStateSebha value)? sebha,
     TResult Function(_BuildViewStateBookmarks value)? bookmarks,
+    TResult Function(_BuildViewStateVideos value)? videos,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -300,6 +312,7 @@ class _$_BuildViewStateQuran implements _BuildViewStateQuran {
     required TResult Function() readSurah,
     required TResult Function() sebha,
     required TResult Function() bookmarks,
+    required TResult Function() videos,
   }) {
     return quran(initTap);
   }
@@ -313,6 +326,7 @@ class _$_BuildViewStateQuran implements _BuildViewStateQuran {
     TResult Function()? readSurah,
     TResult Function()? sebha,
     TResult Function()? bookmarks,
+    TResult Function()? videos,
   }) {
     return quran?.call(initTap);
   }
@@ -326,6 +340,7 @@ class _$_BuildViewStateQuran implements _BuildViewStateQuran {
     TResult Function()? readSurah,
     TResult Function()? sebha,
     TResult Function()? bookmarks,
+    TResult Function()? videos,
     required TResult orElse(),
   }) {
     if (quran != null) {
@@ -343,6 +358,7 @@ class _$_BuildViewStateQuran implements _BuildViewStateQuran {
     required TResult Function(_BuildViewStateReadSurah value) readSurah,
     required TResult Function(_BuildViewStateSebha value) sebha,
     required TResult Function(_BuildViewStateBookmarks value) bookmarks,
+    required TResult Function(_BuildViewStateVideos value) videos,
   }) {
     return quran(this);
   }
@@ -356,6 +372,7 @@ class _$_BuildViewStateQuran implements _BuildViewStateQuran {
     TResult Function(_BuildViewStateReadSurah value)? readSurah,
     TResult Function(_BuildViewStateSebha value)? sebha,
     TResult Function(_BuildViewStateBookmarks value)? bookmarks,
+    TResult Function(_BuildViewStateVideos value)? videos,
   }) {
     return quran?.call(this);
   }
@@ -369,6 +386,7 @@ class _$_BuildViewStateQuran implements _BuildViewStateQuran {
     TResult Function(_BuildViewStateReadSurah value)? readSurah,
     TResult Function(_BuildViewStateSebha value)? sebha,
     TResult Function(_BuildViewStateBookmarks value)? bookmarks,
+    TResult Function(_BuildViewStateVideos value)? videos,
     required TResult orElse(),
   }) {
     if (quran != null) {
@@ -465,6 +483,7 @@ class _$_BuildViewStateAzkar implements _BuildViewStateAzkar {
     required TResult Function() readSurah,
     required TResult Function() sebha,
     required TResult Function() bookmarks,
+    required TResult Function() videos,
   }) {
     return azkar(list);
   }
@@ -478,6 +497,7 @@ class _$_BuildViewStateAzkar implements _BuildViewStateAzkar {
     TResult Function()? readSurah,
     TResult Function()? sebha,
     TResult Function()? bookmarks,
+    TResult Function()? videos,
   }) {
     return azkar?.call(list);
   }
@@ -491,6 +511,7 @@ class _$_BuildViewStateAzkar implements _BuildViewStateAzkar {
     TResult Function()? readSurah,
     TResult Function()? sebha,
     TResult Function()? bookmarks,
+    TResult Function()? videos,
     required TResult orElse(),
   }) {
     if (azkar != null) {
@@ -508,6 +529,7 @@ class _$_BuildViewStateAzkar implements _BuildViewStateAzkar {
     required TResult Function(_BuildViewStateReadSurah value) readSurah,
     required TResult Function(_BuildViewStateSebha value) sebha,
     required TResult Function(_BuildViewStateBookmarks value) bookmarks,
+    required TResult Function(_BuildViewStateVideos value) videos,
   }) {
     return azkar(this);
   }
@@ -521,6 +543,7 @@ class _$_BuildViewStateAzkar implements _BuildViewStateAzkar {
     TResult Function(_BuildViewStateReadSurah value)? readSurah,
     TResult Function(_BuildViewStateSebha value)? sebha,
     TResult Function(_BuildViewStateBookmarks value)? bookmarks,
+    TResult Function(_BuildViewStateVideos value)? videos,
   }) {
     return azkar?.call(this);
   }
@@ -534,6 +557,7 @@ class _$_BuildViewStateAzkar implements _BuildViewStateAzkar {
     TResult Function(_BuildViewStateReadSurah value)? readSurah,
     TResult Function(_BuildViewStateSebha value)? sebha,
     TResult Function(_BuildViewStateBookmarks value)? bookmarks,
+    TResult Function(_BuildViewStateVideos value)? videos,
     required TResult orElse(),
   }) {
     if (azkar != null) {
@@ -602,6 +626,7 @@ class _$_BuildViewStateReadSurah implements _BuildViewStateReadSurah {
     required TResult Function() readSurah,
     required TResult Function() sebha,
     required TResult Function() bookmarks,
+    required TResult Function() videos,
   }) {
     return readSurah();
   }
@@ -615,6 +640,7 @@ class _$_BuildViewStateReadSurah implements _BuildViewStateReadSurah {
     TResult Function()? readSurah,
     TResult Function()? sebha,
     TResult Function()? bookmarks,
+    TResult Function()? videos,
   }) {
     return readSurah?.call();
   }
@@ -628,6 +654,7 @@ class _$_BuildViewStateReadSurah implements _BuildViewStateReadSurah {
     TResult Function()? readSurah,
     TResult Function()? sebha,
     TResult Function()? bookmarks,
+    TResult Function()? videos,
     required TResult orElse(),
   }) {
     if (readSurah != null) {
@@ -645,6 +672,7 @@ class _$_BuildViewStateReadSurah implements _BuildViewStateReadSurah {
     required TResult Function(_BuildViewStateReadSurah value) readSurah,
     required TResult Function(_BuildViewStateSebha value) sebha,
     required TResult Function(_BuildViewStateBookmarks value) bookmarks,
+    required TResult Function(_BuildViewStateVideos value) videos,
   }) {
     return readSurah(this);
   }
@@ -658,6 +686,7 @@ class _$_BuildViewStateReadSurah implements _BuildViewStateReadSurah {
     TResult Function(_BuildViewStateReadSurah value)? readSurah,
     TResult Function(_BuildViewStateSebha value)? sebha,
     TResult Function(_BuildViewStateBookmarks value)? bookmarks,
+    TResult Function(_BuildViewStateVideos value)? videos,
   }) {
     return readSurah?.call(this);
   }
@@ -671,6 +700,7 @@ class _$_BuildViewStateReadSurah implements _BuildViewStateReadSurah {
     TResult Function(_BuildViewStateReadSurah value)? readSurah,
     TResult Function(_BuildViewStateSebha value)? sebha,
     TResult Function(_BuildViewStateBookmarks value)? bookmarks,
+    TResult Function(_BuildViewStateVideos value)? videos,
     required TResult orElse(),
   }) {
     if (readSurah != null) {
@@ -731,6 +761,7 @@ class _$_BuildViewStateSebha implements _BuildViewStateSebha {
     required TResult Function() readSurah,
     required TResult Function() sebha,
     required TResult Function() bookmarks,
+    required TResult Function() videos,
   }) {
     return sebha();
   }
@@ -744,6 +775,7 @@ class _$_BuildViewStateSebha implements _BuildViewStateSebha {
     TResult Function()? readSurah,
     TResult Function()? sebha,
     TResult Function()? bookmarks,
+    TResult Function()? videos,
   }) {
     return sebha?.call();
   }
@@ -757,6 +789,7 @@ class _$_BuildViewStateSebha implements _BuildViewStateSebha {
     TResult Function()? readSurah,
     TResult Function()? sebha,
     TResult Function()? bookmarks,
+    TResult Function()? videos,
     required TResult orElse(),
   }) {
     if (sebha != null) {
@@ -774,6 +807,7 @@ class _$_BuildViewStateSebha implements _BuildViewStateSebha {
     required TResult Function(_BuildViewStateReadSurah value) readSurah,
     required TResult Function(_BuildViewStateSebha value) sebha,
     required TResult Function(_BuildViewStateBookmarks value) bookmarks,
+    required TResult Function(_BuildViewStateVideos value) videos,
   }) {
     return sebha(this);
   }
@@ -787,6 +821,7 @@ class _$_BuildViewStateSebha implements _BuildViewStateSebha {
     TResult Function(_BuildViewStateReadSurah value)? readSurah,
     TResult Function(_BuildViewStateSebha value)? sebha,
     TResult Function(_BuildViewStateBookmarks value)? bookmarks,
+    TResult Function(_BuildViewStateVideos value)? videos,
   }) {
     return sebha?.call(this);
   }
@@ -800,6 +835,7 @@ class _$_BuildViewStateSebha implements _BuildViewStateSebha {
     TResult Function(_BuildViewStateReadSurah value)? readSurah,
     TResult Function(_BuildViewStateSebha value)? sebha,
     TResult Function(_BuildViewStateBookmarks value)? bookmarks,
+    TResult Function(_BuildViewStateVideos value)? videos,
     required TResult orElse(),
   }) {
     if (sebha != null) {
@@ -862,6 +898,7 @@ class _$_BuildViewStateBookmarks implements _BuildViewStateBookmarks {
     required TResult Function() readSurah,
     required TResult Function() sebha,
     required TResult Function() bookmarks,
+    required TResult Function() videos,
   }) {
     return bookmarks();
   }
@@ -875,6 +912,7 @@ class _$_BuildViewStateBookmarks implements _BuildViewStateBookmarks {
     TResult Function()? readSurah,
     TResult Function()? sebha,
     TResult Function()? bookmarks,
+    TResult Function()? videos,
   }) {
     return bookmarks?.call();
   }
@@ -888,6 +926,7 @@ class _$_BuildViewStateBookmarks implements _BuildViewStateBookmarks {
     TResult Function()? readSurah,
     TResult Function()? sebha,
     TResult Function()? bookmarks,
+    TResult Function()? videos,
     required TResult orElse(),
   }) {
     if (bookmarks != null) {
@@ -905,6 +944,7 @@ class _$_BuildViewStateBookmarks implements _BuildViewStateBookmarks {
     required TResult Function(_BuildViewStateReadSurah value) readSurah,
     required TResult Function(_BuildViewStateSebha value) sebha,
     required TResult Function(_BuildViewStateBookmarks value) bookmarks,
+    required TResult Function(_BuildViewStateVideos value) videos,
   }) {
     return bookmarks(this);
   }
@@ -918,6 +958,7 @@ class _$_BuildViewStateBookmarks implements _BuildViewStateBookmarks {
     TResult Function(_BuildViewStateReadSurah value)? readSurah,
     TResult Function(_BuildViewStateSebha value)? sebha,
     TResult Function(_BuildViewStateBookmarks value)? bookmarks,
+    TResult Function(_BuildViewStateVideos value)? videos,
   }) {
     return bookmarks?.call(this);
   }
@@ -931,6 +972,7 @@ class _$_BuildViewStateBookmarks implements _BuildViewStateBookmarks {
     TResult Function(_BuildViewStateReadSurah value)? readSurah,
     TResult Function(_BuildViewStateSebha value)? sebha,
     TResult Function(_BuildViewStateBookmarks value)? bookmarks,
+    TResult Function(_BuildViewStateVideos value)? videos,
     required TResult orElse(),
   }) {
     if (bookmarks != null) {
@@ -942,4 +984,139 @@ class _$_BuildViewStateBookmarks implements _BuildViewStateBookmarks {
 
 abstract class _BuildViewStateBookmarks implements BuildViewState {
   const factory _BuildViewStateBookmarks() = _$_BuildViewStateBookmarks;
+}
+
+/// @nodoc
+abstract class _$$_BuildViewStateVideosCopyWith<$Res> {
+  factory _$$_BuildViewStateVideosCopyWith(_$_BuildViewStateVideos value,
+          $Res Function(_$_BuildViewStateVideos) then) =
+      __$$_BuildViewStateVideosCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_BuildViewStateVideosCopyWithImpl<$Res>
+    extends _$BuildViewStateCopyWithImpl<$Res>
+    implements _$$_BuildViewStateVideosCopyWith<$Res> {
+  __$$_BuildViewStateVideosCopyWithImpl(_$_BuildViewStateVideos _value,
+      $Res Function(_$_BuildViewStateVideos) _then)
+      : super(_value, (v) => _then(v as _$_BuildViewStateVideos));
+
+  @override
+  _$_BuildViewStateVideos get _value => super._value as _$_BuildViewStateVideos;
+}
+
+/// @nodoc
+
+class _$_BuildViewStateVideos implements _BuildViewStateVideos {
+  const _$_BuildViewStateVideos();
+
+  @override
+  String toString() {
+    return 'BuildViewState.videos()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_BuildViewStateVideos);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(int initTap) quran,
+    required TResult Function(List<AzkarList> list) azkar,
+    required TResult Function() readSurah,
+    required TResult Function() sebha,
+    required TResult Function() bookmarks,
+    required TResult Function() videos,
+  }) {
+    return videos();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(int initTap)? quran,
+    TResult Function(List<AzkarList> list)? azkar,
+    TResult Function()? readSurah,
+    TResult Function()? sebha,
+    TResult Function()? bookmarks,
+    TResult Function()? videos,
+  }) {
+    return videos?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(int initTap)? quran,
+    TResult Function(List<AzkarList> list)? azkar,
+    TResult Function()? readSurah,
+    TResult Function()? sebha,
+    TResult Function()? bookmarks,
+    TResult Function()? videos,
+    required TResult orElse(),
+  }) {
+    if (videos != null) {
+      return videos();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_BuildViewStateIinitial value) initial,
+    required TResult Function(_BuildViewStateQuran value) quran,
+    required TResult Function(_BuildViewStateAzkar value) azkar,
+    required TResult Function(_BuildViewStateReadSurah value) readSurah,
+    required TResult Function(_BuildViewStateSebha value) sebha,
+    required TResult Function(_BuildViewStateBookmarks value) bookmarks,
+    required TResult Function(_BuildViewStateVideos value) videos,
+  }) {
+    return videos(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_BuildViewStateIinitial value)? initial,
+    TResult Function(_BuildViewStateQuran value)? quran,
+    TResult Function(_BuildViewStateAzkar value)? azkar,
+    TResult Function(_BuildViewStateReadSurah value)? readSurah,
+    TResult Function(_BuildViewStateSebha value)? sebha,
+    TResult Function(_BuildViewStateBookmarks value)? bookmarks,
+    TResult Function(_BuildViewStateVideos value)? videos,
+  }) {
+    return videos?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_BuildViewStateIinitial value)? initial,
+    TResult Function(_BuildViewStateQuran value)? quran,
+    TResult Function(_BuildViewStateAzkar value)? azkar,
+    TResult Function(_BuildViewStateReadSurah value)? readSurah,
+    TResult Function(_BuildViewStateSebha value)? sebha,
+    TResult Function(_BuildViewStateBookmarks value)? bookmarks,
+    TResult Function(_BuildViewStateVideos value)? videos,
+    required TResult orElse(),
+  }) {
+    if (videos != null) {
+      return videos(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _BuildViewStateVideos implements BuildViewState {
+  const factory _BuildViewStateVideos() = _$_BuildViewStateVideos;
 }

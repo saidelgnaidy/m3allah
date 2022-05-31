@@ -1,5 +1,3 @@
-// ignore_for_file: depend_on_referenced_packages
-
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -13,6 +11,8 @@ import 'package:m3allah/blocs/notifications_api.dart';
 import 'package:m3allah/blocs/read_quran/read_quran_cubit.dart';
 import 'package:m3allah/blocs/seb7a/seb7a_counter_bloc.dart';
 import 'package:m3allah/blocs/setting_bloc/settings_cubit.dart';
+import 'package:m3allah/blocs/postes/state_events.dart';
+import 'package:m3allah/blocs/postes/postes_bloc.dart';
 import 'package:m3allah/blocs/view_bloc/build_view_cubit.dart';
 import 'package:m3allah/views/home_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -51,6 +51,7 @@ class _M3AllahState extends State<M3Allah> with SingleTickerProviderStateMixin {
           BlocProvider(create: (context) => ReadQuranCubit()),
           BlocProvider(create: (context) => AzkarCubit()),
           BlocProvider(create: (context) => BookmarksBloc()..getBookmarks()),
+          BlocProvider(create: (context) => PostesFetchingBloc()..add(const FetchPostes())),
         ],
         child: BlocBuilder<SettingsBloc, SettingsState>(
           builder: (context, state) {

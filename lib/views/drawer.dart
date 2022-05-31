@@ -18,27 +18,13 @@ class KDrawer extends StatelessWidget {
     final view = BuildViewBloc.of(context);
     final size = MediaQuery.of(context).size;
 
-    final List<Widget> bookmarkWidgets = [
-      Lottie.asset(
-        'assets/images/bookmark.json',
-        width: 50,
-        fit: BoxFit.cover,
-      ),
-      Text(
-        'المفضلة',
-        style: Theme.of(context).textTheme.headline5,
-        textScaleFactor: .65,
-      ),
-      const SizedBox(width: 50),
-    ];
-
     return Container(
       color: isMobile(context) ? null : Theme.of(context).colorScheme.background,
       width: isMobile(context) ? size.width : 160,
       height: size.height,
       child: Center(
         child: SingleChildScrollView(
-          padding: EdgeInsets.only(left: isMobile(context) ? size.width * .15 + 12 : 8, right: 12),
+          padding: EdgeInsets.only(left: isMobile(context) ? size.width * .15 + 12 : 8, right: 12, top: isMobile(context) ? size.height * .05 : 10),
           physics: const BouncingScrollPhysics(),
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -161,7 +147,7 @@ class KDrawer extends StatelessWidget {
                     ),
                   ),
                   StaggeredGridTile.count(
-                    crossAxisCellCount: isMobile(context) ? crossAxisCellCountM : crossAxisCellCountD,
+                    crossAxisCellCount: isMobile(context) ? crossAxisCellCountM ~/ 2 : crossAxisCellCountD,
                     mainAxisCellCount: isMobile(context) ? 2.8 : mainAxisCellCountD,
                     child: RawMaterialButton(
                       elevation: 5,
@@ -170,29 +156,37 @@ class KDrawer extends StatelessWidget {
                       onPressed: () {
                         view.push(const BuildViewState.bookmarks());
                       },
-                      child: isMobile(context)
-                          ? Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: bookmarkWidgets,
-                            )
-                          : Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: bookmarkWidgets,
-                            ),
+                      child: Lottie.asset(
+                        'assets/images/bookmark.json',
+                        width: 50,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  StaggeredGridTile.count(
+                    crossAxisCellCount: isMobile(context) ? crossAxisCellCountM ~/ 2 : crossAxisCellCountD,
+                    mainAxisCellCount: isMobile(context) ? 2.8 : mainAxisCellCountD,
+                    child: RawMaterialButton(
+                      elevation: 5,
+                      fillColor: Theme.of(context).colorScheme.surface,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                      onPressed: () {
+                        view.push(const BuildViewState.videos());
+                      },
+                      child: const Icon(Icons.video_collection_rounded),
                     ),
                   ),
                 ],
               ),
-
-              /// Padding(
-              ///   padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * .1),
-              ///   child: Center(
-              ///     child: Text(
-              ///       'نسألكم الدعاء',
-              ///       style: Theme.of(context).textTheme.headline5?.copyWith(color: Colors.purpleAccent),
-              ///     ),
-              ///   ),
-              /// ),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * .1),
+                child: Center(
+                  child: Text(
+                    'نسألكم الدعاء',
+                    style: Theme.of(context).textTheme.headline5?.copyWith(color: Colors.purpleAccent),
+                  ),
+                ),
+              ),
             ],
           ),
         ),

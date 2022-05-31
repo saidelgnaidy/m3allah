@@ -33,7 +33,7 @@ class ReadQuranCubit extends Cubit<ReadQuranState> {
     Wakelock.enable();
     surahList = BuildViewBloc.of(context).readQuranFullDetails.surahlist;
     selectedJus = BuildViewBloc.of(context).readQuranFullDetails.juzList;
-    WidgetsBinding.instance?.addPostFrameCallback((duration) async {
+    WidgetsBinding.instance.addPostFrameCallback((duration) async {
       final setting = SettingsBloc.of(context).settingsModel;
       if (scrollController.hasClients) {
         if (selectedJus != null && setting.lastJuz != null) {

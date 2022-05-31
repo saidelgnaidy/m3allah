@@ -12,6 +12,7 @@ class BuildViewState with _$BuildViewState {
   const factory BuildViewState.readSurah() = _BuildViewStateReadSurah;
   const factory BuildViewState.sebha() = _BuildViewStateSebha;
   const factory BuildViewState.bookmarks() = _BuildViewStateBookmarks;
+  const factory BuildViewState.videos() = _BuildViewStateVideos;
 }
 
 /// run this
